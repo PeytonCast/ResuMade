@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+client/node_modules
+
+
 /.pnp
 .pnp.js
 
@@ -20,3 +23,8 @@
 
 npm-debug.log*
 .env
+server/node_modules
+
+
+
+
