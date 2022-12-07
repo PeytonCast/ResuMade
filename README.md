@@ -66,7 +66,6 @@ clone github repo
 npm install
 npm run build
 npm run develop
-npm run start (!!?)
 Go to http://localhost:3001
 ```
 OR follow the above heroku deployed application link
