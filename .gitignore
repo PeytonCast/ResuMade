@@ -12,7 +12,7 @@ server/node_modulesnpm
 /coverage
 
 # production
-/build
+client/build
 
 # misc
 .DS_Store
