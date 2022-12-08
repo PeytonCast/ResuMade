@@ -35,18 +35,10 @@ const resumeSchema = new Schema({
 
     // this is an object with nested arrays that decribe the skills of the user
     skills: {
-        languages: [{
-            type: String,
-          },],
-        frameworks: [{
-            type: String,
-          },],
-        libraries: [{
-            type: String,
-          },],
-        concepts: [{
-            type: String,
-          },]
+        languages: [String],
+        frameworks: [String],
+        libraries:[String],
+        concepts: [String]
     },
 
     //an array with nested object(s) a spot to store the users past project
@@ -58,9 +50,7 @@ const resumeSchema = new Schema({
             deployment: {type:String},
             summary: {type:String},
             responsibility: {type:String},
-            technologies: [{
-                type: String,
-              },]
+            technologies: [String]
 
         }
     ],
