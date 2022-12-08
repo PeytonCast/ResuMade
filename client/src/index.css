@@ -1,1 +1,12 @@
 
+@media (max-width: 500px) {
+    .headerMenu{
+        display:none;
+    }
+}
+
+@media (min-width: 500px) {
+    .menuIcon{
+        display:none;
+    }
+}
