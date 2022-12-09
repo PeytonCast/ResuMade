@@ -1,11 +1,10 @@
 import React from 'react';
+import QuestionsForm from './pages/QuestionsForm';
 
 
 function App() {
   return (
-    <div>
-      Welcome!
-    </div>
+    <QuestionsForm />
   );
 }
 

@@ -20,7 +20,6 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.16",
     "@stripe/stripe-js": "^1.46.0",
-    "docx": "^7.7.0",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
     "jsonwebtoken": "^8.5.1",
