@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Row,
-  Col,
-  Space,
-  InputNumber,
-} from "antd";
+import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 
 const UserInfo = () => {
   const onFinish = (values) => {
@@ -103,7 +96,8 @@ const UserInfo = () => {
               },
             ]}
           >
-            <Input />
+            {/* default input to all caps */}
+            <Input maxLength={2} />
           </Form.Item>
         </Col>
 
