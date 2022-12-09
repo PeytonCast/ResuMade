@@ -45,6 +45,10 @@ const FormController = () => {
       title: "Education",
       content: <Education />,
     },
+    {
+      title: "Preview",
+      // content: < />, // add <Preview/> here when it's ready
+    },
   ];
 
   const items = steps.map((item) => ({
@@ -58,6 +62,16 @@ const FormController = () => {
         <Steps current={current} items={items} />
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
+          {current > 0 && (
+            <Button
+              style={{
+                margin: "0 8px",
+              }}
+              onClick={() => prev()}
+            >
+              Previous
+            </Button>
+          )}
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => next()}>
               Next
@@ -70,17 +84,6 @@ const FormController = () => {
               onClick={() => message.success("Processing complete!")}
             >
               Done
-            </Button>
-          )}
-
-          {current > 0 && (
-            <Button
-              style={{
-                margin: "0 8px",
-              }}
-              onClick={() => prev()}
-            >
-              Previous
             </Button>
           )}
         </div>
