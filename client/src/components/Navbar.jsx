@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import "./navbar.css";
 
 import Auth from "../utils/auth";
 //TODO: need to test if login link changes to logout after user logs in
@@ -13,12 +14,11 @@ export default function Navbar() {
       <ul>
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/dashboard">Account</CustomLink>
-        {Auth.loggedIn ? (
-          <CustomLink to="/signout" onClick={Auth.logout}>
-            Signout
-          </CustomLink>
+        {/* if user is logged in show signout link*/}
+        {Auth.loggedIn() ? (
+          <CustomLink onClick={Auth.logout}>Signout</CustomLink>
         ) : (
-          <CustomLink to="/login">Login/Signup</CustomLink>
+          <CustomLink to="/login">Login/Sign Up</CustomLink>
         )}
       </ul>
     </nav>
