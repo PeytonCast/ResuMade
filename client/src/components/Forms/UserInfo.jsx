@@ -1,5 +1,12 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import {
+  Form,
+  Input,
+  Row,
+  Col,
+  Space,
+  InputNumber,
+} from "antd";
 
 const UserInfo = () => {
   const onFinish = (values) => {
@@ -10,31 +17,150 @@ const UserInfo = () => {
   };
   return (
     <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
+      name="userInfo"
+      // labelCol={{
+      //   span: 8,
+      // }}
+      // wrapperCol={{
+      //   span: 16,
+      // }}
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      layout="vertical"
     >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!",
-          },
-        ]}
-      >
-        <Input />
+      {/* <Space
+        direction="vertical"
+        size="large"
+        style={{
+          display: "flex",
+        }}
+      ></Space> */}
+
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="First Name"
+            name="firstName"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            // wrapperCol={{
+            //   offset: 8,
+            //   span: 16,
+            // }}
+            label="Last Name"
+            name="lastName"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="City"
+            name="city"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={3}>
+          <Form.Item
+            label="State"
+            name="state"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={4}>
+          <Form.Item
+            label="Zip"
+            name="zip"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <InputNumber min={5} max={9} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="Phone"
+            name="phone"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            label="Professional Email"
+            name="professionalEmail"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item label="Socials" name="socials">
+        <Input.Group>
+          <Input addonBefore="https://" placeholder="Github" />
+          <Input addonBefore="https://" placeholder="LinkedIn" />
+          <Input addonBefore="https://" placeholder="Portfolio" />
+        </Input.Group>
       </Form.Item>
     </Form>
   );
