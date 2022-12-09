@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 
+import { FormController } from "./pages";
 
 function App() {
   return (
     <div>
-      Welcome!
+      <FormController />
     </div>
   );
 }
