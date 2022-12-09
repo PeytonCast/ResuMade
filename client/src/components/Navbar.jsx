@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
-//TODO: need to figure out way to conditionally render based on user logged in (isAuthenticated?)
+import Auth from "../utils/auth";
+//TODO: need to test if login link changes to logout after user logs in
 
-export default function Navbar({ loggedIn, setLoggedIn }) {
+export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
@@ -12,16 +13,13 @@ export default function Navbar({ loggedIn, setLoggedIn }) {
       <ul>
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/dashboard">Account</CustomLink>
-        {loggedIn ? (
-          <CustomLink to="/signout" onClick={() => setLoggedIn(!loggedIn)}>
+        {Auth.loggedIn ? (
+          <CustomLink to="/signout" onClick={Auth.logout}>
             Signout
           </CustomLink>
         ) : (
-          <CustomLink to="/login" onClick={() => setLoggedIn(!loggedIn)}>
-            Login
-          </CustomLink>
+          <CustomLink to="/login">Login/Signup</CustomLink>
         )}
-        {loggedIn ? "" : <CustomLink to="/signup">Signup</CustomLink>}
       </ul>
     </nav>
   );
