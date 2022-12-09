@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Quicksand&display=swap');
+
+* {
+    font-family: Poppins, system-ui, sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+.hero {
+    background-image: url("https://images.unsplash.com/photo-1575833947895-6c6223316549");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 500px;
+    margin: 1rem;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(226, 226, 226);
+}
+
+.hero-text {
+    font-size: 2rem;
+    padding-top: 1rem;
+    font-family: Poppins, system-ui, sans-serif;
+  }
