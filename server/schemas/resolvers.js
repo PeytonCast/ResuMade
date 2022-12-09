@@ -39,6 +39,20 @@ const resolvers = {
       
             return { token, user };
           },
+
+         saveResume: async (parrent, { resumeData}, context) => {
+            if(context.user){
+                const updateUser = await User.findOneAndUpdate(
+
+                    { _id : context.user._id},
+                    { $push: {resumes: resumeData}},
+                    { new: true }
+                );
+                console.log(resumeData.personalInfo)
+                return updateUser;
+            }
+            throw new AuthenticationError('You need to be logged in.');
+         }
     }
 };
 module.exports = resolvers;

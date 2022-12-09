@@ -54,7 +54,9 @@ const typeDefs = gql`
         state: String
         summary: String
         startDate: Date
+        endDate: Date
     }
+    
     type EduInfo {
         degree: String
         fieldOfStudy: String
@@ -92,9 +94,8 @@ const typeDefs = gql`
         email: String!
         userGithub: String!
         linkedin: String!
-        
-        
-    }
+      }
+
     input InputSkillInfo {
         languages: [String]
         frameworks: [String]
@@ -119,6 +120,7 @@ const typeDefs = gql`
         state: String
         summary: String
         startDate: InputDate
+        endDate: InputDate
     }
     input InputEduInfo {
         degree: String

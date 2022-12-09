@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose')
 const resumeSchema = new Schema({
     // this is an object with nested objects of the users personal information
-    personal_info: {
+    personalInfo: {
         firstName: { type: String,
             required : true},
 
@@ -63,6 +63,10 @@ const resumeSchema = new Schema({
             state: {type:String},
             summary: {type:String},
             startDate:{
+                month:{type: Number,},
+                year:{type: Number,}
+              },
+            endDate:{
                 month:{type: Number,},
                 year:{type: Number,}
               },
