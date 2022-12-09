@@ -20,14 +20,12 @@ const resumeSchema = new Schema({
         email:{ type: String,
             required: true},
 
-        github:{ type: String,
+        userGithub:{ type: String,
             required: true},
 
         linkedin:{ type: String,
             required: true},
-        
-        phoneNumber:{ type: String,
-            required: true},
+    
         
     },
     // this is an optional 2-3 paragraph that someone can summerize skills with
@@ -45,7 +43,7 @@ const resumeSchema = new Schema({
     projects: [
         {
             name: {type:String},
-            github: {type:String},
+            githubLink: {type:String},
             name: {type:String},
             deployment: {type:String},
             summary: {type:String},

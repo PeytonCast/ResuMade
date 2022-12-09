@@ -20,9 +20,9 @@ const userSchema = new Schema({
       required: true,
       minlength: 5,
     },
-    skills: [resumeSchema],
+    resumes: [resumeSchema],
   });
-
+// pre hashing password
   userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
@@ -31,7 +31,7 @@ const userSchema = new Schema({
   
     next();
   });
-
+//  check password middware
   userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
   };

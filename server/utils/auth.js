@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 // const config = require('../config/config')
 require('dotenv').config()
-const secret = process.env.SECRET
+
+const secret = process.env.JWT_SECRET
+
 const expiration = '24h';
 module.exports = {
   // function for our authenticated routes
