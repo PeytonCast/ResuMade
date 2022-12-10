@@ -5,6 +5,7 @@ import Homepage from "../src/pages/Homepage";
 import Dashboard from "../src/pages/Dashboard";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
+import FormController from "./pages/FormController";
 import "./index.css";
 
 //import Footer from "./components/Footer";
@@ -15,7 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<FormController />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
       </Routes>
