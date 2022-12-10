@@ -1,9 +1,9 @@
-require("dotenv").config();
+// require("dotenv").config();
 
-const config = {
-    jwtSecretKey: process.env.JWT_SECRET
+// const config = {
+//     jwtSecretKey: process.env.JWT_SECRET
     
 
-};
-// jwtExpiration: process.env.JWT_EXPIRATION,
-module.exports = config;
+// };
+// // jwtExpiration: process.env.JWT_EXPIRATION,
+// module.exports = config;

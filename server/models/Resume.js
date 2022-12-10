@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose')
-const resumeSchema = new Schema({
+const { Schema, model } = require('mongoose')
+const resumeSchema = {
     // this is an object with nested objects of the users personal information
     personalInfo: {
         firstName: { type: String,
@@ -24,8 +24,7 @@ const resumeSchema = new Schema({
             required: true},
 
         linkedin:{ type: String,
-            required: true},
-    
+            required: true}
         
     },
     // this is an optional 2-3 paragraph that someone can summerize skills with
@@ -44,7 +43,6 @@ const resumeSchema = new Schema({
         {
             name: {type:String},
             githubLink: {type:String},
-            name: {type:String},
             deployment: {type:String},
             summary: {type:String},
             responsibility: {type:String},
@@ -90,5 +88,5 @@ const resumeSchema = new Schema({
         },
     ]
 
-})
+}
 module.exports = resumeSchema;
