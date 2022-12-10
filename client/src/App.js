@@ -5,22 +5,21 @@ import Homepage from "../src/pages/Homepage";
 import Dashboard from "../src/pages/Dashboard";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
+import "./index.css";
 
 //import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
-        </Routes>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Routes>
+    </div>
   );
 }
 

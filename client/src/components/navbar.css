@@ -1,21 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Quicksand&display=swap');
 
 * {
-  box-sizing: border-box;
-  font-family: Poppins, system-ui, sans-serif;;
-}
-
-body {
-  margin: 0;
+  font-family: Poppins, system-ui, sans-serif;
 }
 
 .container {
   margin: 1rem;
   text-align: center;
+  width: 100vw;
 }
 
 .nav {
-  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-between;
@@ -52,4 +47,22 @@ body {
 
 .nav li:hover {
   background-color: rgb(235, 235, 235);
+}
+
+@media (max-width: 640px) {
+  .container {
+    text-align: center;
+  }
+
+  .nav {
+    flex-direction: column;
+  }
+
+  .nav ul {
+    flex-direction: column;
+  }
+
+  .nav li {
+    margin: 0.8em 0;
+  }
 }
