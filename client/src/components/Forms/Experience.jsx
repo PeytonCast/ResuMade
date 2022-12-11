@@ -9,10 +9,30 @@ import {
   DatePicker,
   Space,
 } from "antd";
-// import { useWatch } from "antd/es/form/Form";
 
 const Experience = () => {
   const { TextArea } = Input;
+
+  // getting checkbox user input
+  const [checked, setChecked] = useState(false);
+  const onCheckboxChange = (e) => {
+    console.log("onCheckboxChange function is working");
+
+    let currentJobCheckbox = document.getElementById("currentJob");
+    console.log(currentJobCheckbox);
+
+    let checkboxUserOutput = [];
+    console.log(checkboxUserOutput);
+
+    function currentJobCheckboxArray(e) {
+      console.log("currentJobCheckboxArray function is working");
+      console.log(checkboxUserOutput.push(e.target.checked));
+    }
+    currentJobCheckboxArray();
+
+    console.log(`checkbox change: checked = ${e.target.checked}`);
+    setChecked(e.target.checked);
+  };
 
   const form = Form.useFormInstance();
   const jobTitle = Form.useWatch("jobTitle", form);
@@ -28,8 +48,12 @@ const Experience = () => {
   const endDateMonth = Form.useWatch("endDateMonth", form);
   const endDateYear = Form.useWatch("endDateYear", form);
 
+  // checkbox
   const currentJob = Form.useWatch("currentJob", form);
+
   const jobDescription = Form.useWatch("jobDescription", form);
+
+  // checkbox
   const addAnother = Form.useWatch("addAnother", form);
 
   return (
@@ -80,8 +104,8 @@ const Experience = () => {
         </Col>
 
         <Col span={4}>
-          <Form.Item label="Current Job?" name="currentJob">
-            <Checkbox></Checkbox>
+          <Form.Item label="Current Job?" name="currentJob" id="currentJob">
+            <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox>
           </Form.Item>
         </Col>
       </Row>
