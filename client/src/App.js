@@ -7,6 +7,8 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import "./index.css";
 
+import { FormController } from "./pages";
+
 //import Footer from "./components/Footer";
 
 import {
@@ -52,6 +54,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
+            <Route path="/form" element={<FormController />} />
           </Routes>
         </>
       </Router>
