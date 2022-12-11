@@ -94,7 +94,7 @@ const FormController = () => {
               onClick={() => {
                 form.submit();
                 setUserData(form.getFieldsValue(true));
-                message.success("Resume ready to download!");
+                message.success("Your ResuMate is ready to download!");
               }}
             >
               Done
