@@ -1,18 +1,17 @@
 import React from "react";
-import CardResume from '../components/CardResume';
+// import AddResume from '../components/AddResume';
 // import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
-// import { useParams } from 'react-router-dom';
 import { QUERY_ME} from '../utils/queries';
+import ResumeList from "../components/ResumeList";
 
 //user can add, delete, edit resume
 const Dashboard = () => {
-  const {data, loading} = useQuery(QUERY_ME);
-  // const [addResume] = useMutation(ADD_RESUME)
+  // const {data, loading} = useQuery(QUERY_ME);
 
-  const user = data?.me || data?.user || {};
+  // const user = data?.me || data?.user || {};
  
-  console.log(data)
+  // console.log(user)
 
   //COMMENT BACK IN WHEN AUTH LOGIN IS SETUP
     // if (loading) {
@@ -35,7 +34,11 @@ const Dashboard = () => {
 
     return (
       <div>
-         <CardResume />
+        <h2>Welcome to Your Profile!</h2>
+        {/* <AddResume /> */}
+        <ResumeList 
+          // resumes={user.resume}
+        />
       </div>
     );
 };
