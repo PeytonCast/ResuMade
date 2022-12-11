@@ -40,7 +40,7 @@ const resolvers = {
             return { token, user };
           },
 
-         saveResume: async (parrent, { resumeData}, context) => {
+         saveResume: async (parent, { resumeData}, context) => {
             if(context.user){
                 const updateUser = await User.findOneAndUpdate(
 
