@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
-  Checkbox,
   Form,
   Input,
   Row,
   Col,
   Card,
   ConfigProvider,
+  Divider,
+  Alert,
+  message,
 } from "antd";
 
 import { useMutation } from "@apollo/client";
@@ -16,21 +18,19 @@ import { LOGIN_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
-const LoginForm = () => {
-  // from antd login form
+const LoginForm = (props) => {
+  // antd func to check values of form
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  // Login auth variables
-  const [userFormData, setUserFormData] = useState({
+  const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-
   const [login, { error }] = useMutation(LOGIN_USER);
+
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -40,23 +40,22 @@ const LoginForm = () => {
     }
   }, [error]);
 
+  // set state for form validation --- kept giving me errors in console, not sure why..
+  // const [validated] = useState(false);
+
+  // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setLoginFormData({ ...loginFormData, [name]: value });
   };
 
+  //submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     try {
       const { data } = await login({
-        variables: { ...userFormData },
+        variables: { ...loginFormData },
       });
 
       console.log(data);
@@ -66,7 +65,7 @@ const LoginForm = () => {
     }
 
     // clear form values
-    setUserFormData({
+    setLoginFormData({
       email: "",
       password: "",
     });
@@ -74,6 +73,8 @@ const LoginForm = () => {
 
   return (
     <Row
+      align="middle"
+      justify="center"
       gutter={{
         xs: 8,
         sm: 16,
@@ -81,21 +82,30 @@ const LoginForm = () => {
         lg: 32,
       }}>
       <Col span={12}>
-        <Card>
+        <Card style={{ height: 352 }}>
+          <Divider>Login to your account</Divider>
+          {showAlert && (
+            <Alert
+              type="error"
+              message="Login Error"
+              description="Something went wrong with your login credentials!"
+              closable
+            />
+          )}
           <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleFormSubmit}
+            // noValidate
+            // validated={validated}
             name="normal_login"
             className="login-form"
             initialValues={{
               remember: true,
             }}
+            onSubmit={handleFormSubmit}
             onFinish={onFinish}>
             <Form.Item
               name="email"
               onChange={handleInputChange}
-              value={userFormData.email}
+              value={loginFormData.email}
               rules={[
                 {
                   required: true,
@@ -110,7 +120,7 @@ const LoginForm = () => {
             <Form.Item
               name="password"
               onChange={handleInputChange}
-              value={userFormData.password}
+              value={loginFormData.password}
               rules={[
                 {
                   required: true,
@@ -123,15 +133,6 @@ const LoginForm = () => {
                 placeholder="Password"
               />
             </Form.Item>
-            {/* <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-
-              {/* <a className="login-form-forgot" href="">
-                Forgot password
-              </a> 
-            </Form.Item> */}
 
             <Form.Item>
               <ConfigProvider
@@ -152,12 +153,14 @@ const LoginForm = () => {
         </Card>
       </Col>
 
-      <Col span={12}>
+      {/* SIGN UP FORM */}
+      {/* <Col span={12}>
         <Card>
+          <Divider>Create an account</Divider>
           <Form name="register" onFinish={onFinish}>
             <Form.Item
               name="email"
-              label="E-mail"
+              label="Email"
               rules={[
                 {
                   type: "email",
@@ -230,8 +233,8 @@ const LoginForm = () => {
               </ConfigProvider>
             </Form.Item>
           </Form>
-        </Card>
-      </Col>
+        </Card> 
+      </Col>*/}
     </Row>
   );
 };
