@@ -1,162 +1,89 @@
-import React from "react";
+import React, { useState, useWatch } from "react";
 import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 
 const UserInfo = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const form = Form.useFormInstance();
+  const firstName = Form.useWatch("firstName", form);
+  const lastName = Form.useWatch("lastName", form);
+  const city = Form.useWatch("city", form);
+  const state = Form.useWatch("state", form);
+  const zip = Form.useWatch("zip", form);
+  const phone = Form.useWatch("phone", form);
+  const professionalEmail = Form.useWatch("professionalEmail", form);
+  // const socials = Form.useWatch("socials", form);
+  const github = Form.useWatch("github", form);
+  const linkedin = Form.useWatch("linkedin", form);
+  const portfolio = Form.useWatch("portfolio", form);
+
   return (
-    <Form
-      name="userInfo"
-      // labelCol={{
-      //   span: 8,
-      // }}
-      // wrapperCol={{
-      //   span: 16,
-      // }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-      layout="vertical"
-    >
-      {/* <Space
-        direction="vertical"
-        size="large"
-        style={{
-          display: "flex",
-        }}
-      ></Space> */}
-
+    <>
       <Row>
-        <Col span={12}>
-          <Form.Item
-            label="First Name"
-            name="firstName"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
+        <Col span={24}>
+          <Form.Item label="First Name" name="firstName">
             <Input />
           </Form.Item>
         </Col>
 
-        <Col span={12}>
-          <Form.Item
-            // wrapperCol={{
-            //   offset: 8,
-            //   span: 16,
-            // }}
-            label="Last Name"
-            name="lastName"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col span={12}>
-          <Form.Item
-            label="City"
-            name="city"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
+        <Col span={24}>
+          <Form.Item label="Last Name" name="lastName">
             <Input />
           </Form.Item>
         </Col>
 
-        <Col span={3}>
-          <Form.Item
-            label="State"
-            name="state"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            {/* default input to all caps */}
+        <Col span={24}>
+          <Form.Item label="City" name="city">
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={24}>
+          <Form.Item label="State" name="state">
             <Input maxLength={2} />
           </Form.Item>
         </Col>
 
-        <Col span={4}>
-          <Form.Item
-            label="Zip"
-            name="zip"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <InputNumber min={5} max={9} />
+        <Col span={24}>
+          <Form.Item label="Zip" name="zip">
+            <InputNumber minLength={5} maxLength={9} />
           </Form.Item>
         </Col>
+
+        <Col span={24}>
+          <Form.Item label="Phone" name="phone">
+            <InputNumber minLength={10} maxLength={10} />
+          </Form.Item>
+        </Col>
+
+        <Col span={24}>
+          <Form.Item label="Professional Email" name="professionalEmail">
+            <Input type="email" />
+          </Form.Item>
+        </Col>
+
+        {/* <Form.Item label="Socials" name="socials"> */}
+        {/* <Input.Group> */}
+        <Form.Item label="Github" name="github">
+          <Input addonBefore="https://" placeholder="Github" name="github" />
+        </Form.Item>
+
+        <Form.Item label="Linkedin" name="linkedin">
+          <Input
+            addonBefore="https://"
+            placeholder="LinkedIn"
+            name="linkedin"
+          />
+        </Form.Item>
+
+        <Form.Item label="Portfolio" name="portfolio">
+          <Input
+            addonBefore="https://"
+            placeholder="Portfolio"
+            name="portfolio"
+          />
+          {/* </Input.Group> */}
+        </Form.Item>
       </Row>
-
-      <Row>
-        <Col span={12}>
-          <Form.Item
-            label="Phone"
-            name="phone"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item
-            label="Professional Email"
-            name="professionalEmail"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Form.Item label="Socials" name="socials">
-        <Input.Group>
-          <Input addonBefore="https://" placeholder="Github" />
-          <Input addonBefore="https://" placeholder="LinkedIn" />
-          <Input addonBefore="https://" placeholder="Portfolio" />
-        </Input.Group>
-      </Form.Item>
-    </Form>
+    </>
   );
 };
 export default UserInfo;
