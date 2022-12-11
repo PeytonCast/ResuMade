@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Row, Col, Steps, Button, message } from "antd";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Steps, Button, message, Form } from "antd";
 import {
   UserInfo,
   Summary,
@@ -11,6 +11,8 @@ import {
 
 const FormController = () => {
   const [current, setCurrent] = useState(0);
+  const [form] = Form.useForm();
+  const [userData, setUserData] = useState({});
 
   const next = () => {
     setCurrent(current + 1);
@@ -56,11 +58,19 @@ const FormController = () => {
     title: item.title,
   }));
 
+  useEffect(() => {
+    console.log(userData);
+  });
+
   return (
     <Row justify="center" align="middle">
       <Col>
         <Steps current={current} items={items} />
-        <div className="steps-content">{steps[current].content}</div>
+
+        <div className="steps-content">
+          <Form form={form}>{steps[current].content}</Form>
+        </div>
+
         <div className="steps-action">
           {current > 0 && (
             <Button
@@ -81,7 +91,11 @@ const FormController = () => {
           {current === steps.length - 1 && (
             <Button
               type="primary"
-              onClick={() => message.success("Processing complete!")}
+              onClick={() => {
+                form.submit();
+                setUserData(form.getFieldsValue(true));
+                message.success("Resume ready to download!");
+              }}
             >
               Done
             </Button>
