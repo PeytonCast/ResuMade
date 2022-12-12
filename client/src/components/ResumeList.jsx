@@ -16,16 +16,15 @@ const ResumeList = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const token = Auth.getToken();
-console.log(token)
-        // if (!token) {
-        //   return false;
-        // }
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+// console.log("token", token)
+        if (!token) {
+          return false;
+        }
 
-        console.log("before user")
-          const user = await data?.me 
-        console.log(user)
-
+        const user = await data?.me 
+        console.log("user", user)
+        console.log("data", data)
         setUserData(user);
       } catch (err) {
         console.error(err);
@@ -71,7 +70,7 @@ console.log(token)
     <div>
     hi from resume list
       {/* <div className="cards">
-        {data.me.ResumeList.map(resume => {
+        {data.me.resumes.map(resume => {
             return (
               
               // madeleine's object
@@ -85,10 +84,8 @@ console.log(token)
               </Card>
             )
         })}
-         */}
-            
-        
-      {/* </div> */}
+      </div> */}
+
     </div>
   );
 }
