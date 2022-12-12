@@ -7,60 +7,69 @@ import { REMOVE_RESUME, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const ResumeList = () => {
-  // const { Meta } = Card;
-//   const [userData, setUserData] = useState({});
-//   const {data, loading} = useQuery(QUERY_ME);
-//   const [deleteResume] = useMutation(REMOVE_RESUME)
+  const { Meta } = Card;
+  const [userData, setUserData] = useState({});
+  const {data, loading} = useQuery(QUERY_ME);
+  // const [deleteResume] = useMutation(REMOVE_RESUME)
 
-//   //checks if the user is logged in and gets user's data
-//   useEffect(() => {
-//     const getUserData = async () => {
-//       try {
-//         const user = await data.me
-//         setUserData(user);
-//       } catch (err) {
-//         console.error(err);
-//       }
-//     };
+  // checks if the user is logged in and gets user's data
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const token = Auth.getToken();
+console.log(token)
+        // if (!token) {
+        //   return false;
+        // }
 
-//     getUserData();
-//   }, [data]);
+        console.log("before user")
+          const user = await data?.me 
+        console.log(user)
+
+        setUserData(user);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getUserData();
+  }, [data]);
   
-//  const handleEditResume = async (resumeID) => {
+ const handleEditResume = async (resumeID) => {
 
 
-//   console.log("editing resume")
-//  };
+  console.log("editing resume")
+ };
 
-//  const handleDeleteResume = async (resumeID) => {
-//   const token = Auth.loggedIn() ? Auth.getToken() : null;
+ const handleDeleteResume = async (resumeID) => {
+  // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-//   if (!token) {
-//     throw new Error('please login');
-//   }
+  // if (!token) {
+  //   throw new Error('please login');
+  // }
 
-//   try {
-//     console.log('resume id:',resumeID)
-//     const updatedUser = await deleteResume({variables: {resumeID}});
-//     console.log('updatedUser:',updatedUser)
-//     if (!resumeID) {
-//       throw new Error('there is no resume with that id');
-//     }
+  // try {
+  //   console.log('resume id:',resumeID)
+  //   const updatedUser = await deleteResume({variables: {resumeID}});
+  //   console.log('updatedUser:',updatedUser)
+  //   if (!resumeID) {
+  //     throw new Error('there is no resume with that id');
+  //   }
 
 
-//     setUserData(updatedUser);
+  //   setUserData(updatedUser);
     
-//     removeresumeID(resumeID);
-//     window.location.reload();
-//   } catch (err) {
-//     console.error(err);
-//   }
-//   console.log("deleting resume")
-//  };
+  //   removeresumeID(resumeID);
+  //   window.location.reload();
+  // } catch (err) {
+  //   console.error(err);
+  // }
+  console.log("deleting resume")
+ };
 
   return (
     <div>
-    hi
+    hi from resume list
       {/* <div className="cards">
         {data.me.ResumeList.map(resume => {
             return (
@@ -76,10 +85,10 @@ const ResumeList = () => {
               </Card>
             )
         })}
-        
+         */}
             
         
-      </div> */}
+      {/* </div> */}
     </div>
   );
 }

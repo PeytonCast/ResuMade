@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { DatabaseOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
   Form,
@@ -13,17 +13,36 @@ import {
 } from "antd";
 
 import { useNavigate, Navigate } from "react-router-dom"; //for redirecting after login
-
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { useQuery } from '@apollo/client';
+
+import { QUERY_ME } from '../utils/queries';
 
 const LoginForm = (props) => {
+  const {userData, loading} = useQuery(QUERY_ME);
   // antd func to check values of form after submit
-  const onFinish = (data) => {
-    console.log("hello from loginform")
-    console.log("Received values of form: ", data);
-    nav("/dashboard");
+  const onFinish = async (formData) => {
+    // console.log("Received values of form: ", formData);
+
+    try {
+      const { data } = await login({
+        variables: { ...formData },
+      });
+      Auth.login(data.login.token);
+     
+      console.log("userData", data);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setLoginFormData({
+      email: "",
+      password: "",
+    });
+   
   };
 
   const [loginFormData, setLoginFormData] = useState({
@@ -52,6 +71,7 @@ const LoginForm = (props) => {
   };
 
   const nav = useNavigate();
+
 
   return (
     <Row
