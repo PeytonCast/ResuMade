@@ -8,60 +8,60 @@ import Auth from '../utils/auth';
 
 const ResumeList = () => {
   // const { Meta } = Card;
-  const [userData, setUserData] = useState({});
-  const {data, loading} = useQuery(QUERY_ME);
-  const [deleteResume] = useMutation(REMOVE_RESUME)
+//   const [userData, setUserData] = useState({});
+//   const {data, loading} = useQuery(QUERY_ME);
+//   const [deleteResume] = useMutation(REMOVE_RESUME)
 
-  //checks if the user is logged in and gets user's data
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const user = await data.me
-        setUserData(user);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+//   //checks if the user is logged in and gets user's data
+//   useEffect(() => {
+//     const getUserData = async () => {
+//       try {
+//         const user = await data.me
+//         setUserData(user);
+//       } catch (err) {
+//         console.error(err);
+//       }
+//     };
 
-    getUserData();
-  }, [data]);
+//     getUserData();
+//   }, [data]);
   
- const handleEditResume = async (resumeID) => {
+//  const handleEditResume = async (resumeID) => {
 
 
-  console.log("editing resume")
- };
+//   console.log("editing resume")
+//  };
 
- const handleDeleteResume = async (resumeID) => {
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
+//  const handleDeleteResume = async (resumeID) => {
+//   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  if (!token) {
-    throw new Error('please login');
-  }
+//   if (!token) {
+//     throw new Error('please login');
+//   }
 
-  try {
-    console.log('resume id:',resumeID)
-    const updatedUser = await deleteResume({variables: {resumeID}});
-    console.log('updatedUser:',updatedUser)
-    if (!resumeID) {
-      throw new Error('there is no resume with that id');
-    }
+//   try {
+//     console.log('resume id:',resumeID)
+//     const updatedUser = await deleteResume({variables: {resumeID}});
+//     console.log('updatedUser:',updatedUser)
+//     if (!resumeID) {
+//       throw new Error('there is no resume with that id');
+//     }
 
 
-    setUserData(updatedUser);
+//     setUserData(updatedUser);
     
-    removeresumeID(resumeID);
-    window.location.reload();
-  } catch (err) {
-    console.error(err);
-  }
-  console.log("deleting resume")
- };
+//     removeresumeID(resumeID);
+//     window.location.reload();
+//   } catch (err) {
+//     console.error(err);
+//   }
+//   console.log("deleting resume")
+//  };
 
   return (
     <div>
-    
-      <div className="cards">
+    hi
+      {/* <div className="cards">
         {data.me.ResumeList.map(resume => {
             return (
               
@@ -79,7 +79,7 @@ const ResumeList = () => {
         
             
         
-      </div>
+      </div> */}
     </div>
   );
 }
