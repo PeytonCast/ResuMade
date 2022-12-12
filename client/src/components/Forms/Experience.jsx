@@ -30,10 +30,11 @@ const Experience = () => {
       "endDateYear",
       "currentJob",
       "jobDescription",
-      "addAnother",
+      "addAnotherExperience",
     ],
     form
   );
+
   // const companyName = Form.useWatch("companyName", form);
   // const city = Form.useWatch("city", form);
   // const state = Form.useWatch("state", form);
@@ -47,12 +48,13 @@ const Experience = () => {
   // const endDateYear = Form.useWatch("endDateYear", form);
 
   // // checkbox
-  // const currentJob = Form.useWatch("currentJob", form);
+  const currentJob = Form.useWatch("currentJob", form);
+  // Form.useWatch = (namePath: "currentJob", formInstance: form): Value
 
   // const jobDescription = Form.useWatch("jobDescription", form);
 
   // // checkbox
-  // const addAnother = Form.useWatch("addAnother", form);
+  const addAnother = Form.useWatch("addAnotherExperience", form);
 
   return (
     <>
@@ -107,6 +109,9 @@ const Experience = () => {
             name="currentJob"
             id="currentJob"
             valuePropName="checked"
+            // onChange={(e) => {
+            //   console.log(e.target);
+            // }}
           >
             {/* <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox> */}
             <Checkbox></Checkbox>
@@ -118,7 +123,7 @@ const Experience = () => {
         <TextArea rows={3} />
       </Form.Item>
 
-      <Form.Item label="Add Another" name="addAnother" valuePropName="checked">
+      <Form.Item label="Add Another" name="addAnotherExperience" valuePropName="checked">
         <Checkbox></Checkbox>
       </Form.Item>
     </>

@@ -28,7 +28,7 @@ const Education = () => {
       "endDateMonth",
       "endDateYear",
       "grade",
-      "addAnother",
+      "addAnotherEducation",
     ],
     form
   );
@@ -50,7 +50,7 @@ const Education = () => {
   // Form.useWatch("grade", form);
 
   // // checkbox
-  // Form.useWatch("addAnother", form);
+  Form.useWatch("addAnotherEducation", form);
 
   return (
     <>
@@ -103,17 +103,18 @@ const Education = () => {
           </Form.Item>
         </Col>
 
-        <Col span={12}>
+        {/* <Col span={12}>
           <Form.Item label="Grade (if applicable)" name="grade">
             <InputNumber maxLength={2} />
           </Form.Item>
-        </Col>
+        </Col> */}
 
         <Form.Item
           label="Add Another"
-          name="addAnother"
+          name="addAnotherEducation"
           valuePropName="checked"
         >
+          {/* upon check, add a duplicate education section to add additional degree */}
           <Checkbox></Checkbox>
         </Form.Item>
       </Row>

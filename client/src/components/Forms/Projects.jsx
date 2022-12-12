@@ -12,13 +12,13 @@ const Projects = () => {
   Form.useWatch(
     [
       "projectName",
-      "collaborative",
+      // "collaborative",
       "deployedApplicationLink",
       "githubRepoLink",
       "projectDescription",
       "yourRole",
       "toolsTechnologies",
-      "addAnother",
+      "addAnotherProject",
     ],
     form
   );
@@ -36,7 +36,7 @@ const Projects = () => {
   // const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
 
   // // checkbox
-  // const addAnother = Form.useWatch("addAnother", form);
+  const addAnother = Form.useWatch("addAnotherProject", form);
 
   return (
     <>
@@ -47,7 +47,7 @@ const Projects = () => {
           </Form.Item>
         </Col>
 
-        <Col span={4}>
+        {/* <Col span={4}>
           <Form.Item
             label="Collaborative?"
             name="collaborative"
@@ -55,7 +55,7 @@ const Projects = () => {
           >
             <Checkbox></Checkbox>
           </Form.Item>
-        </Col>
+        </Col> */}
       </Row>
 
       <Row>
@@ -87,7 +87,9 @@ const Projects = () => {
         <TextArea rows={4} />
       </Form.Item>
 
-      <Form.Item label="Add Another" name="addAnother" valuePropName="checked">
+      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
+      <Form.Item label="Add Another" name="addAnotherProject" valuePropName="checked">
+        {/* upon check, add a duplicate project section to add additional project */}
         <Checkbox></Checkbox>
       </Form.Item>
     </>
