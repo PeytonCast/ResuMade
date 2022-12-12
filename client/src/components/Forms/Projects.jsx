@@ -9,22 +9,34 @@ const Projects = () => {
     console.log(form.getFieldsValue(true));
   });
 
-  const projectName = Form.useWatch("projectName", form);
-
-  // checkbox
-  const collaborative = Form.useWatch("collaborative", form);
-
-  const deployedApplicationLink = Form.useWatch(
-    "deployedApplicationLink",
+  Form.useWatch(
+    [
+      "projectName",
+      "collaborative",
+      "deployedApplicationLink",
+      "githubRepoLink",
+      "projectDescription",
+      "yourRole",
+      "toolsTechnologies",
+      "addAnother",
+    ],
     form
   );
-  const githubRepoLink = Form.useWatch("githubRepoLink", form);
-  const projectDescription = Form.useWatch("projectDescription", form);
-  const yourRole = Form.useWatch("yourRole", form);
-  const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
 
-  // checkbox
-  const addAnother = Form.useWatch("addAnother", form);
+  // // checkbox
+  // const collaborative = Form.useWatch("collaborative", form);
+
+  // const deployedApplicationLink = Form.useWatch(
+  //   "deployedApplicationLink",
+  //   form
+  // );
+  // const githubRepoLink = Form.useWatch("githubRepoLink", form);
+  // const projectDescription = Form.useWatch("projectDescription", form);
+  // const yourRole = Form.useWatch("yourRole", form);
+  // const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
+
+  // // checkbox
+  // const addAnother = Form.useWatch("addAnother", form);
 
   return (
     <>

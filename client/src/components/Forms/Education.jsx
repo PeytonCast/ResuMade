@@ -17,26 +17,40 @@ const Education = () => {
     console.log(form.getFieldsValue(true));
   });
 
-  const certificateDegreeName = Form.useWatch("certificateDegreeName", form);
-  const universityInstitutionName = Form.useWatch(
-    "universityInstitutionName",
+  Form.useWatch(
+    [
+      "certificateDegreeName",
+      "universityInstitutionName",
+      "city",
+      "state",
+      "startDateMonth",
+      "startDateYear",
+      "endDateMonth",
+      "endDateYear",
+      "grade",
+      "addAnother",
+    ],
     form
   );
-  const city = Form.useWatch("city", form);
-  const state = Form.useWatch("state", form);
+  // Form.useWatch(
+  //   "universityInstitutionName",
+  //   form
+  // );
+  // Form.useWatch("city", form);
+  // Form.useWatch("state", form);
 
-  // const startDate = Form.useWatch("startDate", form);
-  const startDateMonth = Form.useWatch("startDateMonth", form);
-  const startDateYear = Form.useWatch("startDateYear", form);
+  // // const startDate = Form.useWatch("startDate", form);
+  // Form.useWatch("startDateMonth", form);
+  // Form.useWatch("startDateYear", form);
 
-  // const endDate = Form.useWatch("endDate", form);
-  const endDateMonth = Form.useWatch("endDateMonth", form);
-  const endDateYear = Form.useWatch("endDateYear", form);
+  // // const endDate = Form.useWatch("endDate", form);
+  // Form.useWatch("endDateMonth", form);
+  // Form.useWatch("endDateYear", form);
 
-  const grade = Form.useWatch("grade", form);
+  // Form.useWatch("grade", form);
 
-  // checkbox
-  const addAnother = Form.useWatch("addAnother", form);
+  // // checkbox
+  // Form.useWatch("addAnother", form);
 
   return (
     <>

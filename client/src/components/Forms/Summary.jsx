@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Col, Row } from "antd";
+const { TextArea } = Input;
 
 const Summary = () => {
-  const { TextArea } = Input;
   const form = Form.useFormInstance();
-  const summary = Form.useWatch("summary", form);
+
+  useEffect(() => {
+    console.log(form.getFieldsValue(true));
+  });
+
+  Form.useWatch("summary", form);
 
   return (
     <>

@@ -18,26 +18,41 @@ const Experience = () => {
     console.log(form.getFieldsValue(true));
   });
 
-  const jobTitle = Form.useWatch("jobTitle", form);
-  const companyName = Form.useWatch("companyName", form);
-  const city = Form.useWatch("city", form);
-  const state = Form.useWatch("state", form);
+  Form.useWatch(
+    [
+      "jobTitle",
+      "companyName",
+      "city",
+      "state",
+      "startDateMonth",
+      "startDateYear",
+      "endDateMonth",
+      "endDateYear",
+      "currentJob",
+      "jobDescription",
+      "addAnother",
+    ],
+    form
+  );
+  // const companyName = Form.useWatch("companyName", form);
+  // const city = Form.useWatch("city", form);
+  // const state = Form.useWatch("state", form);
 
-  // const startDate = Form.useWatch("startDate", form);
-  const startDateMonth = Form.useWatch("startDateMonth", form);
-  const startDateYear = Form.useWatch("startDateYear", form);
+  // // const startDate = Form.useWatch("startDate", form);
+  // const startDateMonth = Form.useWatch("startDateMonth", form);
+  // const startDateYear = Form.useWatch("startDateYear", form);
 
-  // const endDate = Form.useWatch("endDate", form);
-  const endDateMonth = Form.useWatch("endDateMonth", form);
-  const endDateYear = Form.useWatch("endDateYear", form);
+  // // const endDate = Form.useWatch("endDate", form);
+  // const endDateMonth = Form.useWatch("endDateMonth", form);
+  // const endDateYear = Form.useWatch("endDateYear", form);
 
-  // checkbox
-  const currentJob = Form.useWatch("currentJob", form);
+  // // checkbox
+  // const currentJob = Form.useWatch("currentJob", form);
 
-  const jobDescription = Form.useWatch("jobDescription", form);
+  // const jobDescription = Form.useWatch("jobDescription", form);
 
-  // checkbox
-  const addAnother = Form.useWatch("addAnother", form);
+  // // checkbox
+  // const addAnother = Form.useWatch("addAnother", form);
 
   return (
     <>
