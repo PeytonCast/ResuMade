@@ -48,11 +48,34 @@ const resolvers = {
                     { $push: {resumes: resumeData}},
                     { new: true }
                 );
-                console.log(resumeData.personalInfo)
+                console.log(resumeData._id)
                 return updateUser;
             }
             throw new AuthenticationError('You need to be logged in.');
-         }
-    }
-};
+         },
+        
+         removeResume:  async (parent, {_id}, context)=> {
+            // if ther is a contex.user, continue on else throw err
+            if(context.user){
+                // typeDef is returning a user so i need to return a user
+                try{const updateUser = await User.findOneAndUpdate(
+                    // find user id 
+                     { _id: context.user._id },
+                    //  remove bookId form that user
+                     { $pull: { resumes: {_id} } },
+                     { new: true }
+                    );
+                    // console.log(_id)
+                    return updateUser;}
+                    catch(err){
+                      console.log({err})
+                    }
+            }
+            // if user token is not there LOGIN
+            throw new AuthenticationError('You need to be logged in!');
+          }
+        },
+
+    
+    };
 module.exports = resolvers;
