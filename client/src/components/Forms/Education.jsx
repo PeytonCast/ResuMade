@@ -14,7 +14,51 @@ const Education = () => {
   const form = Form.useFormInstance();
 
   useEffect(() => {
-    console.log(form.getFieldsValue(true));
+    // watching fields for user input and logging data to the console
+    // console.log(form.getFieldsValue(true));
+
+    // retrieving start and end dates from user input
+    // console.log(form.getFieldValue("startDateMonth"));
+    // console.log(form.getFieldValue("startDateYear"));
+    // console.log(form.getFieldValue("endDateMonth"));
+    // console.log(form.getFieldValue("endDateMonth"));
+
+    // not DRY whatsoever - but it works
+    if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
+      // console logs the user input's start date month
+      console.log(
+        form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
+      );
+    }
+
+    if (
+      form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
+    ) {
+      // console logs the user input's start date year
+      console.log(
+        form
+          .getFieldsValue("startDateYearEducation")
+          ["startDateYearEducation"].format("YYYY")
+      );
+    }
+
+    if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
+      // console logs the user input's end date month
+      console.log(
+        form
+          .getFieldsValue("endDateMonthEducation")
+          ["endDateMonthEducation"].format("MMMM")
+      );
+    }
+
+    if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
+      // console logs the user input's end date year
+      console.log(
+        form
+          .getFieldsValue("endDateYearEducation")
+          ["endDateYearEducation"].format("YYYY")
+      );
+    }
   });
 
   Form.useWatch(
@@ -23,10 +67,10 @@ const Education = () => {
       "universityInstitutionName",
       "city",
       "state",
-      "startDateMonth",
-      "startDateYear",
-      "endDateMonth",
-      "endDateYear",
+      "startDateMonthEducation",
+      "startDateYearEducation",
+      "endDateMonthEducation",
+      "endDateYearEducation",
       "grade",
       "addAnotherEducation",
     ],
@@ -40,17 +84,21 @@ const Education = () => {
   // Form.useWatch("state", form);
 
   // // const startDate = Form.useWatch("startDate", form);
-  // Form.useWatch("startDateMonth", form);
-  // Form.useWatch("startDateYear", form);
+  Form.useWatch("startDateMonthEducation", form);
+  Form.useWatch("startDateYearEducation", form);
 
   // // const endDate = Form.useWatch("endDate", form);
-  // Form.useWatch("endDateMonth", form);
-  // Form.useWatch("endDateYear", form);
+  Form.useWatch("endDateMonthEducation", form);
+  Form.useWatch("endDateYearEducation", form);
 
   // Form.useWatch("grade", form);
 
   // // checkbox
   Form.useWatch("addAnotherEducation", form);
+
+  // const onDateChosen = (e) => {
+  //   console.log(e.$d);
+  // };
 
   return (
     <>
@@ -84,21 +132,21 @@ const Education = () => {
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonth">
+          <Form.Item label="Start Date: Month" name="startDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
           </Form.Item>
 
-          <Form.Item label="Start Date: Year" name="startDateYear">
+          <Form.Item label="Start Date: Year" name="startDateYearEducation">
             <DatePicker picker="year" format={"YYYY"} />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonth">
+          <Form.Item label="End Date: Month" name="endDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
           </Form.Item>
 
-          <Form.Item label="End Date: Year" name="endDateYear">
+          <Form.Item label="End Date: Year" name="endDateYearEducation">
             <DatePicker picker="year" format={"YYYY"} />
           </Form.Item>
         </Col>

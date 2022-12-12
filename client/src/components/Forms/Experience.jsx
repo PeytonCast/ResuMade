@@ -15,7 +15,36 @@ const Experience = () => {
   const form = Form.useFormInstance();
 
   useEffect(() => {
-    console.log(form.getFieldsValue(true));
+    // console.log(form.getFieldsValue(true));
+
+    // this is not DRY I know
+    if (form.getFieldsValue("startDateMonthExperience")["startDateMonthExperience"]) {
+      // console logs the user input's start date month
+      console.log(
+        form.getFieldsValue("startDateMonthExperience")["startDateMonthExperience"].format("MMMM")
+      );
+    }
+
+    if (form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]) {
+      // console logs the user input's start date year
+      console.log(
+        form.getFieldsValue("startDateYearExperience")["startDateYearExperience"].format("YYYY")
+      );
+    }
+
+    if (form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]) {
+      // console logs the user input's end date month
+      console.log(
+        form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"].format("MMMM")
+      );
+    }
+
+    if (form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]) {
+      // console logs the user input's end date year
+      console.log(
+        form.getFieldsValue("endDateYearExperience")["endDateYearExperience"].format("YYYY")
+      );
+    }
   });
 
   Form.useWatch(
@@ -24,10 +53,10 @@ const Experience = () => {
       "companyName",
       "city",
       "state",
-      "startDateMonth",
-      "startDateYear",
-      "endDateMonth",
-      "endDateYear",
+      "startDateMonthExperience",
+      "startDateYearExperience",
+      "endDateMonthExperience",
+      "endDateYearExperience",
       "currentJob",
       "jobDescription",
       "addAnotherExperience",
@@ -40,12 +69,12 @@ const Experience = () => {
   // const state = Form.useWatch("state", form);
 
   // // const startDate = Form.useWatch("startDate", form);
-  // const startDateMonth = Form.useWatch("startDateMonth", form);
-  // const startDateYear = Form.useWatch("startDateYear", form);
+  const startDateMonth = Form.useWatch("startDateMonthExperience", form);
+  const startDateYear = Form.useWatch("startDateYearExperience", form);
 
   // // const endDate = Form.useWatch("endDate", form);
-  // const endDateMonth = Form.useWatch("endDateMonth", form);
-  // const endDateYear = Form.useWatch("endDateYear", form);
+  const endDateMonth = Form.useWatch("endDateMonthExperience", form);
+  const endDateYear = Form.useWatch("endDateYearExperience", form);
 
   // // checkbox
   const currentJob = Form.useWatch("currentJob", form);
@@ -84,21 +113,21 @@ const Experience = () => {
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonth">
+          <Form.Item label="Start Date: Month" name="startDateMonthExperience">
             <DatePicker picker="month" format={"MMMM"} />
           </Form.Item>
 
-          <Form.Item label="Start Date: Year" name="startDateYear">
+          <Form.Item label="Start Date: Year" name="startDateYearExperience">
             <DatePicker picker="year" format={"YYYY"} />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonth">
+          <Form.Item label="End Date: Month" name="endDateMonthExperience">
             <DatePicker picker="month" format={"MMMM"} />
           </Form.Item>
 
-          <Form.Item label="End Date: Year" name="endDateYear">
+          <Form.Item label="End Date: Year" name="endDateYearExperience">
             <DatePicker picker="year" format={"YYYY"} />
           </Form.Item>
         </Col>
@@ -123,7 +152,11 @@ const Experience = () => {
         <TextArea rows={3} />
       </Form.Item>
 
-      <Form.Item label="Add Another" name="addAnotherExperience" valuePropName="checked">
+      <Form.Item
+        label="Add Another"
+        name="addAnotherExperience"
+        valuePropName="checked"
+      >
         <Checkbox></Checkbox>
       </Form.Item>
     </>
