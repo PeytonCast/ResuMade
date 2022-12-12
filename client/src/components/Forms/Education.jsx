@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   // Checkbox,
   Form,
@@ -7,10 +7,16 @@ import {
   Row,
   Col,
   DatePicker,
+  Checkbox,
 } from "antd";
 
 const Education = () => {
   const form = Form.useFormInstance();
+
+  useEffect(() => {
+    console.log(form.getFieldsValue(true));
+  });
+
   const certificateDegreeName = Form.useWatch("certificateDegreeName", form);
   const universityInstitutionName = Form.useWatch(
     "universityInstitutionName",
@@ -28,6 +34,9 @@ const Education = () => {
   const endDateYear = Form.useWatch("endDateYear", form);
 
   const grade = Form.useWatch("grade", form);
+
+  // checkbox
+  const addAnother = Form.useWatch("addAnother", form);
 
   return (
     <>
@@ -85,6 +94,14 @@ const Education = () => {
             <InputNumber maxLength={2} />
           </Form.Item>
         </Col>
+
+        <Form.Item
+          label="Add Another"
+          name="addAnother"
+          valuePropName="checked"
+        >
+          <Checkbox></Checkbox>
+        </Form.Item>
       </Row>
     </>
   );

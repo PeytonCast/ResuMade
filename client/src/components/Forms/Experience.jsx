@@ -9,32 +9,15 @@ import {
   DatePicker,
   Space,
 } from "antd";
+const { TextArea } = Input;
 
 const Experience = () => {
-  const { TextArea } = Input;
-
-  // getting checkbox user input
-  const [checked, setChecked] = useState(false);
-  const onCheckboxChange = (e) => {
-    console.log("onCheckboxChange function is working");
-
-    let currentJobCheckbox = document.getElementById("currentJob");
-    console.log(currentJobCheckbox);
-
-    let checkboxUserOutput = [];
-    console.log(checkboxUserOutput);
-
-    function currentJobCheckboxArray(e) {
-      console.log("currentJobCheckboxArray function is working");
-      console.log(checkboxUserOutput.push(e.target.checked));
-    }
-    currentJobCheckboxArray();
-
-    console.log(`checkbox change: checked = ${e.target.checked}`);
-    setChecked(e.target.checked);
-  };
-
   const form = Form.useFormInstance();
+
+  useEffect(() => {
+    console.log(form.getFieldsValue(true));
+  });
+
   const jobTitle = Form.useWatch("jobTitle", form);
   const companyName = Form.useWatch("companyName", form);
   const city = Form.useWatch("city", form);
@@ -104,8 +87,14 @@ const Experience = () => {
         </Col>
 
         <Col span={4}>
-          <Form.Item label="Current Job?" name="currentJob" id="currentJob">
-            <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox>
+          <Form.Item
+            label="Current Job?"
+            name="currentJob"
+            id="currentJob"
+            valuePropName="checked"
+          >
+            {/* <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox> */}
+            <Checkbox></Checkbox>
           </Form.Item>
         </Col>
       </Row>
@@ -114,7 +103,7 @@ const Experience = () => {
         <TextArea rows={3} />
       </Form.Item>
 
-      <Form.Item label="Add Another" name="addAnother">
+      <Form.Item label="Add Another" name="addAnother" valuePropName="checked">
         <Checkbox></Checkbox>
       </Form.Item>
     </>

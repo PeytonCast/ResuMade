@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Checkbox, Form, Input, Row, Col } from "antd";
+const { TextArea } = Input;
 
 const Projects = () => {
-  const { TextArea } = Input;
   const form = Form.useFormInstance();
+
+  useEffect(() => {
+    console.log(form.getFieldsValue(true));
+  });
+
   const projectName = Form.useWatch("projectName", form);
-  // figure out saving checkbox to userData
-  // does grab "collaborative:" even when commented out and returns "undefined"
-  // const collaborative = Form.useWatch("collaborative", form);
+
+  // checkbox
+  const collaborative = Form.useWatch("collaborative", form);
+
   const deployedApplicationLink = Form.useWatch(
     "deployedApplicationLink",
     form
@@ -16,6 +22,9 @@ const Projects = () => {
   const projectDescription = Form.useWatch("projectDescription", form);
   const yourRole = Form.useWatch("yourRole", form);
   const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
+
+  // checkbox
+  const addAnother = Form.useWatch("addAnother", form);
 
   return (
     <>
@@ -27,7 +36,11 @@ const Projects = () => {
         </Col>
 
         <Col span={4}>
-          <Form.Item label="Collaborative?" name="collaborative">
+          <Form.Item
+            label="Collaborative?"
+            name="collaborative"
+            valuePropName="checked"
+          >
             <Checkbox></Checkbox>
           </Form.Item>
         </Col>
@@ -60,6 +73,10 @@ const Projects = () => {
 
       <Form.Item label="Tools and Technologies Used" name="toolsTechnologies">
         <TextArea rows={4} />
+      </Form.Item>
+
+      <Form.Item label="Add Another" name="addAnother" valuePropName="checked">
+        <Checkbox></Checkbox>
       </Form.Item>
     </>
   );
