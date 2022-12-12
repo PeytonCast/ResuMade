@@ -14,36 +14,67 @@ const { TextArea } = Input;
 const Experience = () => {
   const form = Form.useFormInstance();
 
+  const [disabled, setDisabled] = useState(false);
+
+  // const toggleDisabled = ({ disabled }) => {
+  //   console.log("toggleDisabled function is working");
+  //   setDisabled(disabled);
+  // };
+
   useEffect(() => {
-    // console.log(form.getFieldsValue(true));
+    console.log(form.getFieldsValue(true));
 
     // this is not DRY I know
-    if (form.getFieldsValue("startDateMonthExperience")["startDateMonthExperience"]) {
+    if (
+      form.getFieldsValue("startDateMonthExperience")[
+        "startDateMonthExperience"
+      ]
+    ) {
       // console logs the user input's start date month
       console.log(
-        form.getFieldsValue("startDateMonthExperience")["startDateMonthExperience"].format("MMMM")
+        form
+          .getFieldsValue("startDateMonthExperience")
+          ["startDateMonthExperience"].format("MMMM")
       );
     }
 
-    if (form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]) {
+    if (
+      form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]
+    ) {
       // console logs the user input's start date year
       console.log(
-        form.getFieldsValue("startDateYearExperience")["startDateYearExperience"].format("YYYY")
+        form
+          .getFieldsValue("startDateYearExperience")
+          ["startDateYearExperience"].format("YYYY")
       );
     }
 
-    if (form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]) {
+    if (
+      form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]
+    ) {
       // console logs the user input's end date month
       console.log(
-        form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"].format("MMMM")
+        form
+          .getFieldsValue("endDateMonthExperience")
+          ["endDateMonthExperience"].format("MMMM")
       );
     }
 
     if (form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]) {
       // console logs the user input's end date year
       console.log(
-        form.getFieldsValue("endDateYearExperience")["endDateYearExperience"].format("YYYY")
+        form
+          .getFieldsValue("endDateYearExperience")
+          ["endDateYearExperience"].format("YYYY")
       );
+    }
+
+    // console.log(typeof(form.getFieldValue("currentJob")));
+    if (form.getFieldValue("currentJob")) {
+      // console.log("currentJob");
+      setDisabled(true);
+    } else {
+      setDisabled(false);
     }
   });
 
@@ -124,25 +155,21 @@ const Experience = () => {
 
         <Col span={10}>
           <Form.Item label="End Date: Month" name="endDateMonthExperience">
-            <DatePicker picker="month" format={"MMMM"} />
+            <DatePicker picker="month" format={"MMMM"} disabled={disabled} />
           </Form.Item>
 
           <Form.Item label="End Date: Year" name="endDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} />
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
 
         <Col span={4}>
           <Form.Item
-            label="Current Job?"
-            name="currentJob"
             id="currentJob"
+            name="currentJob"
+            label="Current Job?"
             valuePropName="checked"
-            // onChange={(e) => {
-            //   console.log(e.target);
-            // }}
           >
-            {/* <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox> */}
             <Checkbox></Checkbox>
           </Form.Item>
         </Col>
