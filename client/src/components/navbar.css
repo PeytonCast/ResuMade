@@ -12,11 +12,11 @@
 
 .nav {
   color: rgb(0, 0, 0);
-  display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  width: 100%;
 }
 
 .site-title {
@@ -29,10 +29,11 @@
   list-style: none;
   display: flex;
   gap: 1rem;
+  color: black;
 }
 
 .nav a {
-  color: inherit;
+  color: black;
   text-decoration: none;
   height: 100%;
   display: flex;
@@ -47,6 +48,22 @@
 
 .nav li:hover {
   background-color: rgb(235, 235, 235);
+  text-decoration: none;
+  color: black;
+}
+
+#signup-link {
+  background-color: black;
+  text-underline-offset: 4px;
+  border-radius: 6px;
+  color: rgb(245, 245, 245);
+}
+
+#signout-link {
+  background-color: black;
+  text-underline-offset: 4px;
+  border-radius: 6px;
+  color: rgb(245, 245, 245);
 }
 
 @media (max-width: 640px) {

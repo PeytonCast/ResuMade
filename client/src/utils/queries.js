@@ -7,11 +7,6 @@ query me {
       email
       resumes {
         _id
-        educations
-        experiences
-        personalInfo
-        projects
-        skills
         summary
       }
       username

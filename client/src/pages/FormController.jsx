@@ -8,7 +8,21 @@ import {
   Projects,
   Experience,
   Education,
+  Preview,
 } from "../components/Forms";
+
+import docSaver from "file-saver";
+
+const { Packer } = require("docx");
+const renderResume = require("../components/Templates/template.js");
+const resume = require("../components/Templates/resumedata");
+const doneBtnHandler = async () => {
+  const resumeBlob = await Packer.toBlob(renderResume(resume));
+  docSaver.saveAs(
+    resumeBlob,
+    `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
+  );
+};
 
 // function to render the form sections
 const FormController = () => {
@@ -57,7 +71,7 @@ const FormController = () => {
       title: "Preview",
       // comment below line in when merged with Arthur's code
       // resume = Arthur's variable; userData = my state variable that has now changed with the prepped data
-      content: <Preview resume={userData}/>,
+      content: <Preview resume={userData} />,
     },
   ];
 
@@ -189,6 +203,7 @@ const FormController = () => {
               onClick={() => {
                 next();
                 handlePreview();
+                doneBtnHandler();
               }}
             >
               Preview
