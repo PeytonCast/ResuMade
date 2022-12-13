@@ -62,6 +62,11 @@ const FormController = () => {
     console.log(userData);
   });
 
+  const prepDataForApiCall = () => {
+    // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
+    // do the same for all start and end months and years (8)
+  };
+
   return (
     <Row justify="center" align="middle">
       <Col>
@@ -93,6 +98,7 @@ const FormController = () => {
               type="primary"
               onClick={() => {
                 form.submit();
+                // call function here to prep form data for API call
                 setUserData(form.getFieldsValue(true));
                 message.success("Your ResuMate is ready to download!");
               }}
