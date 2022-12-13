@@ -45,21 +45,16 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <ApolloProvider client={client}>
-          <Router>
-            <>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/signup" element={<SignupForm />} />
-              </Routes>
-            </>
-          </Router>
-        </ApolloProvider>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+          </Routes>
+        </>
       </Router>
-      //{" "}
     </ApolloProvider>
   );
 }
