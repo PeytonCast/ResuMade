@@ -5,9 +5,9 @@ const { TextArea } = Input;
 const TechnicalSkills = () => {
   const form = Form.useFormInstance();
 
-  useEffect(() => {
-    console.log(form.getFieldsValue(true));
-  });
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
 
   Form.useWatch(["languages", "frameworks", "libraries", "coreConcepts"], form);
   // const frameworks = Form.useWatch("frameworks", form);

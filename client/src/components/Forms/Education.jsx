@@ -24,54 +24,54 @@ const Education = () => {
     // console.log(form.getFieldValue("endDateMonth"));
 
     // not DRY whatsoever - but it works
-    if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
-      // console logs the user input's start date month
-      console.log(
-        form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
-      );
-    }
+    // if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
+    //   // console logs the user input's start date month
+    //   console.log(
+    //     form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
+    //   );
+    // }
 
-    if (
-      form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
-    ) {
-      // console logs the user input's start date year
-      console.log(
-        form
-          .getFieldsValue("startDateYearEducation")
-          ["startDateYearEducation"].format("YYYY")
-      );
-    }
+    // if (
+    //   form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
+    // ) {
+    //   // console logs the user input's start date year
+    //   console.log(
+    //     form
+    //       .getFieldsValue("startDateYearEducation")
+    //       ["startDateYearEducation"].format("YYYY")
+    //   );
+    // }
 
-    if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
-      // console logs the user input's end date month
-      console.log(
-        form
-          .getFieldsValue("endDateMonthEducation")
-          ["endDateMonthEducation"].format("MMMM")
-      );
-    }
+    // if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
+    //   // console logs the user input's end date month
+    //   console.log(
+    //     form
+    //       .getFieldsValue("endDateMonthEducation")
+    //       ["endDateMonthEducation"].format("MMMM")
+    //   );
+    // }
 
-    if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
-      // console logs the user input's end date year
-      console.log(
-        form
-          .getFieldsValue("endDateYearEducation")
-          ["endDateYearEducation"].format("YYYY")
-      );
-    }
+    // if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
+    //   // console logs the user input's end date year
+    //   console.log(
+    //     form
+    //       .getFieldsValue("endDateYearEducation")
+    //       ["endDateYearEducation"].format("YYYY")
+    //   );
+    // }
   });
 
   Form.useWatch(
     [
-      "certificateDegreeName",
-      "universityInstitutionName",
       "city",
       "state",
+      "grade",
+      "certificateDegreeName",
+      "universityInstitutionName",
       "startDateMonthEducation",
       "startDateYearEducation",
       "endDateMonthEducation",
       "endDateYearEducation",
-      "grade",
       "addAnotherEducation",
     ],
     form
@@ -84,17 +84,17 @@ const Education = () => {
   // Form.useWatch("state", form);
 
   // // const startDate = Form.useWatch("startDate", form);
-  Form.useWatch("startDateMonthEducation", form);
-  Form.useWatch("startDateYearEducation", form);
+  // Form.useWatch("startDateMonthEducation", form);
+  // Form.useWatch("startDateYearEducation", form);
 
   // // const endDate = Form.useWatch("endDate", form);
-  Form.useWatch("endDateMonthEducation", form);
-  Form.useWatch("endDateYearEducation", form);
+  // Form.useWatch("endDateMonthEducation", form);
+  // Form.useWatch("endDateYearEducation", form);
 
   // Form.useWatch("grade", form);
 
   // // checkbox
-  Form.useWatch("addAnotherEducation", form);
+  // Form.useWatch("addAnotherEducation", form);
 
   // const onDateChosen = (e) => {
   //   console.log(e.$d);
@@ -157,14 +157,14 @@ const Education = () => {
           </Form.Item>
         </Col> */}
 
-        <Form.Item
+        {/* <Form.Item
           label="Add Another"
           name="addAnotherEducation"
           valuePropName="checked"
-        >
+        > */}
           {/* upon check, add a duplicate education section to add additional degree */}
-          <Checkbox></Checkbox>
-        </Form.Item>
+          {/* <Checkbox></Checkbox> */}
+        {/* </Form.Item> */}
       </Row>
     </>
   );

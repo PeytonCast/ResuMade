@@ -22,7 +22,7 @@ const Experience = () => {
   // };
 
   useEffect(() => {
-    console.log(form.getFieldsValue(true));
+    // console.log(form.getFieldsValue(true));
 
     // this is not DRY I know
     if (

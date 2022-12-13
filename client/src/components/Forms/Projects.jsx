@@ -5,9 +5,9 @@ const { TextArea } = Input;
 const Projects = () => {
   const form = Form.useFormInstance();
 
-  useEffect(() => {
-    console.log(form.getFieldsValue(true));
-  });
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
 
   Form.useWatch(
     [
@@ -83,6 +83,7 @@ const Projects = () => {
         <TextArea rows={2} />
       </Form.Item>
 
+        {/* array of strings */}
       <Form.Item label="Tools and Technologies Used" name="toolsTechnologies">
         <TextArea rows={4} />
       </Form.Item>

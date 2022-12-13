@@ -4,9 +4,9 @@ import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 const UserInfo = () => {
   const form = Form.useFormInstance();
 
-  useEffect(() => {
-    console.log(form.getFieldsValue(true));
-  });
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
 
   Form.useWatch(
     [
@@ -29,7 +29,7 @@ const UserInfo = () => {
   // const zip = Form.useWatch("zip", form);
   // const phone = Form.useWatch("phone", form);
   // const professionalEmail = Form.useWatch("professionalEmail", form);
-  // // const socials = Form.useWatch("socials", form);
+  // const socials = Form.useWatch("socials", form);
   // const github = Form.useWatch("github", form);
   // const linkedin = Form.useWatch("linkedin", form);
   // const portfolio = Form.useWatch("portfolio", form);

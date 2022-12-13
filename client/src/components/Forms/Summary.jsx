@@ -5,9 +5,9 @@ const { TextArea } = Input;
 const Summary = () => {
   const form = Form.useFormInstance();
 
-  useEffect(() => {
-    console.log(form.getFieldsValue(true));
-  });
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
 
   Form.useWatch("summary", form);
 
