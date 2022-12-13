@@ -76,6 +76,11 @@ const Experience = () => {
     } else {
       setDisabled(false);
     }
+
+    if (form.getFieldValue("addAnotherExperience")) {
+      // if addAnother checkbox is checked, duplicate experience form below the first one to add another experience
+      // Experience()
+    }
   });
 
   Form.useWatch(

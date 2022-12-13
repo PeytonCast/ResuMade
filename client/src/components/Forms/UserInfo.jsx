@@ -57,6 +57,7 @@ const UserInfo = () => {
 
         <Col span={24}>
           <Form.Item label="State" name="state">
+            {/* default input to all caps */}
             <Input maxLength={2} />
           </Form.Item>
         </Col>

@@ -15,6 +15,8 @@ const Summary = () => {
     <>
       <Row>
         <Col span={24}>
+          {/* make the label just say "summary" and find another way to provide the instructions */}
+          {/* also determine what would be five lines in the finished docx file */}
           <Form.Item label="Summary" name="summary">
             <TextArea rows={5} />
             {/* <Input /> */}

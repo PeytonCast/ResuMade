@@ -15,6 +15,7 @@ const TechnicalSkills = () => {
   // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
+    // make this like the skills section of the other person
     <>
       <Row>
         <Col span={24}>
