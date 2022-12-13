@@ -14,16 +14,19 @@ import {
 
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
-import Auth from "../utils/auth";
-import { useQuery } from "@apollo/client";
 
+import Auth from "../utils/auth";
+
+import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 
 const SignupForm = (props) => {
   const { userData, loading } = useQuery(QUERY_ME);
   const [signup, { error, data }] = useMutation(ADD_USER);
 
+  // set initial form state
   const [signupFormData, setSignupFormData] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -34,6 +37,7 @@ const SignupForm = (props) => {
     setSignupFormData({ ...signupFormData, [name]: value });
   };
 
+  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   useEffect(() => {
     if (error) {
@@ -45,21 +49,19 @@ const SignupForm = (props) => {
 
   // onFinish = onSubmit
   const onFinish = async (formData) => {
-    // console.log("Received values of form: ", formData);
-
     try {
       const { data } = await signup({
         variables: { ...formData },
       });
-      Auth.login(data.signup.token);
-
       console.log("userData", data);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
 
     // clear form values
     setSignupFormData({
+      username: "",
       email: "",
       password: "",
     });
@@ -74,7 +76,7 @@ const SignupForm = (props) => {
             <Alert
               type="error"
               message="Signup Error"
-              description="Something went wrong with your login credentials!"
+              description="Something went wrong with your credentials!"
               closable
             />
           )}
@@ -82,6 +84,18 @@ const SignupForm = (props) => {
             <p>Your account has been created!</p>
           ) : (
             <Form name="register" onFinish={onFinish}>
+              <Form.Item
+                name="username"
+                label="Username"
+                onChange={handleInputChange}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                ]}>
+                <Input />
+              </Form.Item>
               <Form.Item
                 name="email"
                 label="Your Email"
