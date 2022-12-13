@@ -23,6 +23,7 @@ const ResumeList = () => {
         }
 
         const user = await data?.me 
+     
         console.log("user", user)
         console.log("data", data)
         setUserData(user);
@@ -69,19 +70,22 @@ const ResumeList = () => {
   return (
     <div>
       hi from resume list
-      <div className="cards">
-        {data.me.resumes.map(resume => {
-            return (
+      <div className="cards" >
+        {data?.me.resumes.map((resume, index) => (
+            
+              <div key={resume._id}>
               <Card
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={`${googleDoc}`} />}
+                
               >
-                <Button type="primary" onClick={() => handleEditResume(resume._Id)}>edit</Button>
-                <Button type="primary" danger onClick={() => handleDeleteResume(resume._Id)}>Delete</Button>
+                
+                <Button type="primary" onClick={() => handleEditResume(resume._id)}>Edit</Button>
+                <Button type="primary" danger onClick={() => handleDeleteResume(resume._id)}>Delete</Button>
               </Card>
-            )
-        })}
+              </div>
+        ))}
       </div>
 
     </div>
