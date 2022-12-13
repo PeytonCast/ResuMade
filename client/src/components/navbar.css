@@ -56,7 +56,12 @@
   background-color: black;
   text-underline-offset: 4px;
   border-radius: 6px;
+  padding: 6px;
   color: rgb(245, 245, 245);
+}
+
+#signup-link:hover {
+  background-color:rgb(58, 58, 58);
 }
 
 #signout-link {
@@ -64,6 +69,10 @@
   text-underline-offset: 4px;
   border-radius: 6px;
   color: rgb(245, 245, 245);
+}
+
+#signout-link:hover {
+  background-color:rgb(58, 58, 58);
 }
 
 @media (max-width: 640px) {
