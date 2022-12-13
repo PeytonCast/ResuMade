@@ -1,8 +1,9 @@
 const {
-    Document, HeadingLevel, Paragraph, TabStopType, TextRun
+    Document, HeadingLevel, Paragraph, TabStopType, TextRun, AlignmentType, TabStopPosition
   } = require("docx");
 
-module.exports = function createDocument({personal_info, summary, technical_skills, projects, experiences, educations}) {
+
+module.exports = function createDocument({personalInfo, summary, technicalSkills, projects, experiences, educations}) {
     return new Document({
         styles: {
             default: {
@@ -70,20 +71,20 @@ module.exports = function createDocument({personal_info, summary, technical_skil
             },
             children: [
                 nameHeader (
-                    personal_info.firstName, 
-                    personal_info.lastName
+                    personalInfo.firstName, 
+                    personalInfo.lastName
                 ),
                 personalInformation (
-                    personal_info.city + ", " + personal_info.state, 
-                    personal_info.phoneNumber, 
-                    personal_info.email,
-                    personal_info.linkedin, 
-                    personal_info.github, 
-                    personal_info.portfolio
+                    personalInfo.city + ", " + personalInfo.state, 
+                    personalInfo.phoneNumber, 
+                    personalInfo.email,
+                    personalInfo.linkedin, 
+                    personalInfo.github, 
+                    personalInfo.portfolio
                 ),
                 summaryStatement(summary),
                 paragraphHeader("Technical Skills"),
-                skillInformation(technical_skills),
+                skillInformation(technicalSkills),
                 paragraphHeader("Projects"),
                 ...projects
                     .map((project) => projectInformation(project))
@@ -268,22 +269,23 @@ function dateFormat(startDate, endDate, isCurrent) {
 }
   
 function itemHeader(itemHeader, dateText) {
+   
     return new Paragraph({
         heading: HeadingLevel.HEADING_3,
-        tabStops: [
-            {
-                type: TabStopType.RIGHT,
-                position: 10500,
-            },
-        ],
         children: [
             new TextRun({
                 text: itemHeader,
                 bold: true,
             }),
             new TextRun({
-                text: `\t${dateText}`,
+                text: "\t"+dateText,
             }),
+        ],
+        tabStops: [
+            {
+                type: TabStopType.RIGHT,
+                position: 10500,
+            },
         ],
     });
 }
@@ -291,12 +293,6 @@ function itemHeader(itemHeader, dateText) {
 function itemInfo(itemInfo, itemRight) {
     return new Paragraph({
         heading: HeadingLevel.HEADING_4,
-        tabStops: [
-            {
-                type: TabStopType.RIGHT,
-                position: 10500,
-            },
-        ],
         children: [
             new TextRun({
                 text: itemInfo,
@@ -304,6 +300,12 @@ function itemInfo(itemInfo, itemRight) {
             new TextRun({
                 text: `\t${itemRight}`,
             }),
+        ],
+        tabStops: [
+            {
+                type: TabStopType.RIGHT,
+                position: 10500,
+            },
         ],
     });
 }

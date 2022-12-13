@@ -11,14 +11,21 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^5.0.4",
     "bootstrap": "^4.4.1",
+    "docx": "^7.8.0",
+    "file-saver": "^2.0.5",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.2",
-    "docx": "^7.7.0",
-    "file-saver": "^2.0.2"
+    "react-to-pdf": "^0.0.14"
+  },
+  "overrides": {
+    "react-error-overlay": "6.0.9",
+    "@react-pdf/font": "2.2.1",
+    "@react-pdf/fontkit": "2.0.2",
+    "@react-pdf/pdfkit": "2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

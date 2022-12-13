@@ -26,7 +26,7 @@ const Education = () => {
       layout="vertical"
     >
       <Form.Item
-        label="Certificate/Degree Namew"
+        label="Certificate/Degree Name"
         name="certificateDegreeName"
         rules={[
           {
