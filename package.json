@@ -16,19 +16,5 @@
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
     "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.16",
-    "@stripe/stripe-js": "^1.46.0",
-    "docx": "^7.7.0",
-    "dotenv": "^16.0.3",
-    "formik": "^2.2.9",
-    "jsonwebtoken": "^8.5.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "stripe": "^11.1.0",
-    "yup": "^0.32.11"
   }
 }

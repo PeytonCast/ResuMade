@@ -64,6 +64,10 @@ const resumeSchema = {
                 month:{type: Number,},
                 year:{type: Number,}
               },
+            endDate:{
+                month:{type: Number,},
+                year:{type: Number,}
+              },
         }
     ],
     // education experiences 
