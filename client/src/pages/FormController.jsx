@@ -7,7 +7,23 @@ import {
   Projects,
   Experience,
   Education,
+  Preview,
 } from "../components/Forms";
+
+
+import docSaver from "file-saver";
+
+const { Packer } = require("docx");
+const renderResume = require('../components/Templates/template.js');
+const resume = require('../components/Templates/resumedata');
+const doneBtnHandler = async () => {
+  const resumeBlob = await Packer.toBlob(renderResume(resume));
+  docSaver.saveAs(
+      resumeBlob, 
+      `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
+  )
+}
+
 
 const FormController = () => {
   const [current, setCurrent] = useState(0);
@@ -49,6 +65,7 @@ const FormController = () => {
     },
     {
       title: "Preview",
+      content: <Preview resume={resume}/>
       // content: < />, // add <Preview/> here when it's ready
     },
   ];
@@ -95,6 +112,7 @@ const FormController = () => {
                 form.submit();
                 setUserData(form.getFieldsValue(true));
                 message.success("Your ResuMate is ready to download!");
+                doneBtnHandler();
               }}
             >
               Done

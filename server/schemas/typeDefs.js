@@ -67,7 +67,7 @@ const typeDefs = gql`
     }
 
     type Resume {
-        _id: ID!
+        _id: ID
         personalInfo: PersonalInfo
         summary: String
         skills: SkillInfo
@@ -132,6 +132,7 @@ const typeDefs = gql`
     }
 
     input InputResume {
+        _id: ID
         personalInfo: InputPersonalInfo
         summary: String
         skills: InputSkillInfo
