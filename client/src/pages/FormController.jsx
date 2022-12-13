@@ -10,21 +10,12 @@ import {
   Preview,
 } from "../components/Forms";
 
-
-import docSaver from "file-saver";
-
+import { loadStripe  } from "@stripe/stripe-js";
+import { QUERY_CHECKOUT } from "../utils/queries";
+import { useLazyQuery } from '@apollo/client';
 import './formController.css'
-
-const { Packer } = require("docx");
-const renderResume = require('../components/Templates/template.js');
 const resume = require('../components/Templates/resumedata');
-const doneBtnHandler = async () => {
-  const resumeBlob = await Packer.toBlob(renderResume(resume));
-  docSaver.saveAs(
-      resumeBlob, 
-      `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
-  )
-}
+const stripePromise = loadStripe("pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5");
 
 const FormController = () => {
   const [current, setCurrent] = useState(0);
@@ -79,6 +70,20 @@ const FormController = () => {
   useEffect(() => {
     console.log(userData);
   });
+  
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({sessionId: data.checkout.session });
+      });
+    }
+  }, [data])
+
+  const doneBtnHandler = async () => {
+    getCheckout();
+  }
 
   return (
     <div className="flex-container flex-row">

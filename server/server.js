@@ -3,7 +3,6 @@ const path = require('path');
 const db = require('./config/connection');
 // getting apollo server
 const { ApolloServer } = require('apollo-server-express')
-require("dotenv").config();
 
 // auth middleware TODO write middleware
 const { authMiddleware } = require('./utils/auth');
