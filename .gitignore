@@ -25,6 +25,6 @@ npm-debug.log*
 .env
 server/node_modules
 
-
+.idea
 
 
