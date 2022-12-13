@@ -20,7 +20,13 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.4.4",
-    "react-scripts": "^4.0.2"
+    "react-scripts": "^4.0.2",
+    "@stripe/stripe-js": "^1.46.0",
+    "dotenv": "^16.0.3",
+    "formik": "^2.2.9",
+    "jsonwebtoken": "^8.5.1",
+    "stripe": "^11.1.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
