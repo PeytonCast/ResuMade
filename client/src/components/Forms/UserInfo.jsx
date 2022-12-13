@@ -12,8 +12,8 @@ const UserInfo = () => {
     [
       "firstName",
       "lastName",
-      "city",
-      "state",
+      "cityPersonal",
+      "statePersonal",
       "zip",
       "phone",
       "professionalEmail",
@@ -50,13 +50,13 @@ const UserInfo = () => {
         </Col>
 
         <Col span={24}>
-          <Form.Item label="City" name="city">
+          <Form.Item label="City" name="cityPersonal">
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={24}>
-          <Form.Item label="State" name="state">
+          <Form.Item label="State" name="statePersonal">
             {/* default input to all caps */}
             <Input maxLength={2} />
           </Form.Item>

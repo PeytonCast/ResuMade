@@ -63,9 +63,9 @@ const Education = () => {
 
   Form.useWatch(
     [
-      "city",
-      "state",
-      "grade",
+      "cityEducation",
+      "stateEducation",
+      // "grade",
       "certificateDegreeName",
       "universityInstitutionName",
       "startDateMonthEducation",
@@ -117,13 +117,13 @@ const Education = () => {
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="city">
+          <Form.Item label="City" name="cityEducation">
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="state">
+          <Form.Item label="State" name="stateEducation">
             {/* default input to all caps */}
             <Input maxLength={2} />
           </Form.Item>

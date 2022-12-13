@@ -87,8 +87,8 @@ const Experience = () => {
     [
       "jobTitle",
       "companyName",
-      "city",
-      "state",
+      "cityExperience",
+      "stateExperience",
       "startDateMonthExperience",
       "startDateYearExperience",
       "endDateMonthExperience",
@@ -135,13 +135,13 @@ const Experience = () => {
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="city">
+          <Form.Item label="City" name="cityExperience">
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="state">
+          <Form.Item label="State" name="stateExperience">
             <Input maxLength={2} />
           </Form.Item>
         </Col>
