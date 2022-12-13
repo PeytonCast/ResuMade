@@ -1,5 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import Navbar from "./components/Navbar";
 import Homepage from "../src/pages/Homepage";
 import Dashboard from "../src/pages/Dashboard";
@@ -10,15 +18,6 @@ import "./index.css";
 import { FormController } from "./pages";
 
 //import Footer from "./components/Footer";
-
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -42,22 +41,25 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/signup" element={<SignupForm />} />
-            <Route path="/form" element={<FormController />} />
-          </Routes>
-        </>
+        <ApolloProvider client={client}>
+          <Router>
+            <>
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/signup" element={<SignupForm />} />
+              </Routes>
+            </>
+          </Router>
+        </ApolloProvider>
       </Router>
+      //{" "}
     </ApolloProvider>
   );
 }
