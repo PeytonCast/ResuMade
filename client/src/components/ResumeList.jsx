@@ -42,6 +42,11 @@ const ResumeList = () => {
 
   console.log("editing resume")
  };
+ const handleDownloadResume = async (resumeID) => {
+
+
+  console.log("downloading resume")
+ };
 
 
  const handleDeleteResume = async (resumeID) => {
@@ -94,6 +99,7 @@ const ResumeList = () => {
                 
                 <Button type="primary" onClick={() => handleEditResume(resume._id)}>Edit</Button>
                 <Button type="primary" danger onClick={() => handleDeleteResume(resume._id)}>Delete</Button>
+                <Button type="primary" onClick={() => handleDownloadResume(resume._id)}>Download</Button>
               </Card>
               </div>
         ))}
