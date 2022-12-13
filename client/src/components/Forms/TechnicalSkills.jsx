@@ -1,48 +1,41 @@
 import React from "react";
-import { Input, Form } from "antd";
+import { Input, Form, Row, Col } from "antd";
 
 const TechnicalSkills = () => {
   const { TextArea } = Input;
+  const form = Form.useFormInstance();
+  const languages = Form.useWatch("languages", form);
+  const frameworks = Form.useWatch("frameworks", form);
+  const libraries = Form.useWatch("libraries", form);
+  const coreConcepts = Form.useWatch("coreConcepts", form);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
-    <Form
-      name="technicalSkills"
-      // labelCol={{
-      //   span: 16,
-      // }}
-      // wrapperCol={{
-      //   span: 16,
-      // }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-      layout="vertical"
-    >
-      <Form.Item label="Languages">
-        <TextArea rows={3} />
-      </Form.Item>
+    <>
+      <Row>
+        <Col span={24}>
+          <Form.Item label="Languages" name="languages">
+            <TextArea rows={3} />
+          </Form.Item>
+        </Col>
 
-      <Form.Item label="Frameworks">
-        <TextArea rows={3} />
-      </Form.Item>
+        <Col span={24}>
+          <Form.Item label="Frameworks" name="frameworks">
+            <TextArea rows={3} />
+          </Form.Item>
+          <Col span={24}></Col>
 
-      <Form.Item label="Libraries">
-        <TextArea rows={3} />
-      </Form.Item>
+          <Form.Item label="Libraries" name="libraries">
+            <TextArea rows={3} />
+          </Form.Item>
+        </Col>
 
-      <Form.Item label="Core Concepts">
-        <TextArea rows={3} />
-      </Form.Item>
-    </Form>
+        <Col span={24}>
+          <Form.Item label="Core Concepts" name="coreConcepts">
+            <TextArea rows={3} />
+          </Form.Item>
+        </Col>
+      </Row>
+    </>
   );
 };
 export default TechnicalSkills;
