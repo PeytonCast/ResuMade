@@ -4,15 +4,17 @@ import { FormController } from "../pages"
 import googleDoc from '../assets/Google_Docs.max-1100x1100.png'
 import addIcon from '../assets/img_487543.png'
 import { Button } from 'antd';
-import { useQuery } from '@apollo/client';
-import { REMOVE_RESUME, QUERY_ME } from '../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import {  QUERY_ME } from '../utils/queries';
+import { REMOVE_RESUME } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { deleteResumeId } from "../utils/API";
+
 
 const ResumeList = () => {
-  const { Meta } = Card;
   const [userData, setUserData] = useState({});
   const {data, loading} = useQuery(QUERY_ME);
-  // const [deleteResume] = useMutation(REMOVE_RESUME)
+  const [removeResume] = useMutation(REMOVE_RESUME)
 
   // checks if the user is logged in and gets user's data
   useEffect(() => {
@@ -50,28 +52,28 @@ const ResumeList = () => {
 
 
  const handleDeleteResume = async (resumeID) => {
-  // const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+console.log("token", token)
+  if (!token) {
+    throw new Error('please login');
+  }
 
-  // if (!token) {
-  //   throw new Error('please login');
-  // }
+  try {
+    console.log('resume id:',resumeID)
+    const updatedUser = await removeResume({variables: {id: resumeID}});
+    console.log('updatedUser:',updatedUser)
+    if (!resumeID) {
+      throw new Error('there is no resume with that id');
+    }
 
-  // try {
-  //   console.log('resume id:',resumeID)
-  //   const updatedUser = await deleteResume({variables: {resumeID}});
-  //   console.log('updatedUser:',updatedUser)
-  //   if (!resumeID) {
-  //     throw new Error('there is no resume with that id');
-  //   }
-
-
-  //   setUserData(updatedUser);
+console.log("hi")
+    setUserData(updatedUser);
     
-  //   removeresumeID(resumeID);
-  //   window.location.reload();
-  // } catch (err) {
-  //   console.error(err);
-  // }
+    deleteResumeId(resumeID);
+    window.location.reload();
+  } catch (err) {
+    console.error(err);
+  }
   console.log("deleting resume")
  };
 
