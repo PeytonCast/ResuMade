@@ -13,6 +13,8 @@ import {
 
 import docSaver from "file-saver";
 
+import './formController.css'
+
 const { Packer } = require("docx");
 const renderResume = require('../components/Templates/template.js');
 const resume = require('../components/Templates/resumedata');
@@ -23,7 +25,6 @@ const doneBtnHandler = async () => {
       `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
   )
 }
-
 
 const FormController = () => {
   const [current, setCurrent] = useState(0);
@@ -80,8 +81,9 @@ const FormController = () => {
   });
 
   return (
+    <div className="flex-container flex-row">
     <Row justify="center" align="middle">
-      <Col>
+      <Col className="FormContainer">
         <Steps current={current} items={items} />
 
         <div className="steps-content">
@@ -121,6 +123,7 @@ const FormController = () => {
         </div>
       </Col>
     </Row>
+    </div>
   );
 };
 

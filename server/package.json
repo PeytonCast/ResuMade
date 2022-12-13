@@ -18,7 +18,8 @@
     "express": "^4.17.1",
     "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.10"
+    "mongoose": "^5.9.10",
+    "stripe": "^8.67.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
