@@ -52,6 +52,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
+          <Route path="/form" element={<FormController/>} />
         </Routes>
       </div>
       </Router>
