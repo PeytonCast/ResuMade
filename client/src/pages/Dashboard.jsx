@@ -17,6 +17,7 @@ const Dashboard = () => {
     return (
       <div>
         <h2>Welcome to Your Profile!</h2>
+        {/* <h2>Welcome {`${user.username}'s`}!</h2> */}
         {/* <AddResume /> */}
         <ResumeList 
           // resumes={user.resume}

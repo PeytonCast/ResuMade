@@ -68,23 +68,21 @@ const ResumeList = () => {
 
   return (
     <div>
-    hi from resume list
-      {/* <div className="cards">
+      hi from resume list
+      <div className="cards">
         {data.me.resumes.map(resume => {
             return (
-              
-              // madeleine's object
               <Card
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={`${googleDoc}`} />}
               >
                 <Button type="primary" onClick={() => handleEditResume(resume._Id)}>edit</Button>
-                  <Button type="primary" danger onClick={() => handleDeleteResume(resume._Id)}>Delete</Button>
+                <Button type="primary" danger onClick={() => handleDeleteResume(resume._Id)}>Delete</Button>
               </Card>
             )
         })}
-      </div> */}
+      </div>
 
     </div>
   );

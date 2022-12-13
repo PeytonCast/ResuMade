@@ -12,14 +12,10 @@ export const LOGIN_USER = gql`
   }
 `;
 
-//is it _ID or resumeID?
 export const REMOVE_RESUME = gql`
     mutation Mutation($id: ID!) {
         removeResume(_id: $id) {
             _id
-            email
-            password
-            username
             resumes {
             _id
             educations {
@@ -86,9 +82,6 @@ export const SAVE_RESUME = gql`
     mutation SaveResume($resumeData: InputResume!) {
         saveResume(resumeData: $resumeData) {
             _id
-            email
-            password
-            username
             resumes {
                 _id
                 educations {
