@@ -57,7 +57,7 @@ const FormController = () => {
       title: "Preview",
       // comment below line in when merged with Arthur's code
       // resume = Arthur's variable; userData = my state variable that has now changed with the prepped data
-      // content: <Preview resume={userData}/>,
+      content: <Preview resume={userData}/>,
     },
   ];
 
