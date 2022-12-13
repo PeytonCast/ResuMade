@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Button, ConfigProvider } from "antd";
 import "./navbar.css";
 
 import Auth from "../utils/auth";
-//TODO: need to test if login link changes to logout after user logs in
 
 export default function Navbar() {
   return (
     <div className="container">
       <nav className="nav">
-        <Link to="/" className="site-title">
-          ResuMade
-        </Link>
+        <h3>ResuMade</h3>
         <ul>
           <CustomLink to="/">Home</CustomLink>
-          <CustomLink to="/dashboard">Account</CustomLink>
-          {/* if user is logged in show signout link*/}
+          {/* only show Account link if user logged in */}
           {Auth.loggedIn() ? (
-            <CustomLink onClick={Auth.logout}>Signout</CustomLink>
+            <CustomLink to="/dashboard">Account</CustomLink>
           ) : (
-            <CustomLink to="/login">Login/Sign Up</CustomLink>
+            ""
+          )}
+          {/* only show signout link if user logged in*/}
+          {Auth.loggedIn() ? (
+            <CustomLink onClick={Auth.logout} id="signout-link">
+              Signout
+            </CustomLink>
+          ) : (
+            <CustomLink to="/login">Login</CustomLink>
+          )}
+          {/* only show signup link if not logged in */}
+          {Auth.loggedIn() ? (
+            ""
+          ) : (
+            <CustomLink to="/signup" id="signup-link">
+              Signup
+            </CustomLink>
           )}
         </ul>
       </nav>

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DatabaseOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import {
+  DatabaseOutlined,
+  LockOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Form,
@@ -12,16 +17,15 @@ import {
   Alert,
 } from "antd";
 
-import { useNavigate, Navigate } from "react-router-dom"; //for redirecting after login
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from "../utils/queries";
 
 const LoginForm = (props) => {
-  const {userData, loading} = useQuery(QUERY_ME);
+  const { userData, loading } = useQuery(QUERY_ME);
   // antd func to check values of form after submit
   const onFinish = async (formData) => {
     // console.log("Received values of form: ", formData);
@@ -31,7 +35,7 @@ const LoginForm = (props) => {
         variables: { ...formData },
       });
       Auth.login(data.login.token);
-     
+
       console.log("userData", data);
     } catch (e) {
       console.error(e);
@@ -42,7 +46,6 @@ const LoginForm = (props) => {
       email: "",
       password: "",
     });
-   
   };
 
   const [loginFormData, setLoginFormData] = useState({
@@ -61,28 +64,14 @@ const LoginForm = (props) => {
     }
   }, [error]);
 
-  // set state for form validation --- kept giving me errors in console, believe this is for bootstrap form. Not need with antd form
-  // const [validated] = useState(false);
-
   // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setLoginFormData({ ...loginFormData, [name]: value });
   };
 
-  const nav = useNavigate();
-
-
   return (
-    <Row
-      align="middle"
-      justify="center"
-      gutter={{
-        xs: 8,
-        sm: 16,
-        md: 24,
-        lg: 32,
-      }}>
+    <Row align="middle" justify="center">
       <Col span={12}>
         <Card style={{ height: 352 }}>
           <Divider>Login to your account</Divider>
@@ -98,8 +87,6 @@ const LoginForm = (props) => {
             <p>Success!</p>
           ) : (
             <Form
-              // noValidate
-              // validated={validated}
               name="normal_login"
               className="login-form"
               onFinish={onFinish}>
@@ -150,95 +137,19 @@ const LoginForm = (props) => {
                   </Button>
                 </ConfigProvider>
               </Form.Item>
+              <Form.Item>
+                <p>
+                  No account yet?{" "}
+                  <Link to="/signup" className="link">
+                    Create one here!
+                  </Link>
+                </p>
+              </Form.Item>
             </Form>
           )}
         </Card>
       </Col>
-
-      {/* SIGN UP FORM */}
-      {/* <Col span={12}>
-        <Card>
-          <Divider>Create an account</Divider>
-          <Form name="register" onFinish={onFinish}>
-            <Form.Item
-              name="email"
-              label="Email"
-              rules={[
-                {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-                },
-                {
-                  required: true,
-                  message: "Please input your E-mail!",
-                },
-              ]}>
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              name="password"
-              label="Password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              hasFeedback>
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              labelWrap
-              wrapperCol={{
-                flex: 1,
-              }}
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error(
-                        "The two passwords that you entered do not match!"
-                      )
-                    );
-                  },
-                }),
-              ]}>
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item>
-              <ConfigProvider
-                theme={{
-                  token: {
-                    colorPrimary: "#141414",
-                  },
-                }}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="signup-form-button">
-                  Sign Up
-                </Button>
-              </ConfigProvider>
-            </Form.Item>
-          </Form>
-        </Card> 
-      </Col>*/}
     </Row>
   );
 };
 export default LoginForm;
-
