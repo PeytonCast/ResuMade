@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { Card } from 'antd';
+import { FormController } from "../pages"
 import googleDoc from '../assets/Google_Docs.max-1100x1100.png'
 import addIcon from '../assets/img_487543.png'
 import { Button } from 'antd';
@@ -42,11 +43,6 @@ const ResumeList = () => {
   console.log("editing resume")
  };
 
- const handleNewResume = async (resumeID) => {
-
-
-  console.log("new resume clicked")
- };
 
  const handleDeleteResume = async (resumeID) => {
   // const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -80,8 +76,8 @@ const ResumeList = () => {
       <div className="cards">
         <Card hoverable
          style={{ width: 240, paddingLeft: 38, paddingRight: 38, paddingTop: 12, paddingBottom: 6 }}
-         cover={<img alt="example" src={`${addIcon}`} />}>
-        <Button type="primary" onClick={() => handleNewResume()}>New Resume</Button>
+         cover={<img alt="addIcon" src={`${addIcon}`} />}>
+        <Button type="primary" href="/form" >New Resume</Button>
         </Card>
       </div>
 
