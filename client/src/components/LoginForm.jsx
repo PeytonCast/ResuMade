@@ -20,12 +20,12 @@ import {
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { useQuery } from "@apollo/client";
+// import { useQuery } from "@apollo/client";
 
-import { QUERY_ME } from "../utils/queries";
+// import { QUERY_ME } from "../utils/queries";
 
 const LoginForm = (props) => {
-  const { userData, loading } = useQuery(QUERY_ME);
+  // const { userData, loading } = useQuery(QUERY_ME);
   // antd func to check values of form after submit
   const onFinish = async (formData) => {
     // console.log("Received values of form: ", formData);

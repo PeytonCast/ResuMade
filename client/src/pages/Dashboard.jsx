@@ -1,5 +1,5 @@
 import React from "react";
-// import AddResume from '../components/AddResume';
+import AddResumeCard from '../components/AddResume';
 // import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import {  QUERY_ME } from '../utils/queries';
@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
       <div>
         <h2>Welcome {`${user.username} to your Profile`}!</h2>
-        {/* <AddResume /> */}
+        <AddResumeCard />
         <ResumeList />
       </div>
     );
