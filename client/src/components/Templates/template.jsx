@@ -43,13 +43,12 @@ function dateFormat(startDate, endDate, isCurrent) {
 }
 
 const Template = ({ resume }) => {
-  console.log(resume);
   return (
     <div id="template">
       <div className="aParagraph">
         <p className="name">
+          {resume.personalInfo.firstName}{" "}
           {resume.personalInfo.lastName}
-          {resume.personalInfo.firstName}
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}

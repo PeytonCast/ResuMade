@@ -15,7 +15,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
-const resume = require("../components/Templates/resumedata");
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
@@ -164,7 +163,7 @@ const FormController = () => {
     let resumeObject = {
       personalInfo: {
         // firstName NOT BEING RENDERED IN PREVIEW
-        firstname: data.firstName,
+        firstName: data.firstName,
         lastName: data.lastName,
         // address: // remove address field from Arthur's side
         city: data.cityPersonal,
@@ -255,6 +254,7 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
+    doneBtnHandler();
     message.success("Your ResuMate is ready to download!");
   };
 
@@ -295,7 +295,6 @@ const FormController = () => {
                 onClick={() => {
                   next();
                   handlePreview();
-                  doneBtnHandler();
                 }}
               >
                 Preview
