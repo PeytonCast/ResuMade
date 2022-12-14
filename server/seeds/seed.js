@@ -65,7 +65,11 @@ db.once('open', async () => {
         startDate: {
           month: month,
           year: 2014,
-        }
+        },
+          endDate: {
+            month: month,
+            year: 2014,
+          }
         },
         educations: {
           degree: faker.name.jobArea(),
