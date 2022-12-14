@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Checkbox, Form, Input, Row, Col } from "antd";
+const { TextArea } = Input;
 
 const Projects = () => {
-  const { TextArea } = Input;
   const form = Form.useFormInstance();
-  const projectName = Form.useWatch("projectName", form);
-  // figure out saving checkbox to userData
-  // does grab "collaborative:" even when commented out and returns "undefined"
-  // const collaborative = Form.useWatch("collaborative", form);
-  const deployedApplicationLink = Form.useWatch(
-    "deployedApplicationLink",
+
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
+
+  Form.useWatch(
+    [
+      "projectName",
+      // "collaborative",
+      "githubRepoLink",
+      "deployedApplicationLink",
+      "projectDescription",
+      "yourRole",
+      "toolsTechnologies",
+      "addAnotherProject",
+    ],
     form
   );
-  const githubRepoLink = Form.useWatch("githubRepoLink", form);
-  const projectDescription = Form.useWatch("projectDescription", form);
-  const yourRole = Form.useWatch("yourRole", form);
-  const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
+
+  // // checkbox
+  // const collaborative = Form.useWatch("collaborative", form);
+
+  // const deployedApplicationLink = Form.useWatch(
+  //   "deployedApplicationLink",
+  //   form
+  // );
+  // const githubRepoLink = Form.useWatch("githubRepoLink", form);
+  // const projectDescription = Form.useWatch("projectDescription", form);
+  // const yourRole = Form.useWatch("yourRole", form);
+  // const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
+
+  // // checkbox
+  const addAnother = Form.useWatch("addAnotherProject", form);
 
   return (
     <>
@@ -26,26 +47,30 @@ const Projects = () => {
           </Form.Item>
         </Col>
 
-        <Col span={4}>
-          <Form.Item label="Collaborative?" name="collaborative">
+        {/* <Col span={4}>
+          <Form.Item
+            label="Collaborative?"
+            name="collaborative"
+            valuePropName="checked"
+          >
             <Checkbox></Checkbox>
           </Form.Item>
-        </Col>
+        </Col> */}
       </Row>
 
       <Row>
+        <Col span={12}>
+          <Form.Item label="Github Repo Link" name="githubRepoLink">
+            <Input addonBefore="https://" placeholder="Github" />
+          </Form.Item>
+        </Col>
+
         <Col span={12}>
           <Form.Item
             label="Deployed Application Link"
             name="deployedApplicationLink"
           >
             <Input addonBefore="https://" />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item label="Github Repo Link" name="githubRepoLink">
-            <Input addonBefore="https://" placeholder="Github" />
           </Form.Item>
         </Col>
       </Row>
@@ -58,8 +83,20 @@ const Projects = () => {
         <TextArea rows={2} />
       </Form.Item>
 
+      {/* note to ask user to separate each item with a comma and a space */}
+      {/* array of strings */}
       <Form.Item label="Tools and Technologies Used" name="toolsTechnologies">
         <TextArea rows={4} />
+      </Form.Item>
+
+      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
+      <Form.Item
+        label="Add Another"
+        name="addAnotherProject"
+        valuePropName="checked"
+      >
+        {/* upon check, add a duplicate project section to add additional project */}
+        <Checkbox></Checkbox>
       </Form.Item>
     </>
   );

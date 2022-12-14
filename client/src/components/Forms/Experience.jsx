@@ -9,52 +9,117 @@ import {
   DatePicker,
   Space,
 } from "antd";
+const { TextArea } = Input;
 
 const Experience = () => {
-  const { TextArea } = Input;
-
-  // getting checkbox user input
-  const [checked, setChecked] = useState(false);
-  const onCheckboxChange = (e) => {
-    console.log("onCheckboxChange function is working");
-
-    let currentJobCheckbox = document.getElementById("currentJob");
-    console.log(currentJobCheckbox);
-
-    let checkboxUserOutput = [];
-    console.log(checkboxUserOutput);
-
-    function currentJobCheckboxArray(e) {
-      console.log("currentJobCheckboxArray function is working");
-      console.log(checkboxUserOutput.push(e.target.checked));
-    }
-    currentJobCheckboxArray();
-
-    console.log(`checkbox change: checked = ${e.target.checked}`);
-    setChecked(e.target.checked);
-  };
-
   const form = Form.useFormInstance();
-  const jobTitle = Form.useWatch("jobTitle", form);
-  const companyName = Form.useWatch("companyName", form);
-  const city = Form.useWatch("city", form);
-  const state = Form.useWatch("state", form);
 
-  // const startDate = Form.useWatch("startDate", form);
-  const startDateMonth = Form.useWatch("startDateMonth", form);
-  const startDateYear = Form.useWatch("startDateYear", form);
+  const [disabled, setDisabled] = useState(false);
 
-  // const endDate = Form.useWatch("endDate", form);
-  const endDateMonth = Form.useWatch("endDateMonth", form);
-  const endDateYear = Form.useWatch("endDateYear", form);
+  // const toggleDisabled = ({ disabled }) => {
+  //   console.log("toggleDisabled function is working");
+  //   setDisabled(disabled);
+  // };
 
-  // checkbox
+  useEffect(() => {
+    // console.log(form.getFieldsValue(true));
+
+    // this is not DRY I know
+    if (
+      form.getFieldsValue("startDateMonthExperience")[
+        "startDateMonthExperience"
+      ]
+    ) {
+      // console logs the user input's start date month
+      console.log(
+        form
+          .getFieldsValue("startDateMonthExperience")
+          ["startDateMonthExperience"].format("MMMM")
+      );
+    }
+
+    if (
+      form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]
+    ) {
+      // console logs the user input's start date year
+      console.log(
+        form
+          .getFieldsValue("startDateYearExperience")
+          ["startDateYearExperience"].format("YYYY")
+      );
+    }
+
+    if (
+      form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]
+    ) {
+      // console logs the user input's end date month
+      console.log(
+        form
+          .getFieldsValue("endDateMonthExperience")
+          ["endDateMonthExperience"].format("MMMM")
+      );
+    }
+
+    if (form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]) {
+      // console logs the user input's end date year
+      console.log(
+        form
+          .getFieldsValue("endDateYearExperience")
+          ["endDateYearExperience"].format("YYYY")
+      );
+    }
+
+    // console.log(typeof(form.getFieldValue("currentJob")));
+    if (form.getFieldValue("currentJob")) {
+      // console.log("currentJob");
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+
+    if (form.getFieldValue("addAnotherExperience")) {
+      // if addAnother checkbox is checked, duplicate experience form below the first one to add another experience
+      // Experience()
+    }
+  });
+
+  Form.useWatch(
+    [
+      "jobTitle",
+      "companyName",
+      "cityExperience",
+      "stateExperience",
+      "startDateMonthExperience",
+      "startDateYearExperience",
+      "endDateMonthExperience",
+      "endDateYearExperience",
+      "currentJob",
+      "jobDescription",
+      "addAnotherExperience",
+    ],
+    form
+  );
+
+  // const companyName = Form.useWatch("companyName", form);
+  // const city = Form.useWatch("city", form);
+  // const state = Form.useWatch("state", form);
+
+  // // const startDate = Form.useWatch("startDate", form);
+  const startDateMonth = Form.useWatch("startDateMonthExperience", form);
+  const startDateYear = Form.useWatch("startDateYearExperience", form);
+
+  // // const endDate = Form.useWatch("endDate", form);
+  const endDateMonth = Form.useWatch("endDateMonthExperience", form);
+  const endDateYear = Form.useWatch("endDateYearExperience", form);
+
+  // // checkbox
   const currentJob = Form.useWatch("currentJob", form);
+  // Form.useWatch = (namePath: "currentJob", formInstance: form): Value
 
-  const jobDescription = Form.useWatch("jobDescription", form);
+  // const jobDescription = Form.useWatch("jobDescription", form);
 
-  // checkbox
-  const addAnother = Form.useWatch("addAnother", form);
+  // // checkbox
+  const addAnother = Form.useWatch("addAnotherExperience", form);
 
   return (
     <>
@@ -70,13 +135,13 @@ const Experience = () => {
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="city">
+          <Form.Item label="City" name="cityExperience">
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="state">
+          <Form.Item label="State" name="stateExperience">
             <Input maxLength={2} />
           </Form.Item>
         </Col>
@@ -84,28 +149,33 @@ const Experience = () => {
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonth">
+          <Form.Item label="Start Date: Month" name="startDateMonthExperience">
             <DatePicker picker="month" format={"MMMM"} />
           </Form.Item>
 
-          <Form.Item label="Start Date: Year" name="startDateYear">
+          <Form.Item label="Start Date: Year" name="startDateYearExperience">
             <DatePicker picker="year" format={"YYYY"} />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonth">
-            <DatePicker picker="month" format={"MMMM"} />
+          <Form.Item label="End Date: Month" name="endDateMonthExperience">
+            <DatePicker picker="month" format={"MMMM"} disabled={disabled} />
           </Form.Item>
 
-          <Form.Item label="End Date: Year" name="endDateYear">
-            <DatePicker picker="year" format={"YYYY"} />
+          <Form.Item label="End Date: Year" name="endDateYearExperience">
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
 
         <Col span={4}>
-          <Form.Item label="Current Job?" name="currentJob" id="currentJob">
-            <Checkbox checked={checked} onChange={onCheckboxChange}></Checkbox>
+          <Form.Item
+            id="currentJob"
+            name="currentJob"
+            label="Current Job?"
+            valuePropName="checked"
+          >
+            <Checkbox></Checkbox>
           </Form.Item>
         </Col>
       </Row>
@@ -114,7 +184,11 @@ const Experience = () => {
         <TextArea rows={3} />
       </Form.Item>
 
-      <Form.Item label="Add Another" name="addAnother">
+      <Form.Item
+        label="Add Another"
+        name="addAnotherExperience"
+        valuePropName="checked"
+      >
         <Checkbox></Checkbox>
       </Form.Item>
     </>
