@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
 import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 
 const UserInfo = () => {
   const form = Form.useFormInstance();
+<<<<<<< HEAD
   const firstName = Form.useWatch("firstName", form);
   const lastName = Form.useWatch("lastName", form);
   const city = Form.useWatch("city", form);
@@ -13,6 +18,37 @@ const UserInfo = () => {
   // const socials = Form.useWatch("socials", form);
   const github = Form.useWatch("github", form);
   const linkedin = Form.useWatch("linkedin", form);
+=======
+
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
+
+  Form.useWatch(
+    [
+      "firstName",
+      "lastName",
+      "cityPersonal",
+      "statePersonal",
+      "zip",
+      "phone",
+      "professionalEmail",
+      "github",
+      "linkedin",
+      "portfolio",
+    ],
+    form
+  );
+  // const lastName = Form.useWatch("lastName", form);
+  // const city = Form.useWatch("city", form);
+  // const state = Form.useWatch("state", form);
+  // const zip = Form.useWatch("zip", form);
+  // const phone = Form.useWatch("phone", form);
+  // const professionalEmail = Form.useWatch("professionalEmail", form);
+  // const socials = Form.useWatch("socials", form);
+  // const github = Form.useWatch("github", form);
+  // const linkedin = Form.useWatch("linkedin", form);
+>>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
   // const portfolio = Form.useWatch("portfolio", form);
 
   return (
@@ -31,13 +67,22 @@ const UserInfo = () => {
         </Col>
 
         <Col span={24}>
+<<<<<<< HEAD
           <Form.Item title="This field is required." label="City" name="city" required>
+=======
+          <Form.Item label="City" name="cityPersonal">
+>>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={24}>
+<<<<<<< HEAD
           <Form.Item title="This field is required." label="State" name="state" required>
+=======
+          <Form.Item label="State" name="statePersonal">
+            {/* default input to all caps */}
+>>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
             <Input maxLength={2} />
           </Form.Item>
         </Col>
@@ -62,7 +107,13 @@ const UserInfo = () => {
 
         {/* <Form.Item label="Socials" name="socials"> */}
         {/* <Input.Group> */}
+<<<<<<< HEAD
         <Form.Item title="This field is required." label="Github" name="github" required>
+=======
+
+        {/* add note to not include https:// or www. for all 3 URLs*/}
+        <Form.Item label="Github" name="github">
+>>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
           <Input addonBefore="https://" placeholder="Github" name="github" />
         </Form.Item>
 
