@@ -1,6 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+// setup stripe payment
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const resolvers = {
     Query: {
         // get me 
@@ -14,6 +18,27 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!'); 
         },
+        checkout: async (parent, args, context) => {
+          const url = new URL(context.headers.referer).origin;
+          const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [ {
+              price_data: {
+                currency: 'usd',
+                unit_amount: '500',
+                product_data: {
+                  name: "Resume"
+                },
+              }, 
+              quantity: 1,
+            }],
+            mode: 'payment',
+            success_url: `${url}/success`,
+            cancel_url: `${url}/`
+          });
+          console.log("sessionid", session.id);
+          return { session: session.id };
+        }
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
