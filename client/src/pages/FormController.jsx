@@ -1,3 +1,4 @@
+// import necessary components from React and Ant Design
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
@@ -17,16 +18,19 @@ import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
-const resume = require("../components/Templates/resumedata");
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
 
+// function to render the form sections
 const FormController = () => {
-  const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
+
+  // state variables
+  const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
 
+  // functions to make the next and previous buttons work
   const next = () => {
     setCurrent(current + 1);
   };
@@ -35,6 +39,7 @@ const FormController = () => {
     setCurrent(current - 1);
   };
 
+  // 7 steps to the form including preview
   const steps = [
     {
       title: "Personal Info",
@@ -62,8 +67,9 @@ const FormController = () => {
     },
     {
       title: "Preview",
-      content: <Preview resume={resume} />,
-      // content: < />, // add <Preview/> here when it's ready
+      // comment below line in when merged with Arthur's code
+      // resume = Arthur's variable; userData = my state variable that has now changed with the prepped data
+      content: <Preview resume={userData} />,
     },
   ];
 
@@ -90,8 +96,174 @@ const FormController = () => {
     getCheckout();
   };
 
+  // helper function to clean and prepare the data for the API call once the Download button is clicked
+  const prepDataForApiCall = (data) => {
+    // this large function does two things: returns an array of strings for the input fields that need it, and
+    console.log(`RUNNING ${data.firstName}`);
+    // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
+    // do the same for all start and end months and years (8)
+    // make array of strings out of text area for languages, ect...
+
+    console.log(data);
+
+    const returnArrayOfStrings = (string) => {
+      // if user inputted nothing, do nothing
+      if (!string) {
+        return;
+      }
+      // otherwise, split the user's input (one long string) into separate words and return an array with the .split() string method
+      return string.split(", ");
+    };
+
+    // these are the data field names that need to return an array of strings (if more, just add to this list)
+    const stringListFields = [
+      "languages",
+      "libraries",
+      "frameworks",
+      "coreConcepts",
+      "toolsTechnologies",
+    ];
+
+    // for each of the listed fields, use the .split() string method to separate the words and return an array
+    stringListFields.forEach((prop) => {
+      data[prop] = returnArrayOfStrings(data[prop]);
+    });
+
+    // function to format the dates
+    const getDateFormat = (dateObject, format) => {
+      if (!dateObject) {
+        return;
+      }
+      return dateObject.format(format);
+    };
+
+    // these are the data field names that need to have dates formatted (if more, just add to this list)
+    const dateFields = [
+      "endDateMonthEducation",
+      "endDateMonthExperience",
+      "startDateMonthEducation",
+      "startDateMonthExperience",
+      "endDateYearEducation",
+      "endDateYearExperience",
+      "startDateYearEducation",
+      "startDateYearExperience",
+    ];
+
+    // for each of the date fields, format according to if the field name includes "month" or "year"
+    dateFields.forEach((prop) => {
+      if (prop.includes("Month")) {
+        data[prop] = getDateFormat(data[prop], "MMMM");
+      } else if (prop.includes("Year")) {
+        data[prop] = getDateFormat(data[prop], "YYYY");
+      } else {
+        return;
+      }
+    });
+
+    // const firstName = data.firstName
+
+    // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
+    let resumeObject = {
+      personalInfo: {
+        // firstName NOT BEING RENDERED IN PREVIEW
+        firstName: data.firstName,
+        lastName: data.lastName,
+        // address: // remove address field from Arthur's side
+        city: data.cityPersonal,
+        state: data.statePersonal,
+        // zip: , // add zip field on Arthur's side
+        phoneNumber: data.phone,
+        email: data.professionalEmail,
+        github: data.github,
+        linkedin: data.linkedin,
+        portfolio: data.portfolio,
+      },
+      // remove italics on summary text
+      summary: data.summary,
+      technicalSkills: {
+        languages: data.languages,
+        frameworks: data.frameworks,
+        libraries: data.libraries,
+        concepts: data.coreConcepts,
+      },
+      projects: [
+        {
+          name: data.projectName,
+          github: data.githubRepoLink,
+          deployment: data.deployedApplicationLink,
+          summary: data.projectDescription,
+          responsibility: data.yourRole,
+          technologies: data.toolsTechnologies,
+          // addAnother: data.addAnotherProject // potentially addAnother button here on my side
+        },
+      ],
+      experiences: [
+        {
+          // change order? from Experience section to resumedata.js
+          isCurrent: data.currentJob,
+          title: data.jobTitle,
+          company: data.companyName,
+          city: data.cityExperience,
+          state: data.stateExperience,
+          summary: data.jobDescription,
+          startDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.startDateMonthExperience,
+            year: data.startDateYearExperience,
+          },
+          endDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.endDateMonthExperience,
+            year: data.endDateYearExperience,
+          },
+        },
+        // addAnother: data.addAnotherExperience // potentially addAnother button here on my side
+      ],
+      educations: [
+        {
+          degree: data.certificateDegreeName,
+          // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
+          schoolName: data.universityInstitutionName,
+          city: data.cityEducation,
+          state: data.stateEducation,
+          // isCurrent: // remove isCurrent field or add in Education.jsx
+          startDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.startDateMonthEducation,
+            year: data.startDateYearEducation,
+          },
+          endDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.endDateMonthEducation,
+            year: data.endDateYearEducation,
+          },
+          // addAnother: data.addAnotherEducation // potentially addAnother button here on my side
+        },
+      ],
+    };
+
+    console.log(data);
+
+    // now that data is cleaned, give to state variable to change the state
+    setUserData(resumeObject);
+  };
+
+  const handlePreview = () => {
+    // get all field values from the form and set equal to a variable
+    const data = form.getFieldsValue(true);
+
+    // give the data from all the form fields to the data-prepping function
+    prepDataForApiCall(data);
+  };
+
+  const handleDownload = () => {
+    doneBtnHandler();
+    message.success("Your ResuMate is ready to download!");
+  };
+
   return (
     <>
+      {/* simple auth check, only logged in users can access the forms */}
       {Auth.loggedIn() ? (
         <div className="flex-container flex-row">
           <Row justify="center" align="middle">
@@ -103,6 +275,7 @@ const FormController = () => {
               </div>
 
               <div className="steps-action">
+                {/* previous button */}
                 {current > 0 && (
                   <Button
                     style={{
@@ -112,22 +285,30 @@ const FormController = () => {
                     Previous
                   </Button>
                 )}
-                {current < steps.length - 1 && (
+
+                {/* next button */}
+                {current < steps.length - 2 && (
                   <Button type="primary" onClick={() => next()}>
                     Next
                   </Button>
                 )}
 
-                {current === steps.length - 1 && (
+                {/* preview button */}
+                {current === steps.length - 2 && (
                   <Button
                     type="primary"
                     onClick={() => {
-                      form.submit();
-                      setUserData(form.getFieldsValue(true));
-                      message.success("Your ResuMate is ready to download!");
-                      doneBtnHandler();
+                      next();
+                      handlePreview();
                     }}>
-                    Done
+                    Preview
+                  </Button>
+                )}
+
+                {/* done button */}
+                {current === steps.length - 1 && (
+                  <Button type="primary" onClick={handleDownload}>
+                    Download
                   </Button>
                 )}
               </div>
