@@ -80,7 +80,6 @@ console.log("hi")
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={`${googleDoc}`} />}
-                
               >
                 
                 <Button type="primary" onClick={() => handleEditResume(resume._id)}>Edit</Button>
