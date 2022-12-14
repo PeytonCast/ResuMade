@@ -19,6 +19,7 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!'); 
         },
         checkout: async (parent, args, context) => {
+          console.log("test from payment")
           const url = new URL(context.headers.referer).origin;
           const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
