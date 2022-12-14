@@ -11,12 +11,14 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { loadStripe  } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
-import { useLazyQuery } from '@apollo/client';
-import './formController.css'
-const resume = require('../components/Templates/resumedata');
-const stripePromise = loadStripe("pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5");
+import { useLazyQuery } from "@apollo/client";
+import "./formController.css";
+const resume = require("../components/Templates/resumedata");
+const stripePromise = loadStripe(
+  "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
+);
 
 // function to render the form sections
 const FormController = () => {
@@ -77,25 +79,25 @@ const FormController = () => {
   useEffect(() => {
     console.log(userData);
   });
-  
+
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
-        res.redirectToCheckout({sessionId: data.checkout.session });
+        res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
-  }, [data])
+  }, [data]);
 
   const doneBtnHandler = async () => {
     getCheckout();
-  }
+  };
 
-  // helper function to clean and prepare the data for the API call once the Done button is clicked (button may change to Preview and fire at the end of the 6th section - Education)
+  // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
     // this large function does two things: returns an array of strings for the input fields that need it, and
-    console.log("RUNNING");
+    console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
     // do the same for all start and end months and years (8)
     // make array of strings out of text area for languages, ect...
@@ -156,13 +158,94 @@ const FormController = () => {
       }
     });
 
+    // const firstName = data.firstName
+
+    // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
+    let resumeObject = {
+      personalInfo: {
+        // firstName NOT BEING RENDERED IN PREVIEW
+        firstname: data.firstName,
+        lastName: data.lastName,
+        // address: // remove address field from Arthur's side
+        city: data.cityPersonal,
+        state: data.statePersonal,
+        // zip: , // add zip field on Arthur's side
+        phoneNumber: data.phone,
+        email: data.professionalEmail,
+        github: data.github,
+        linkedin: data.linkedin,
+        portfolio: data.portfolio,
+      },
+      // remove italics on summary text
+      summary: data.summary,
+      technicalSkills: {
+        languages: data.languages,
+        frameworks: data.frameworks,
+        libraries: data.libraries,
+        concepts: data.coreConcepts,
+      },
+      projects: [
+        {
+          name: data.projectName,
+          github: data.githubRepoLink,
+          deployment: data.deployedApplicationLink,
+          summary: data.projectDescription,
+          responsibility: data.yourRole,
+          technologies: data.toolsTechnologies,
+          // addAnother: data.addAnotherProject // potentially addAnother button here on my side
+        },
+      ],
+      experiences: [
+        {
+          // change order? from Experience section to resumedata.js
+          isCurrent: data.currentJob,
+          title: data.jobTitle,
+          company: data.companyName,
+          city: data.cityExperience,
+          state: data.stateExperience,
+          summary: data.jobDescription,
+          startDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.startDateMonthExperience,
+            year: data.startDateYearExperience,
+          },
+          endDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.endDateMonthExperience,
+            year: data.endDateYearExperience,
+          },
+        },
+        // addAnother: data.addAnotherExperience // potentially addAnother button here on my side
+      ],
+      educations: [
+        {
+          degree: data.certificateDegreeName,
+          // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
+          schoolName: data.universityInstitutionName,
+          city: data.cityEducation,
+          state: data.stateEducation,
+          // isCurrent: // remove isCurrent field or add in Education.jsx
+          startDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.startDateMonthEducation,
+            year: data.startDateYearEducation,
+          },
+          endDate: {
+            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
+            month: data.endDateMonthEducation,
+            year: data.endDateYearEducation,
+          },
+          // addAnother: data.addAnotherEducation // potentially addAnother button here on my side
+        },
+      ],
+    };
+
     console.log(data);
 
     // now that data is cleaned, give to state variable to change the state
-    setUserData(data);
+    setUserData(resumeObject);
   };
 
-  //
   const handlePreview = () => {
     // get all field values from the form and set equal to a variable
     const data = form.getFieldsValue(true);
@@ -177,57 +260,57 @@ const FormController = () => {
 
   return (
     <div className="flex-container flex-row">
-    <Row justify="center" align="middle">
-      <Col className="FormContainer">
-        <Steps current={current} items={items} />
+      <Row justify="center" align="middle">
+        <Col className="FormContainer">
+          <Steps current={current} items={items} />
 
-        <div className="steps-content">
-          <Form form={form}>{steps[current].content}</Form>
-        </div>
+          <div className="steps-content">
+            <Form form={form}>{steps[current].content}</Form>
+          </div>
 
-        <div className="steps-action">
-          {/* previous button */}
-          {current > 0 && (
-            <Button
-              style={{
-                margin: "0 8px",
-              }}
-              onClick={() => prev()}
-            >
-              Previous
-            </Button>
-          )}
+          <div className="steps-action">
+            {/* previous button */}
+            {current > 0 && (
+              <Button
+                style={{
+                  margin: "0 8px",
+                }}
+                onClick={() => prev()}
+              >
+                Previous
+              </Button>
+            )}
 
-          {/* next button */}
-          {current < steps.length - 2 && (
-            <Button type="primary" onClick={() => next()}>
-              Next
-            </Button>
-          )}
+            {/* next button */}
+            {current < steps.length - 2 && (
+              <Button type="primary" onClick={() => next()}>
+                Next
+              </Button>
+            )}
 
-          {/* preview button */}
-          {current === steps.length - 2 && (
-            <Button
-              type="primary"
-              onClick={() => {
-                next();
-                handlePreview();
-                doneBtnHandler();
-              }}
-            >
-              Preview
-            </Button>
-          )}
+            {/* preview button */}
+            {current === steps.length - 2 && (
+              <Button
+                type="primary"
+                onClick={() => {
+                  next();
+                  handlePreview();
+                  doneBtnHandler();
+                }}
+              >
+                Preview
+              </Button>
+            )}
 
-          {/* done button */}
-          {current === steps.length - 1 && (
-            <Button type="primary" onClick={handleDownload}>
-              Download
-            </Button>
-          )}
-        </div>
-      </Col>
-    </Row>
+            {/* done button */}
+            {current === steps.length - 1 && (
+              <Button type="primary" onClick={handleDownload}>
+                Download
+              </Button>
+            )}
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };
