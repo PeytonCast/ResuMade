@@ -15,7 +15,7 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import "./index.css";
 
-import { FormController } from "./pages";
+import { FormController, Payment } from "./pages";
 
 //import Footer from "./components/Footer";
 // Construct our main GraphQL API endpoint
@@ -45,16 +45,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/signup" element={<SignupForm />} />
-            <Route path="/form" element={<FormController />} />
-          </Routes>
-        </div>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/form" element={<FormController/>} />
+          <Route path="/success" element={<Payment />} />
+        </Routes>
+      </div>
       </Router>
     </ApolloProvider>
   );
