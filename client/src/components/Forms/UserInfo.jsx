@@ -82,6 +82,8 @@ const UserInfo = () => {
 
         {/* <Form.Item label="Socials" name="socials"> */}
         {/* <Input.Group> */}
+
+        {/* add note to not include https:// or www. for all 3 URLs*/}
         <Form.Item label="Github" name="github">
           <Input addonBefore="https://" placeholder="Github" name="github" />
         </Form.Item>

@@ -15,7 +15,7 @@ const TechnicalSkills = () => {
   // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
-    // make this like the skills section of the other person
+    // note to ask user to separate each item with a comma and a space
     <>
       <Row>
         <Col span={24}>
