@@ -14,7 +14,7 @@ body {
     position: relative;
     height: 100vh;
     width: 100vw;
-    
+    background-color: rgb(245, 245, 245);
 }
 
 .hero::before{
@@ -35,22 +35,8 @@ body {
 .hero-content {
     position: relative;
     text-align: center;
-    top: 36%;
+    top: 35%;
     color: black;
-  }
-
-  #learn-link {
-    text-decoration: none;
-    background-color:black;
-    border-radius: 6px;
-    color: beige;
-    padding: 6px;
-    text-align:left;
-    box-shadow: 3px 3px 3px gray;
-  }
-
-  #learn-link:hover {
-    background-color:rgb(90, 90, 90);
   }
 
 .title {
@@ -64,13 +50,29 @@ body {
     font-size: 2rem;
 }
 
+#learn-link {
+  text-decoration: none;
+  background-color:black;
+  border-radius: 6px;
+  color: beige;
+  padding: 6px;
+  text-align:left;
+  box-shadow: 3px 3px 3px gray;
+  font-size: 1.2rem;
+}
+
+#learn-link:hover {
+  background-color:rgb(90, 90, 90);
+}
+
+
 .motto-container {
     margin-bottom: 100px;
+    text-align: center;
 }
 
 .motto-img {
-    height: 100%;
-    width: 75%;
+    width: 70%;
 }
 
 #start-link {
@@ -103,7 +105,7 @@ body {
 
 .preview-section {
     width: 100vw;
-    height: 80vh;
+    height: 800px;
     background-color: white;
 }
 /* 

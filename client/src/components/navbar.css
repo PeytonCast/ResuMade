@@ -4,7 +4,8 @@
   font-family: Poppins, system-ui, sans-serif;
 }
 
-.container {
+/* OLD NAV CSS 1st version*/
+/* .container {
   margin: 1rem;
   text-align: center;
   width: 100vw;
@@ -12,23 +13,22 @@
 
 .nav {
   color: rgb(0, 0, 0);
+  display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 2rem;
   padding: 0 1rem;
   width: 100%;
 }
 
-.site-title {
+/* .site-title {
   font-size: 2rem;
-}
+} */
 
-.nav ul {
+/* .nav ul {
   padding: 0;
   margin: 0;
   list-style: none;
   display: flex;
-  gap: 1rem;
   color: black;
 }
 
@@ -48,18 +48,18 @@
 
 .nav li:hover {
   background-color: rgb(235, 235, 235);
-  text-decoration: none;
   color: black;
-}
+} */ 
 
-#signup-link {
+ #signup-link {
   background-color: black;
-  text-underline-offset: 4px;
   border-radius: 6px;
-  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: rgb(245, 245, 245);
 }
 
+/*
 #signup-link:hover {
   background-color:rgb(58, 58, 58);
 }
@@ -75,7 +75,11 @@
   background-color:rgb(58, 58, 58);
 }
 
-@media (max-width: 640px) {
+p {
+  font-size: 1.1rem;
+} */
+
+/* @media (max-width: 640px) {
   .container {
     text-align: center;
   }
@@ -91,4 +95,4 @@
   .nav li {
     margin: 0.8em 0;
   }
-}
+} */
