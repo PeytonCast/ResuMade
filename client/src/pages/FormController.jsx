@@ -32,12 +32,13 @@ const FormController = () => {
     setCurrent(current + 1);
   };
 
-  const checkValid = () => {
-    if ( !userData.firstName ){
-     console.log("not allowed")
-    } else {next()}
+  // const checkValid = () => {
+  //  const validateInfo = form.getFieldsValue()
+  //   if ( !validateInfo){
+  //    message.error("you missed a form")
+  //   } else {next()}
     
-  };
+  // };
 
   const prev = () => {
     setCurrent(current - 1);
@@ -85,12 +86,7 @@ const FormController = () => {
   useEffect(() => {
     console.log(userData);
   });
-<<<<<<< HEAD
-  
-  
-=======
 
->>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
@@ -266,9 +262,10 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
+  
     doneBtnHandler();
     message.success("Your ResuMate is ready to download!");
-  };
+  }
 
   return (
     <div className="flex-container flex-row">
@@ -293,26 +290,6 @@ const FormController = () => {
               </Button>
             )}
 
-<<<<<<< HEAD
-          {current === steps.length - 1 && (
-            <Button
-              type="primary"
-              onClick={() => {
-
-                form.submit();
-                checkValid()
-                setUserData(form.getFieldsValue(true));
-                message.success("Your ResuMate is ready to download!");
-                doneBtnHandler();
-              }}
-            >
-              Done
-            </Button>
-          )}
-        </div>
-      </Col>
-    </Row>
-=======
             {/* next button */}
             {current < steps.length - 2 && (
               <Button type="primary" onClick={() => next()}>
@@ -342,7 +319,6 @@ const FormController = () => {
           </div>
         </Col>
       </Row>
->>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
     </div>
   );
 };

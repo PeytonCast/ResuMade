@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Row, Col, Space, InputNumber } from "antd";
+import { Form, Input, Row, Col, Space, InputNumber, message} from "antd";
 
 const UserInfo = () => {
   const form = Form.useFormInstance();
 
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
+  useEffect(() => {
+    console.log(form.getFieldsValue(true));
+  });
 
   Form.useWatch(
     [
@@ -50,22 +50,14 @@ const UserInfo = () => {
         </Col>
 
         <Col span={24}>
-<<<<<<< HEAD
-          <Form.Item title="This field is required." label="City" name="city" required>
-=======
-          <Form.Item label="City" name="cityPersonal">
->>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
+
+          <Form.Item title="This field is required." label="City" name="cityPersonal" required>
             <Input />
           </Form.Item>
         </Col>
 
         <Col span={24}>
-<<<<<<< HEAD
-          <Form.Item title="This field is required." label="State" name="state" required>
-=======
-          <Form.Item label="State" name="statePersonal">
-            {/* default input to all caps */}
->>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
+          <Form.Item title="This field is required." label="State" name="statePersonal" required>
             <Input maxLength={2} />
           </Form.Item>
         </Col>
@@ -90,13 +82,7 @@ const UserInfo = () => {
 
         {/* <Form.Item label="Socials" name="socials"> */}
         {/* <Input.Group> */}
-<<<<<<< HEAD
         <Form.Item title="This field is required." label="Github" name="github" required>
-=======
-
-        {/* add note to not include https:// or www. for all 3 URLs*/}
-        <Form.Item label="Github" name="github">
->>>>>>> dd90f5032cb00b4b36d52cbe95b31754273e0d4e
           <Input addonBefore="https://" placeholder="Github" name="github" />
         </Form.Item>
 
