@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from "react";
 import { Card } from 'antd';
+import { FormController } from "../pages"
 import googleDoc from '../assets/Google_Docs.max-1100x1100.png'
+import addIcon from '../assets/img_487543.png'
 import { Button } from 'antd';
 import { useQuery, useMutation } from '@apollo/client';
 import {  QUERY_ME } from '../utils/queries';
@@ -42,6 +44,12 @@ const ResumeList = () => {
 
   console.log("editing resume")
  };
+ const handleDownloadResume = async (resumeID) => {
+
+
+  console.log("downloading resume")
+ };
+
 
  const handleDeleteResume = async (resumeID) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -72,8 +80,16 @@ console.log("hi")
   return (
     <div>
       hi from resume list
-      <div className="cards" >
-        {data?.me.resumes.map((resume) => (
+      <div className="cards">
+        <Card hoverable
+         style={{ width: 240, paddingLeft: 38, paddingRight: 38, paddingTop: 12, paddingBottom: 6 }}
+         cover={<img alt="addIcon" src={`${addIcon}`} />}>
+        <Button type="primary" href="/form" >New Resume</Button>
+        </Card>
+      </div>
+
+             <div className="cards" >
+        {data?.me.resumes.map((resume, index) => (
             
               <div key={resume._id}>
               <Card
@@ -85,6 +101,7 @@ console.log("hi")
                 
                 <Button type="primary" onClick={() => handleEditResume(resume._id)}>Edit</Button>
                 <Button type="primary" danger onClick={() => handleDeleteResume(resume._id)}>Delete</Button>
+                <Button type="primary" onClick={() => handleDownloadResume(resume._id)}>Download</Button>
               </Card>
               </div>
         ))}

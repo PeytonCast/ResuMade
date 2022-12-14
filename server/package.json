@@ -15,19 +15,12 @@
     "@apollo/client": "^3.5.8",
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^4.0.1",
-    "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "dotenv": "^16.0.3",
     "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10",
-    "@stripe/stripe-js": "^1.46.0",
-    "docx": "^7.7.0",
-    "dotenv": "^16.0.3",
-    "formik": "^2.2.9",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "stripe": "^11.1.0",
-    "yup": "^0.32.11"
+    "stripe": "^11.1.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
