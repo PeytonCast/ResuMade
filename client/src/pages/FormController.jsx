@@ -26,6 +26,13 @@ const FormController = () => {
     setCurrent(current + 1);
   };
 
+  const checkValid = () => {
+    if ( !userData.firstName ){
+     console.log("not allowed")
+    } else {next()}
+    
+  };
+
   const prev = () => {
     setCurrent(current - 1);
   };
@@ -70,6 +77,7 @@ const FormController = () => {
   useEffect(() => {
     console.log(userData);
   });
+  
   
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -116,7 +124,9 @@ const FormController = () => {
             <Button
               type="primary"
               onClick={() => {
+
                 form.submit();
+                checkValid()
                 setUserData(form.getFieldsValue(true));
                 message.success("Your ResuMate is ready to download!");
                 doneBtnHandler();
