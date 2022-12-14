@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input, Form, Row, Col } from "antd";
+const { TextArea } = Input;
 
 const TechnicalSkills = () => {
-  const { TextArea } = Input;
   const form = Form.useFormInstance();
-  const languages = Form.useWatch("languages", form);
-  const frameworks = Form.useWatch("frameworks", form);
-  const libraries = Form.useWatch("libraries", form);
-  const coreConcepts = Form.useWatch("coreConcepts", form);
+
+  // useEffect(() => {
+  //   console.log(form.getFieldsValue(true));
+  // });
+
+  Form.useWatch(["languages", "frameworks", "libraries", "coreConcepts"], form);
+  // const frameworks = Form.useWatch("frameworks", form);
+  // const libraries = Form.useWatch("libraries", form);
+  // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
+    // note to ask user to separate each item with a comma and a space
     <>
       <Row>
         <Col span={24}>
