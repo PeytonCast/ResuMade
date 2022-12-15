@@ -1,9 +1,10 @@
-// export const deleteResume = (resumeID) => {
-//     return fetch(`/api/user/resume/${resumeID}`, {
-//       method: 'DELETE',
-      
-//     });
-//   };
+export const getSavedResumeIds = () => {
+  const savedResumesIds = localStorage.getItem('saved_resume')
+  ? JSON.parse(localStorage.getItem('saved_resume'))
+  : [];
+
+  return savedResumesIds;
+};
 
 export const deleteResumeId = (resumeId) => {
     const resumeListIds = localStorage.getItem('resume_List')

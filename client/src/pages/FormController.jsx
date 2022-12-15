@@ -14,6 +14,9 @@ import {
   Preview,
 } from "../components/Forms";
 
+import { useMutation } from "@apollo/client";
+import { SAVE_RESUME } from "../utils/mutations";
+
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
@@ -26,9 +29,13 @@ const stripePromise = loadStripe(
 const FormController = () => {
   const [form] = Form.useForm();
 
+  let finalFormObject = {};
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
+
+  //mutations
+  const [addResumeToDB] = useMutation(SAVE_RESUME);
 
   // functions to make the next and previous buttons work
   const next = () => {
@@ -80,6 +87,7 @@ const FormController = () => {
 
   useEffect(() => {
     console.log(userData);
+    // setUserData(userData);
   });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -172,15 +180,15 @@ const FormController = () => {
         city: data.cityPersonal,
         state: data.statePersonal,
         // zip: , // add zip field on Arthur's side
-        phoneNumber: data.phone,
+        phoneNumber: data.phone.toString(),
         email: data.professionalEmail,
-        github: data.github,
+        userGithub: data.github,
         linkedin: data.linkedin,
-        portfolio: data.portfolio,
+        // portfolio: data.portfolio,
       },
       // remove italics on summary text
       summary: data.summary,
-      technicalSkills: {
+      skills: {
         languages: data.languages,
         frameworks: data.frameworks,
         libraries: data.libraries,
@@ -189,7 +197,7 @@ const FormController = () => {
       projects: [
         {
           name: data.projectName,
-          github: data.githubRepoLink,
+          githubLink: data.githubRepoLink,
           deployment: data.deployedApplicationLink,
           summary: data.projectDescription,
           responsibility: data.yourRole,
@@ -224,8 +232,8 @@ const FormController = () => {
           degree: data.certificateDegreeName,
           // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
           schoolName: data.universityInstitutionName,
-          city: data.cityEducation,
-          state: data.stateEducation,
+          // city: data.cityEducation,
+          // state: data.stateEducation,
           // isCurrent: // remove isCurrent field or add in Education.jsx
           startDate: {
             // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
@@ -242,10 +250,26 @@ const FormController = () => {
       ],
     };
 
-    console.log(data);
+    console.log("data", data);
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
+    finalFormObject = resumeObject;
+  };
+
+  //add the resume to the db
+  const handleAddResume = async () => {
+    console.log("meli", userData);
+    try {
+      // console.log("resumeData", resumeData)
+      const updateDB = await addResumeToDB({
+        variables: { resumeData: finalFormObject },
+      });
+
+      // setUserData(setUserData);
+    } catch (err) {
+      console.log("nope");
+    }
   };
 
   const handlePreview = () => {
@@ -300,6 +324,7 @@ const FormController = () => {
                     onClick={() => {
                       next();
                       handlePreview();
+                      handleAddResume();
                     }}>
                     Preview
                   </Button>

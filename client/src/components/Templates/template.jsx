@@ -68,16 +68,16 @@ const Template = ({ resume }) => {
           <b>TECHNICAL SKILLS</b>
         </p>
         <p>
-          <b>Languages:</b> {resume.technicalSkills.languages.join(", ")}{" "}
+          <b>Languages:</b> {resume.skills.languages.join(", ")}{" "}
         </p>
         <p>
-          <b>Frameworks:</b> {resume.technicalSkills.frameworks.join(", ")}{" "}
+          <b>Frameworks:</b> {resume.skills.frameworks.join(", ")}{" "}
         </p>
         <p>
-          <b>Libaries:</b> {resume.technicalSkills.libraries.join(", ")}{" "}
+          <b>Libaries:</b> {resume.skills.libraries.join(", ")}{" "}
         </p>
         <p>
-          <b>Core concepts:</b> {resume.technicalSkills.concepts.join(", ")}{" "}
+          <b>Core concepts:</b> {resume.skills.concepts.join(", ")}{" "}
         </p>
       </div>
       <div className="aParagraph">
