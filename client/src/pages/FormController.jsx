@@ -1,8 +1,5 @@
 // import necessary components from React and Ant Design
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
-
 import { Row, Col, Steps, Button, message, Form } from "antd";
 import {
   UserInfo,
@@ -286,71 +283,57 @@ const FormController = () => {
   };
 
   return (
-    <>
-      {/* simple auth check, only logged in users can access the forms */}
-      {Auth.loggedIn() ? (
-        <div className="flex-container flex-row">
-          <Row justify="center" align="middle">
-            <Col className="FormContainer">
-              <Steps current={current} items={items} />
+    <div className="flex-container flex-row">
+      <Row justify="center" align="middle">
+        <Col className="FormContainer">
+          <Steps current={current} items={items} />
 
-              <div className="steps-content">
-                <Form form={form}>{steps[current].content}</Form>
-              </div>
+          <div className="steps-content">
+            <Form form={form}>{steps[current].content}</Form>
+          </div>
 
-              <div className="steps-action">
-                {/* previous button */}
-                {current > 0 && (
-                  <Button
-                    style={{
-                      margin: "0 8px",
-                    }}
-                    onClick={() => prev()}>
-                    Previous
-                  </Button>
-                )}
+          <div className="steps-action">
+            {/* previous button */}
+            {current > 0 && (
+              <Button
+                style={{
+                  margin: "0 8px",
+                }}
+                onClick={() => prev()}>
+                Previous
+              </Button>
+            )}
 
-                {/* next button */}
-                {current < steps.length - 2 && (
-                  <Button type="primary" onClick={() => next()}>
-                    Next
-                  </Button>
-                )}
+            {/* next button */}
+            {current < steps.length - 2 && (
+              <Button type="primary" onClick={() => next()}>
+                Next
+              </Button>
+            )}
 
-                {/* preview button */}
-                {current === steps.length - 2 && (
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      next();
-                      handlePreview();
-                      handleAddResume();
-                    }}>
-                    Preview
-                  </Button>
-                )}
+            {/* preview button */}
+            {current === steps.length - 2 && (
+              <Button
+                type="primary"
+                onClick={() => {
+                  next();
+                  handlePreview();
+                  handleAddResume();
+                }}>
+                Save & Preview
+              </Button>
+            )}
 
-                {/* done button */}
-                {current === steps.length - 1 && (
-                  <Button type="primary" onClick={handleDownload}>
-                    Download
-                  </Button>
-                )}
-              </div>
-            </Col>
-          </Row>
-        </div>
-      ) : (
-        <>
-          <h2 style={{ textAlign: "center" }}>
-            You must be logged in to access this page!{" "}
-          </h2>
-          <p style={{ textAlign: "center" }}>
-            Click <Link to="/login">here</Link> to go to the login page.
-          </p>
-        </>
-      )}
-    </>
+            {/* done button */}
+            {current === steps.length - 1 && (
+              <Button type="primary" onClick={handleDownload}>
+                Download
+              </Button>
+            )}
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
