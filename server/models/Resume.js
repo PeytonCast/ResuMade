@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 const resumeSchema = {
     // this is an object with nested objects of the users personal information
+    isPaid: {type: Boolean},
     personalInfo: {
         firstName: { type: String,
             required : true},
@@ -13,6 +14,11 @@ const resumeSchema = {
 
         state: { type: String,
             required : true},
+            
+        zip: { type: Number,
+            required : true,
+            min: 5, max: 5
+        },
 
         phoneNumber:{ type: String,
             required: true},
@@ -54,18 +60,16 @@ const resumeSchema = {
     // relivent work experiences past and current
     experiences: [
         {
-            isCurrent: {type: Boolean},
+
             title: {type:String},
             company: {type:String},
             city: {type:String},
             state: {type:String},
             summary: {type:String},
             startDate:{
-                month:{type: Number,},
                 year:{type: Number,}
               },
             endDate:{
-                month:{type: Number,},
                 year:{type: Number,}
               },
         }
@@ -77,11 +81,9 @@ const resumeSchema = {
             fieldOfStudy: {type:String},
             schoolName: {type:String},
             startDate:{
-                month:{type: Number,},
                 year:{type: Number,}
               },
             endDate:{
-                month:{type: Number,},
                 year:{type: Number,}
               },
             
