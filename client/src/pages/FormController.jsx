@@ -299,8 +299,7 @@ const FormController = () => {
                 style={{
                   margin: "0 8px",
                 }}
-                onClick={() => prev()}
-              >
+                onClick={() => prev()}>
                 Previous
               </Button>
             )}
@@ -320,9 +319,8 @@ const FormController = () => {
                   next();
                   handlePreview();
                   handleAddResume();
-                }}
-              >
-                Preview
+                }}>
+                Save & Preview
               </Button>
             )}
 
