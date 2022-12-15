@@ -15,8 +15,8 @@ const TechnicalSkills = () => {
   // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
-    // note to ask user to separate each item with a comma and a space
     <>
+      <h4>Separate each list item with a comma.</h4>
       <Row>
         <Col span={24}>
           <Form.Item label="Languages" name="languages">

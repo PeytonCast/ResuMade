@@ -13,13 +13,15 @@ const Summary = () => {
 
   return (
     <>
+      <h4>
+        In no more than five lines (420-500 characters), summarize: current
+        title, accomplishments, relevant past experience, tranferrable skills
+        and what makes you passionate about this position or industry.
+      </h4>
       <Row>
         <Col span={24}>
-          {/* make the label just say "summary" and find another way to provide the instructions */}
-          {/* also determine what would be five lines in the finished docx file */}
           <Form.Item label="Summary" name="summary">
-            <TextArea rows={5} maxLength={200} showCount />
-            {/* <Input /> */}
+            <TextArea rows={5} maxLength={500} showCount />
           </Form.Item>
         </Col>
       </Row>

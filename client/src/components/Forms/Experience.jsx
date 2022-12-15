@@ -121,54 +121,75 @@ const Experience = () => {
   // // checkbox
   const addAnother = Form.useWatch("addAnotherExperience", form);
 
+  const rules = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
+
   return (
     <>
-      <Form.Item label="Job Title" name="jobTitle">
-        <Input />
+      <Form.Item label="Job Title" name="jobTitle" rules={rules}>
+        <Input type="text" />
       </Form.Item>
 
       <Row>
         <Col span={12}>
-          <Form.Item label="Company Name" name="companyName">
-            <Input />
+          <Form.Item label="Company Name" name="companyName" rules={rules}>
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="cityExperience">
-            <Input />
+          <Form.Item label="City" name="cityExperience" rules={rules}>
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="stateExperience">
-            <Input maxLength={2} />
+          <Form.Item label="State" name="stateExperience" rules={rules}>
+            <Input maxLength={2} type="text" />
           </Form.Item>
         </Col>
       </Row>
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonthExperience">
+          {/* getting rid of months */}
+          {/* <Form.Item label="Start Date: Month" name="startDateMonthExperience">
             <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
+          </Form.Item> */}
 
-          <Form.Item label="Start Date: Year" name="startDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} />
+          <Form.Item
+            label="Start Date"
+            name="startDateYearExperience"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonthExperience">
+          {/* <Form.Item label="End Date: Month" name="endDateMonthExperience">
             <DatePicker picker="month" format={"MMMM"} disabled={disabled} />
-          </Form.Item>
+          </Form.Item> */}
 
-          <Form.Item label="End Date: Year" name="endDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
+          <Form.Item
+            label="End Date"
+            name="endDateYearExperience"
+            rules={rules}
+          >
+            <DatePicker
+              picker="year"
+              format={"YYYY"}
+              placeholder="YYYY"
+              disabled={disabled}
+            />
           </Form.Item>
         </Col>
 
-        <Col span={4}>
+        {/* <Col span={4}>
           <Form.Item
             id="currentJob"
             name="currentJob"
@@ -177,11 +198,11 @@ const Experience = () => {
           >
             <Checkbox></Checkbox>
           </Form.Item>
-        </Col>
+        </Col> */}
       </Row>
 
-      <Form.Item label="Job Description" name="jobDescription">
-        <TextArea rows={3} />
+      <Form.Item label="Job Description" name="jobDescription" rules={rules}>
+        <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
 
       <Form.Item

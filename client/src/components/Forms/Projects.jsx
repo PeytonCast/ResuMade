@@ -38,12 +38,20 @@ const Projects = () => {
   // // checkbox
   const addAnother = Form.useWatch("addAnotherProject", form);
 
+  const rules = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
+
   return (
     <>
+      <h4>A minimum of three projects is industry standard.</h4>
       <Row>
         <Col span={20}>
-          <Form.Item label="Project Name" name="projectName">
-            <Input maxLength={15} />
+          <Form.Item label="Project Name" name="projectName" rules={rules}>
+            <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
 
@@ -60,8 +68,12 @@ const Projects = () => {
 
       <Row>
         <Col span={12}>
-          <Form.Item label="Github Repo Link" name="githubRepoLink">
-            <Input addonBefore="https://" placeholder="Github" />
+          <Form.Item
+            label="Github Repo Link"
+            name="githubRepoLink"
+            rules={rules}
+          >
+            <Input addonBefore="https://" placeholder="Github" type="text" />
           </Form.Item>
         </Col>
 
@@ -69,23 +81,36 @@ const Projects = () => {
           <Form.Item
             label="Deployed Application Link"
             name="deployedApplicationLink"
+            rules={rules}
           >
-            <Input addonBefore="https://" />
+            <Input
+              addonBefore="https://"
+              placeholder="DeployedApp"
+              type="text"
+            />
           </Form.Item>
         </Col>
       </Row>
 
-      <Form.Item label="Project Description" name="projectDescription">
-        <TextArea rows={2} />
+      <Form.Item
+        label="Project Description"
+        name="projectDescription"
+        rules={rules}
+      >
+        <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRole">
-        <TextArea rows={2} />
+      <Form.Item label="Your Role" name="yourRole" rules={rules}>
+        <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
       {/* note to ask user to separate each item with a comma and a space */}
       {/* array of strings */}
-      <Form.Item label="Tools and Technologies Used" name="toolsTechnologies">
+      <Form.Item
+        label="Tools and Technologies Used"
+        name="toolsTechnologies"
+        rules={rules}
+      >
         <TextArea rows={4} />
       </Form.Item>
 

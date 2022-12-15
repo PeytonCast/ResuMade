@@ -16,13 +16,11 @@ const Education = () => {
   useEffect(() => {
     // watching fields for user input and logging data to the console
     // console.log(form.getFieldsValue(true));
-
     // retrieving start and end dates from user input
     // console.log(form.getFieldValue("startDateMonth"));
     // console.log(form.getFieldValue("startDateYear"));
     // console.log(form.getFieldValue("endDateMonth"));
     // console.log(form.getFieldValue("endDateMonth"));
-
     // not DRY whatsoever - but it works
     // if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
     //   // console logs the user input's start date month
@@ -30,7 +28,6 @@ const Education = () => {
     //     form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (
     //   form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
     // ) {
@@ -41,7 +38,6 @@ const Education = () => {
     //       ["startDateYearEducation"].format("YYYY")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
     //   // console logs the user input's end date month
     //   console.log(
@@ -50,7 +46,6 @@ const Education = () => {
     //       ["endDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
     //   // console logs the user input's end date year
     //   console.log(
@@ -100,10 +95,21 @@ const Education = () => {
   //   console.log(e.$d);
   // };
 
+  const rules = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
+
   return (
     <>
-      <Form.Item label="Certificate/Degree Name" name="certificateDegreeName">
-        <Input />
+      <Form.Item
+        label="Certificate/Degree Name"
+        name="certificateDegreeName"
+        rules={rules}
+      >
+        <Input type="text" />
       </Form.Item>
 
       <Row>
@@ -111,43 +117,49 @@ const Education = () => {
           <Form.Item
             label="University/Institution Name"
             name="universityInstitutionName"
+            rules={rules}
           >
-            <Input />
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={9}>
           <Form.Item label="City" name="cityEducation">
-            <Input />
+            <Input type="text" rules={rules} />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="stateEducation">
+          <Form.Item label="State" name="stateEducation" rules={rules}>
             {/* default input to all caps */}
-            <Input maxLength={2} />
+            <Input maxLength={2} type="text" />
           </Form.Item>
         </Col>
       </Row>
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonthEducation">
+          {/* getting rid of month */}
+          {/* <Form.Item label="Start Date: Month" name="startDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
+          </Form.Item> */}
 
-          <Form.Item label="Start Date: Year" name="startDateYearEducation">
-            <DatePicker picker="year" format={"YYYY"} />
+          <Form.Item
+            label="Start Date"
+            name="startDateYearEducation"
+            rules={rules}
+          >
+            <DatePicker picker="year" placeholder="YYYY" format={"YYYY"} />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonthEducation">
+          {/* <Form.Item label="End Date: Month" name="endDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
+          </Form.Item> */}
 
-          <Form.Item label="End Date: Year" name="endDateYearEducation">
-            <DatePicker picker="year" format={"YYYY"} />
+          <Form.Item label="End Date" name="endDateYearEducation" rules={rules}>
+            <DatePicker picker="year" placeholder="YYYY" format={"YYYY"} />
           </Form.Item>
         </Col>
 
@@ -162,8 +174,8 @@ const Education = () => {
           name="addAnotherEducation"
           valuePropName="checked"
         > */}
-          {/* upon check, add a duplicate education section to add additional degree */}
-          {/* <Checkbox></Checkbox> */}
+        {/* upon check, add a duplicate education section to add additional degree */}
+        {/* <Checkbox></Checkbox> */}
         {/* </Form.Item> */}
       </Row>
     </>
