@@ -10,6 +10,11 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .hero {
     position: relative;
     height: 100vh;
@@ -107,6 +112,7 @@ body {
     width: 100vw;
     height: 800px;
     background-color: white;
+    padding-bottom: 100px;
 }
 /* 
 .preview-container {
