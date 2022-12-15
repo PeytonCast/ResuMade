@@ -4,7 +4,7 @@ const { Packer } = require("docx");
 const renderResume = require('../components/Templates/template.js');
 const resume = require('../components/Templates/resumedata');
 
-const Payment = async () => {
+const Success = async () => {
     const resumeBlob = await Packer.toBlob(renderResume(resume));
     docSaver.saveAs(
         resumeBlob, 
@@ -24,4 +24,4 @@ const Payment = async () => {
     )
 };
 
-export default Payment;
+export default Success;

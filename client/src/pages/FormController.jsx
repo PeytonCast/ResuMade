@@ -96,12 +96,12 @@ const FormController = () => {
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
     // this large function does two things: returns an array of strings for the input fields that need it, and
-    console.log(`RUNNING ${data.firstName}`);
+    // console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
     // do the same for all start and end months and years (8)
     // make array of strings out of text area for languages, ect...
 
-    console.log(data);
+    // console.log(data);
 
     const returnArrayOfStrings = (string) => {
       // if user inputted nothing, do nothing
@@ -239,7 +239,7 @@ const FormController = () => {
       ],
     };
 
-    console.log(data);
+    // console.log(data);
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);

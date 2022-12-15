@@ -15,7 +15,7 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import "./index.css";
 
-import { FormController, Payment } from "./pages";
+import { FormController, Success } from "./pages";
 
 //import Footer from "./components/Footer";
 // Construct our main GraphQL API endpoint
@@ -53,7 +53,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/form" element={<FormController/>} />
-          <Route path="/success" element={<Payment />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </div>
       </Router>
