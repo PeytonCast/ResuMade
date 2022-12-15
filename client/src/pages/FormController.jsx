@@ -11,26 +11,47 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RESUME } from '../utils/mutations';
-
-
+import Auth from '../utils/auth';
+import { useSearchParams } from 'react-router-dom';
 import { loadStripe } from "@stripe/stripe-js";
-import { QUERY_CHECKOUT } from "../utils/queries";
+import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME} from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
+import { EditFilled } from "@ant-design/icons";
+import { PreloadDB } from '../utils/preloadDB.js';
+
+
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
 
+
 // function to render the form sections
 const FormController = () => {
   const [form] = Form.useForm();
+  // const { resumeId: resumeId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {variables: {resumeId: searchParams.get("resumeId")}});
+
+  console.log("getResume2", resumeData?.resume)
+
+   //  if edit then preload
+  //  if (resumeData) {
+  //   const loadingPreload = PreloadDB.preloadDB()
+  // }
+  
   let finalFormObject = {}
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
+  const [ fetchData, setFetchResume] = useState(null)
+
+  //Queries
+  const {getUser, loading} = useQuery(QUERY_ME);
+
 
   //mutations
   const [addResumeToDB] = useMutation(SAVE_RESUME)
@@ -48,7 +69,7 @@ const FormController = () => {
   const steps = [
     {
       title: "Personal Info",
-      content: <UserInfo />,
+      content: <UserInfo preload={resumeData?.resume}/>,
     },
     {
       title: "Summary",
@@ -259,7 +280,7 @@ const FormController = () => {
 
   //add the resume to the db
   const handleAddResume = async () => {
-    console.log("meli", userData)
+    // console.log("meli", userData)
       try {
       // console.log("resumeData", resumeData)  
         const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
@@ -268,8 +289,26 @@ const FormController = () => {
     } catch (err) {
       console.log("nope")
     }
-
   }
+
+ 
+  //Preload the form with user's data
+  useEffect(() => {
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   throw new Error('please login');
+    // }
+
+    // const getResumeID = JSON.parse(localStorage.getItem('saved_resume'))
+
+    // const user = getUser?.me._id.resumes.getResumeID
+    // console.log("get user for edit", user)
+    // const fetchData = async () => {
+    //   setFetchResume(await user)
+    // }
+    // fetchData()
+  },[])
 
   const handlePreview = () => {
     // get all field values from the form and set equal to a variable

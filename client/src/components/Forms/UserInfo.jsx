@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 
-const UserInfo = () => {
+const UserInfo = ({ preload }) => {
   const form = Form.useFormInstance();
+console.log("preload", preload)
 
+  useEffect(() => {
+    form.setFieldsValue({
+      firstName: preload?.personalInfo?.firstName,
+      lastName: preload?.personalInfo?.lastName
+  })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });

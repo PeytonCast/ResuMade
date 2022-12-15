@@ -18,6 +18,23 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!'); 
         },
+        resume: async (parent, {resumeId}, context) => {
+          // user Bearer {token}
+          // select returns everything exept for the password and version
+          if (context.user){
+              const userData = await User.findOne({ _id: context.user._id })
+              const resumeList = userData.resumes
+              const foundResume = resumeList.find(obj => {
+                return obj.id === resumeId
+              })
+              // if (foundResume === undefined) {
+              //   throw new Error(`No resume found with id ${resumeId}`)
+              // }
+              return foundResume;
+          
+          }
+          throw new AuthenticationError('You need to be logged in!'); 
+      },
         checkout: async (parent, args, context) => {
           console.log("test from payment")
           const url = new URL(context.headers.referer).origin;
