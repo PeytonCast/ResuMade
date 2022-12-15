@@ -20,7 +20,7 @@ const resumeSchema = {
             min: 5, max: 5
         },
 
-        phoneNumber:{ type: String,
+        phoneNumber:{ type: Number,
             required: true},
 
         email:{ type: String,
@@ -81,14 +81,17 @@ const resumeSchema = {
     educations: [
         {
             degree: {type:String},
-            fieldOfStudy: {type:String},
-            schoolName: {type:String},
+            // fieldOfStudy: {type:String},
+            schoolName: {type:String,
+            required: true},
             startDate:{
                 year:{type: Number,}
               },
             endDate:{
                 year:{type: Number,}
               },
+            city: {type:String},
+            state: {type:String},
             
         },
     ]

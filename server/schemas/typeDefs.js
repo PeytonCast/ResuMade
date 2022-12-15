@@ -22,7 +22,7 @@ const typeDefs = gql`
         city: String!
         state: String!
         zip: Int!
-        phoneNumber: String!
+        phoneNumber: Int!
         email: String!
         userGithub: String!
         linkedin: String!
@@ -58,10 +58,11 @@ const typeDefs = gql`
     
     type EduInfo {
         degree: String
-        fieldOfStudy: String
-        schoolName: String
+        schoolName: String!
         startDate: Date
         endDate: Date
+        city: String
+        state: String
         
     }
 
@@ -95,7 +96,7 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        phoneNumber: String!
+        phoneNumber: Int!
         email: String!
         userGithub: String!
         linkedin: String!
@@ -132,10 +133,11 @@ const typeDefs = gql`
 
     input InputEduInfo {
         degree: String
-        fieldOfStudy: String
-        schoolName: String
+        schoolName: String!
         startDate: InputDate
         endDate: InputDate
+        city: String
+        state: String
         
     }
 
@@ -155,7 +157,7 @@ const typeDefs = gql`
         saveResume(resumeData: InputResume!): User
         addUser(username: String!, email: String!, password: String!): Auth
         removeResume(_id : ID!): User
-        setPaidTrue(_id : ID!): User
+        setPaidTrue(resumeId : ID!): User
     }
 
 `;
