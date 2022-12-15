@@ -62,11 +62,11 @@ const resumeSchema = {
             summary: {type:String},
             startDate:{
                 month:{type: Number,},
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
                 month:{type: Number,},
-                year:{type: Number,}
+                year:{type: String,}
               },
         }
     ],
@@ -78,11 +78,11 @@ const resumeSchema = {
             schoolName: {type:String},
             startDate:{
                 month:{type: Number,},
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
                 month:{type: Number,},
-                year:{type: Number,}
+                year:{type: String,}
               },
             
         },

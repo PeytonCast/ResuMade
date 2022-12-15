@@ -73,23 +73,23 @@ const FormController = () => {
     },
     {
       title: "Summary",
-      content: <Summary />,
+      content: <Summary preload={resumeData?.resume} />,
     },
     {
       title: "Technical Skills",
-      content: <TechnicalSkills />,
+      content: <TechnicalSkills preload={resumeData?.resume} />,
     },
     {
       title: "Projects",
-      content: <Projects />,
+      content: <Projects preload={resumeData?.resume} />,
     },
     {
       title: "Experience",
-      content: <Experience />,
+      content: <Experience preload={resumeData?.resume} />,
     },
     {
       title: "Education",
-      content: <Education />,
+      content: <Education  preload={resumeData?.resume} />,
     },
     {
       title: "Preview",

@@ -11,10 +11,25 @@ import {
 } from "antd";
 const { TextArea } = Input;
 
-const Experience = () => {
+const Experience = ({ preload }) => {
   const form = Form.useFormInstance();
 
   const [disabled, setDisabled] = useState(false);
+  console.log("preload", preload)
+  useEffect(() => {
+    form.setFieldsValue({
+      jobTitle: preload?.experiences[0]?.title,
+      companyName: preload?.experiences[0]?.company,
+      cityExperience: preload?.experiences[0]?.lastName,
+      stateExperience: preload?.experiences[0]?.city,
+      // startDateMonthExperience: preload?.experiences[0]?.startDate?.month,
+      // startDateYearExperience: preload?.experiences[0]?.startDate?.year,
+      // endDateMonthExperience: preload?.experiences[0]?.endDate?.month,
+      // endDateYearExperience: preload?.experiences[0]?.endDate?.year,
+      currentJob: preload?.experiences[0]?.isCurrent,
+      jobDescription: preload?.experiences[0]?.summary,
+      // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
+  })})
 
   // const toggleDisabled = ({ disabled }) => {
   //   console.log("toggleDisabled function is working");

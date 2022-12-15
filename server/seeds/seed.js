@@ -64,11 +64,11 @@ db.once('open', async () => {
         summary: faker.name.jobDescriptor(),
         startDate: {
           month: month,
-          year: 2014,
+          year: "2014",
         },
           endDate: {
             month: month,
-            year: 2014,
+            year: "2014",
           }
         },
         educations: {
@@ -77,11 +77,11 @@ db.once('open', async () => {
           schoolName: faker.company.companyName(),
           startDate: {
             month: month,
-            year: 2010,
+            year: "2010",
           },
           endDate: {
             month: month,
-            year: 2014,
+            year: "2014",
           }
         }          
       });

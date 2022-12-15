@@ -2,15 +2,21 @@ import React, { useEffect } from "react";
 import { Form, Input, Col, Row } from "antd";
 const { TextArea } = Input;
 
-const Summary = () => {
+const Summary = ({ preload }) => {
   const form = Form.useFormInstance();
+  console.log("preload", preload)
 
+  useEffect(() => {
+    form.setFieldsValue({
+      summary: preload?.summary,
+      
+  })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });
 
   Form.useWatch("summary", form);
-
+  
   return (
     <>
       <Row>

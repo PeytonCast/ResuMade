@@ -2,9 +2,19 @@ import React, { useEffect } from "react";
 import { Checkbox, Form, Input, Row, Col } from "antd";
 const { TextArea } = Input;
 
-const Projects = () => {
+const Projects = ({ preload }) => {
   const form = Form.useFormInstance();
 
+  console.log("preload", preload)
+  useEffect(() => {
+    form.setFieldsValue({
+      projectName: preload?.projects[0]?.name,
+      githubRepoLink: preload?.projects[0]?.githubLink,
+      deployedApplicationLink: preload?.projects[0]?.deployment,
+      projectDescription: preload?.projects[0]?.summary,
+      yourRole: preload?.projects[0]?.responsibility,
+      toolsTechnologies: preload?.projects[0]?.technologies,
+  })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });
