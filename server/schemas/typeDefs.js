@@ -47,7 +47,6 @@ const typeDefs = gql`
 
     }
     type ExperienceInfo  {
-        isCurrent: Boolean
         title: String
         company: String
         city: String
@@ -120,8 +119,8 @@ const typeDefs = gql`
         technologies: [String]
 
     }
+    
     input InputExperienceInfo  {
-        isCurrent: Boolean
         title: String
         company: String
         city: String
@@ -130,6 +129,7 @@ const typeDefs = gql`
         startDate: InputDate
         endDate: InputDate
     }
+
     input InputEduInfo {
         degree: String
         fieldOfStudy: String
