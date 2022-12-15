@@ -18,7 +18,6 @@ import { SAVE_RESUME } from '../utils/mutations';
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
-import "./formController.css";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
@@ -89,6 +88,7 @@ const FormController = () => {
   });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [resumeId, saveResumeId] = useState("AbcDef");
 
   useEffect(() => {
     if (data) {
@@ -97,10 +97,6 @@ const FormController = () => {
       });
     }
   }, [data]);
-
-  const doneBtnHandler = async () => {
-    getCheckout();
-  };
 
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
@@ -280,7 +276,7 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
-    doneBtnHandler();
+    getCheckout(resumeId);
     message.success("Your ResuMate is ready to download!");
   };
 

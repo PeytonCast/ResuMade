@@ -7,6 +7,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import {  QUERY_ME } from '../utils/queries';
 import { SAVE_RESUME, REMOVE_RESUME } from '../utils/mutations';
 import Auth from '../utils/auth';
+import docSaver from "file-saver";
+const { Packer } = require("docx");
+const renderResume = require('../components/Templates/template.js');
+const resume = require('../components/Templates/resumedata');
 
 
 const ResumeList = () => {
@@ -66,7 +70,12 @@ const ResumeList = () => {
  };
 
  const handleDownloadResume = async (resumeID) => {
-
+  /// const resume = data.me.resumes[resumeID]
+    const resumeBlob = await Packer.toBlob(renderResume(resume));
+    docSaver.saveAs(
+        resumeBlob, 
+       `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
+    )
 
   console.log("downloading resume")
  };

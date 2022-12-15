@@ -15,8 +15,8 @@ query me {
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout {
-    checkout {
+  query getCheckout($resume: ID!) {
+    checkout(resume: $resume) {
       session
     }
   }

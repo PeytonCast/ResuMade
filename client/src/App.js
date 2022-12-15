@@ -53,7 +53,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/form" element={<FormController/>} />
-          <Route path="/success" element={<Success />} />
+          <Route path="/success/:resumeId" element={<Success />} />
         </Routes>
       </div>
       </Router>
