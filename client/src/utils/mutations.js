@@ -24,6 +24,62 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const EDIT_RESUME = gql `
+  mutation Mutation($resumeId: ID!, $resumeData: InputResume!) {
+    editResume(resumeId: $resumeId, resumeData: $resumeData) {
+      resumes {
+        _id
+        personalInfo {
+          firstName
+          lastName
+          city
+          state
+          phoneNumber
+          email
+          userGithub
+          linkedin
+        }
+        summary
+        skills {
+          languages
+          frameworks
+          libraries
+          concepts
+        }
+        projects {
+          githubLink
+          name
+          deployment
+          summary
+          responsibility
+          technologies
+        }
+        experiences {
+          isCurrent
+          title
+          company
+          city
+          state
+          summary
+          startDate {
+            month
+            year
+          }
+          endDate {
+            month
+            year
+          }
+        }
+        educations {
+          degree
+          fieldOfStudy
+          schoolName
+        }
+      }
+    }
+  }
+`
+
 export const REMOVE_RESUME = gql`
     mutation Mutation($id: ID!) {
         removeResume(_id: $id) {
