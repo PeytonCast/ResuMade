@@ -36,66 +36,69 @@ export const REMOVE_RESUME = gql`
 `
 
 export const SAVE_RESUME = gql`
-  mutation SaveResume($resumeData: InputResume!) {
-    saveResume(resumeData: $resumeData) {
+mutation SaveResume($resumeData: InputResume!) {
+  saveResume(resumeData: $resumeData) {
+    _id
+    username
+    email
+    resumes {
       _id
-      resumes {
-        _id
-        educations {
-          degree
-          endDate {
-            month
-            year
-          }
-          fieldOfStudy
-          schoolName
-          startDate {
-            month
-            year
-          }
-        }
-        experiences {
-          city
-          company
-          title
-          summary
-          state
-          isCurrent
-          startDate {
-            month
-            year
-          }
-          endDate {
-            month
-            year
-          }
-        }
-        personalInfo {
-          city
-          email
-          firstName
-          lastName
-          linkedin
-          phoneNumber
-          state
-          userGithub
-        }
-        projects {
-          deployment
-          githubLink
-          name
-          summary
-          responsibility
-          technologies
-        }
-        skills {
-          libraries
-          languages
-          frameworks
-          concepts
-        }
+      isPaid
+      summary
+      skills {
+        concepts
+        frameworks
+        languages
+        libraries
+      }
+      projects {
+        deployment
+        githubLink
+        name
+        responsibility
         summary
+        technologies
+      }
+      personalInfo {
+        city
+        email
+        firstName
+        lastName
+        linkedin
+        phoneNumber
+        portfolio
+        state
+        userGithub
+        zip
+      }
+      experiences {
+        title
+        summary
+        state
+        startDate {
+          year
+        }
+        
+        endDate {
+          year
+        }
+        company
+        city
+      }
+      educations {
+        startDate {
+          year
+        }
+        schoolName
+        endDate {
+          year
+        }
+        degree
+        city
+        state
+        
       }
     }
   }
+}
 `;
