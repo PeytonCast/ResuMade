@@ -119,7 +119,7 @@ const typeDefs = gql`
         technologies: [String]
 
     }
-    
+
     input InputExperienceInfo  {
         title: String
         company: String
@@ -155,6 +155,7 @@ const typeDefs = gql`
         saveResume(resumeData: InputResume!): User
         addUser(username: String!, email: String!, password: String!): Auth
         removeResume(_id : ID!): User
+        setPaidTrue(_id : ID!): User
     }
 
 `;

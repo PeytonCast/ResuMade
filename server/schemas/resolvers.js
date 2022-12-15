@@ -99,9 +99,53 @@ const resolvers = {
             }
             // if user token is not there LOGIN
             throw new AuthenticationError('You need to be logged in!');
-          }
-        },
+          },
+        
+
+        setPaidTrue:  async (parent, {resumeId}, context)=> {
+          // if ther is a contex.user, continue on else throw err
+          if(context.user){
+            try{
+              // find one user by id 
+              const updateUser = await User.findOneAndUpdate({_id: context.user._id},
+                // set the isPaid to true under resumes
+               {$set:{"resumes.$.resumeId":{
+                isPaid: true
+               
+                }
+              }
+              })
+              
+              
+                  return updateUser;}
+                  catch(err){
+                    console.log({err})
+                  }
+          // if user token is not there LOGIN
+          throw new AuthenticationError('You need to be logged in!');
+          }}
 
     
-    };
+    }}
+
+    //  // typeDef is returning a user so i need to return a user
+    // try{
+      // const updateUser = await User.findOneAndUpdate(
+      //   // find user id 
+      //    { _id: context.user._id },
+      //   //  update the resume by its id
+      //   { $set(isPaid: true) { resumes: {resumeId} } },
+      //   { new: true }
+      //   );
+
+      //   const updateUser = await User.findOneAndUpdate(
+      //     { _id: context.user._id, "resumes._id": resumeId },
+      //     { 
+      //         $set: {
+      //             isPaid: true
+      //         }
+      //     },
+      //     {new:true}
+      // );
+      //   // console.log(_id)
 module.exports = resolvers;
