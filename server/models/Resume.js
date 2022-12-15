@@ -17,7 +17,7 @@ const resumeSchema = {
             
         zip: { type: Number,
             required : true,
-            min: 5, max: 5
+            
         },
 
         phoneNumber:{ type: Number,
