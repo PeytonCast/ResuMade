@@ -76,8 +76,7 @@ const ResumeList = () => {
         resumeBlob, 
        `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
     )
-
-  console.log("downloading resume")
+    console.log("downloading resume")
  };
 
  const handleDeleteResume = async (resumeID) => {

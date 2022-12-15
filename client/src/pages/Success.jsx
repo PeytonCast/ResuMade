@@ -1,14 +1,11 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 
-const Success = async () => {
+const Success = () => {
     const { resumeId } = useParams();
     function savePaidResume() {
         console.log( resumeId );
         // update isPaid=true to database(resumeId) --> mutation
-        setTimeout(() => {
-          window.location.assign('/dashboard');
-        }, 3000);
     }
     savePaidResume();
 

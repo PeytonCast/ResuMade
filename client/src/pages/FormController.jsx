@@ -88,7 +88,7 @@ const FormController = () => {
   });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  const [resumeId, saveResumeId] = useState("AbcDef");
+  const [resumeId, saveResumeId] = useState("Fake-Resume-Id");
 
   useEffect(() => {
     if (data) {
@@ -255,15 +255,15 @@ const FormController = () => {
 
   //add the resume to the db
   const handleAddResume = async () => {
-    console.log("meli", userData)
-      try {
-      // console.log("resumeData", resumeData)  
-        const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
+    // console.log("meli", userData)
+    //   try {
+    //   // console.log("resumeData", resumeData)  
+    //     const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
       
-        // setUserData(setUserData);
-    } catch (err) {
-      console.log("nope")
-    }
+    //     // setUserData(setUserData);
+    // } catch (err) {
+    //   console.log("nope")
+    // }
 
   }
 
@@ -276,7 +276,10 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
-    getCheckout(resumeId);
+    console.log(resumeId);
+    getCheckout({
+      variables: { resumeId: resumeId },
+    });
     message.success("Your ResuMate is ready to download!");
   };
 
