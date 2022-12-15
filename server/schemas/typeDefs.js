@@ -9,12 +9,10 @@ const typeDefs = gql`
         resumes: [Resume]
     }
     type Date {
-        month: Int
         year: Int
       }
 
     input InputDate {
-        month: Int
         year: Int
       }
 
@@ -23,10 +21,12 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
+        zip: Int!
         phoneNumber: String!
         email: String!
         userGithub: String!
         linkedin: String!
+        portfolio: String!
         
         
     }
@@ -68,6 +68,7 @@ const typeDefs = gql`
 
     type Resume {
         _id: ID
+        isPaid: Boolean
         personalInfo: PersonalInfo
         summary: String
         skills: SkillInfo
@@ -99,6 +100,8 @@ const typeDefs = gql`
         email: String!
         userGithub: String!
         linkedin: String!
+        portfolio: String!
+        zip: Int!
       }
 
     input InputSkillInfo {
@@ -138,6 +141,7 @@ const typeDefs = gql`
 
     input InputResume {
         _id: ID
+        isPaid: Boolean
         personalInfo: InputPersonalInfo
         summary: String
         skills: InputSkillInfo

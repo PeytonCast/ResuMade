@@ -30,6 +30,9 @@ const resumeSchema = {
             required: true},
 
         linkedin:{ type: String,
+            required: true},
+
+        portfolio:{ type: String,
             required: true}
         
     },
