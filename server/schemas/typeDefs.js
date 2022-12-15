@@ -152,6 +152,7 @@ const typeDefs = gql`
         saveResume(resumeData: InputResume!): User
         addUser(username: String!, email: String!, password: String!): Auth
         removeResume(_id : ID!): User
+        editResume(resumeId: ID!, resumeData: InputResume!): User
     }
 
 `;

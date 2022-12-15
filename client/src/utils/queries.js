@@ -18,7 +18,6 @@ export const QUERY_RESUME = gql`
   query Resume($resumeId: ID!) {
     resume(resumeId: $resumeId) {
       _id
-      _id
         educations {
           degree
           endDate {

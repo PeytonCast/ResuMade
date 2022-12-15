@@ -36,7 +36,6 @@ const resolvers = {
           throw new AuthenticationError('You need to be logged in!'); 
       },
         checkout: async (parent, args, context) => {
-          console.log("test from payment")
           const url = new URL(context.headers.referer).origin;
           const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -91,12 +90,32 @@ const resolvers = {
                     { $push: {resumes: resumeData}},
                     { new: true }
                 );
-                console.log(resumeData._id)
                 return updateUser;
             }
             throw new AuthenticationError('You need to be logged in.');
          },
-        
+         editResume: async (parent, { resumeId, resumeData}, context) => {
+          if(context.user){
+              resumeData['_id'] = resumeId
+              const userData = await User.findOne({ _id: context.user._id })
+              
+              const resumeList = userData.resumes
+              const resumeIndex = resumeList.findIndex(obj => {
+
+                return obj._id == resumeId
+              })
+              resumeList[resumeIndex] = resumeData
+              const updateResumeByID = await User.findOneAndUpdate(
+               
+
+                  { _id : context.user._id},
+                  {$set:{resumes: resumeList}},
+              );
+              //returns the resumeID, if you want to return an oject change the return
+              return updateResumeByID;
+          }
+          throw new AuthenticationError('You need to be logged in.');
+         },
          removeResume:  async (parent, {_id}, context)=> {
             // if ther is a contex.user, continue on else throw err
             if(context.user){
@@ -108,7 +127,6 @@ const resolvers = {
                      { $pull: { resumes: {_id} } },
                      { new: true }
                     );
-                    // console.log(_id)
                     return updateUser;}
                     catch(err){
                       console.log({err})
