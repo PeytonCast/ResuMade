@@ -12,7 +12,7 @@ import {
 } from "../components/Forms";
 
 import { useQuery, useMutation } from '@apollo/client';
-import { SAVE_RESUME } from '../utils/mutations';
+import { SAVE_RESUME, EDIT_RESUME } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useSearchParams } from 'react-router-dom';
 import { loadStripe } from "@stripe/stripe-js";
@@ -38,16 +38,10 @@ const FormController = () => {
 
   console.log("getResume2", resumeData?.resume)
 
-   //  if edit then preload
-  //  if (resumeData) {
-  //   const loadingPreload = PreloadDB.preloadDB()
-  // }
-  
   let finalFormObject = {}
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
-  const [ fetchData, setFetchResume] = useState(null)
 
   //Queries
   const {getUser, loading} = useQuery(QUERY_ME);
@@ -55,6 +49,7 @@ const FormController = () => {
 
   //mutations
   const [addResumeToDB] = useMutation(SAVE_RESUME)
+  const [editResumeToDB] = useMutation(EDIT_RESUME)
 
   // functions to make the next and previous buttons work
   const next = () => {
@@ -153,9 +148,9 @@ const FormController = () => {
     ];
 
     // for each of the listed fields, use the .split() string method to separate the words and return an array
-    stringListFields.forEach((prop) => {
-      data[prop] = returnArrayOfStrings(data[prop]);
-    });
+    // stringListFields.forEach((prop) => {
+    //   data[prop] = returnArrayOfStrings(data[prop]);
+    // });
 
     // function to format the dates
     const getDateFormat = (dateObject, format) => {
@@ -275,40 +270,26 @@ const FormController = () => {
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject
-  
+  console.log("result", resumeData.resume._id)
   };
 
   //add the resume to the db
   const handleAddResume = async () => {
     // console.log("meli", userData)
       try {
-      // console.log("resumeData", resumeData)  
-        const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
-      
+      console.log("finalFormObject", finalFormObject)  
+       if (searchParams){
+        const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
+       } else {
+         const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
+       }
+       
+        
         // setUserData(setUserData);
     } catch (err) {
       console.log("nope")
     }
   }
-
- 
-  //Preload the form with user's data
-  useEffect(() => {
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   throw new Error('please login');
-    // }
-
-    // const getResumeID = JSON.parse(localStorage.getItem('saved_resume'))
-
-    // const user = getUser?.me._id.resumes.getResumeID
-    // console.log("get user for edit", user)
-    // const fetchData = async () => {
-    //   setFetchResume(await user)
-    // }
-    // fetchData()
-  },[])
 
   const handlePreview = () => {
     // get all field values from the form and set equal to a variable
@@ -358,8 +339,8 @@ const FormController = () => {
               <Button
                 type="primary"
                 onClick={() => {
-                  next();
                   handlePreview();
+                  next();
                   handleAddResume();
                 }}
               >

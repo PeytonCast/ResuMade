@@ -15,7 +15,6 @@ const Education = ({ preload }) => {
 
   console.log("preload", preload)
   useEffect(() => {
-    //fieldOfStudy?
     form.setFieldsValue({
       // cityEducation: preload?.educations?.cityEducation,
       // stateEducation: preload?.educations[0]?.stateEducation,

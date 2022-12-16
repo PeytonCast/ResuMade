@@ -9,9 +9,9 @@ const TechnicalSkills = ({ preload }) => {
   useEffect(() => {
     form.setFieldsValue({
       languages: preload?.skills?.languages,
-      frameworks: preload?.skils?.frameworks,
-      libraries: preload?.skils?.libraries,
-      coreConcepts: preload?.skils?.concepts
+      frameworks: preload?.skills?.frameworks,
+      libraries: preload?.skills?.libraries,
+      coreConcepts: preload?.skills?.concepts
   })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
