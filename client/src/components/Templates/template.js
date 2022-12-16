@@ -3,7 +3,7 @@ const {
   } = require("docx");
 
 
-module.exports = function createDocument({personalInfo, summary, technicalSkills, projects, experiences, educations}) {
+export default function createDocument({personalInfo, summary, technicalSkills, projects, experiences, educations}) {
     return new Document({
         styles: {
             default: {
