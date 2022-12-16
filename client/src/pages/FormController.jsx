@@ -87,7 +87,7 @@ const FormController = () => {
   });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  const [resumeId, saveResumeId] = useState("Fake-Resume-Id");
+  const [resumeId, saveResumeId] = useState("639bce137e7ec65c24ec5e81");
 
   useEffect(() => {
     if (data) {
@@ -255,8 +255,9 @@ const FormController = () => {
     // console.log("meli", userData)
     //   try {
     //   // console.log("resumeData", resumeData)  
+    // resumeId --> new just created
     //     const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
-      
+      // saveResumeId(resumeId)
     //     // setUserData(setUserData);
     // } catch (err) {
     //   console.log("nope")

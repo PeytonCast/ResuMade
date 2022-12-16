@@ -70,13 +70,12 @@ const ResumeList = () => {
  };
 
  const handleDownloadResume = async (resumeID) => {
-  /// const resume = data.me.resumes[resumeID]
-    const resumeBlob = await Packer.toBlob(renderResume(resume));
-    docSaver.saveAs(
-        resumeBlob, 
-       `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
-    )
-    console.log("downloading resume")
+    console.log(data.me.resumes);
+    // const resumeBlob = await Packer.toBlob(renderResume(resume));
+    // docSaver.saveAs(
+    //     resumeBlob, 
+    //    `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
+    // )
  };
 
  const handleDeleteResume = async (resumeID) => {

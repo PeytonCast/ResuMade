@@ -42,9 +42,9 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
-            const token = signToken(user);
-            return { token, user };
+              const user = await User.create({ username, email, password });
+              const token = signToken(user);
+              return { token, user };
           },
         
         login: async (parent, { email, password }) => {
@@ -124,17 +124,14 @@ const resolvers = {
               // console.log("updatedUser",updatedUser)
               updatedUser.resumes = resumes
               await updatedUser.save()
-          
-              
-              
-              
-                  return updatedUser;}
-                  catch(err){
-                    console.log({err})
-                    throw err
-                  }
+
+              return updatedUser;
+            } catch(err){
+              console.log({err})
+              throw err
+            }
           // if user token is not there LOGIN
-          }throw new AuthenticationError('You need to be logged in!');
+          } throw new AuthenticationError('You need to be logged in!');
         }
 
     

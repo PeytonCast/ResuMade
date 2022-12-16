@@ -1,7 +1,6 @@
 const {
-    Document, HeadingLevel, Paragraph, TabStopType, TextRun, AlignmentType, TabStopPosition
+    Document, HeadingLevel, Paragraph, TabStopType, TextRun,
   } = require("docx");
-
 
 export default function createDocument({personalInfo, summary, technicalSkills, projects, experiences, educations}) {
     return new Document({
