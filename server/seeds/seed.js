@@ -16,7 +16,7 @@ db.once('open', async () => {
 
     let email = faker.internet.email();
     let username = faker.internet.userName();
-    let month = Math.floor(Math.random()*12)
+    // let month = Math.floor(Math.random()*12)
    
     for (let j = 0; j < 2; j++) {
       // const { _id, resume } = await Resume.create(2[j]);
@@ -29,15 +29,18 @@ db.once('open', async () => {
         }
       );
       resume.push({
+        isPaid: false,
         personalInfo: {
           firstName: faker.name.firstName(),
           lastName: faker.name.lastName(),
           city: faker.address.cityName(),
           state: faker.address.state(),
-          phoneNumber: faker.phone.number(),
+          phoneNumber: 123456789,
+          zip: 12345,
           email: email,
           userGithub: username,
-          linkedin: username
+          linkedin: username,
+          portfolio: username,
         },
         summary: faker.lorem.text(),
         skills: {
@@ -55,32 +58,32 @@ db.once('open', async () => {
           technologies: ["React", "Express", "Bootsrap"],
         },
         experiences: {
-          isCurrent: faker.datatype.boolean() ,
+          // isCurrent: faker.datatype.boolean() ,
         title: faker.name.jobTitle(),
         company: faker.company.companyName(),
-        githubLink: faker.internet.url(),
+        // githubLink: faker.internet.url(),
         city: faker.address.cityName(),
         state: faker.address.state(),
         summary: faker.name.jobDescriptor(),
         startDate: {
-          month: month,
+          // month: month,
           year: 2014,
         },
           endDate: {
-            month: month,
+            // month: month,
             year: 2014,
           }
         },
         educations: {
           degree: faker.name.jobArea(),
-          fieldOfStudy: faker.name.jobArea(),
+          // fieldOfStudy: faker.name.jobArea(),
           schoolName: faker.company.companyName(),
           startDate: {
-            month: month,
+            // month: month,
             year: 2010,
           },
           endDate: {
-            month: month,
+            // month: month,
             year: 2014,
           }
         }          
