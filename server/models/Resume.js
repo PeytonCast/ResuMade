@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 const resumeSchema = {
     // this is an object with nested objects of the users personal information
+    isPaid: {type: Boolean},
     personalInfo: {
         firstName: { type: String,
             required : true},
@@ -14,7 +15,12 @@ const resumeSchema = {
         state: { type: String,
             required : true},
 
-        phoneNumber:{ type: String,
+        zip: { type: Number,
+            required : true,
+
+        },
+
+        phoneNumber:{ type: Number,
             required: true},
 
         email:{ type: String,
@@ -24,6 +30,9 @@ const resumeSchema = {
             required: true},
 
         linkedin:{ type: String,
+            required: true},
+
+        portfolio:{ type: String,
             required: true}
         
     },
@@ -54,19 +63,17 @@ const resumeSchema = {
     // relivent work experiences past and current
     experiences: [
         {
-            isCurrent: {type: Boolean},
+
             title: {type:String},
             company: {type:String},
             city: {type:String},
             state: {type:String},
             summary: {type:String},
             startDate:{
-                month:{type: Number,},
-                year:{type: String,}
+                year:{type: Number,}
               },
             endDate:{
-                month:{type: Number,},
-                year:{type: String,}
+                year:{type: Number,}
               },
         }
     ],
@@ -74,17 +81,18 @@ const resumeSchema = {
     educations: [
         {
             degree: {type:String},
-            fieldOfStudy: {type:String},
-            schoolName: {type:String},
+            // fieldOfStudy: {type:String},
+            schoolName: {type:String,
+            required: true},
             startDate:{
-                month:{type: Number,},
-                year:{type: String,}
+                year:{type: Number,}
               },
             endDate:{
-                month:{type: Number,},
-                year:{type: String,}
+                year:{type: Number,}
               },
-            
+            city: {type:String},
+            state: {type:String},
+
         },
     ]
 

@@ -9,12 +9,10 @@ const typeDefs = gql`
         resumes: [Resume]
     }
     type Date {
-        month: Int
         year: Int
       }
 
     input InputDate {
-        month: Int
         year: Int
       }
 
@@ -23,11 +21,13 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        phoneNumber: String!
+        zip: Int!
+        phoneNumber: Int!
         email: String!
         userGithub: String!
         linkedin: String!
-        
+        portfolio: String!
+
         
     }
     type SkillInfo {
@@ -47,7 +47,6 @@ const typeDefs = gql`
 
     }
     type ExperienceInfo  {
-        isCurrent: Boolean
         title: String
         company: String
         city: String
@@ -59,15 +58,17 @@ const typeDefs = gql`
     
     type EduInfo {
         degree: String
-        fieldOfStudy: String
-        schoolName: String
+        schoolName: String!
         startDate: Date
         endDate: Date
-        
+        city: String
+        state: String
+
     }
 
     type Resume {
         _id: ID
+        isPaid: Boolean
         personalInfo: PersonalInfo
         summary: String
         skills: SkillInfo
@@ -96,10 +97,12 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        phoneNumber: String!
+        phoneNumber: Int!
         email: String!
         userGithub: String!
         linkedin: String!
+        portfolio: String!
+        zip: Int!
       }
 
     input InputSkillInfo {
@@ -118,8 +121,8 @@ const typeDefs = gql`
         technologies: [String]
 
     }
+
     input InputExperienceInfo  {
-        isCurrent: Boolean
         title: String
         company: String
         city: String
@@ -128,17 +131,20 @@ const typeDefs = gql`
         startDate: InputDate
         endDate: InputDate
     }
+
     input InputEduInfo {
         degree: String
-        fieldOfStudy: String
-        schoolName: String
+        schoolName: String!
         startDate: InputDate
         endDate: InputDate
-        
+        city: String
+        state: String
+
     }
 
     input InputResume {
         _id: ID
+        isPaid: Boolean
         personalInfo: InputPersonalInfo
         summary: String
         skills: InputSkillInfo
@@ -152,6 +158,7 @@ const typeDefs = gql`
         saveResume(resumeData: InputResume!): User
         addUser(username: String!, email: String!, password: String!): Auth
         removeResume(_id : ID!): User
+        setPaidTrue(resumeId : ID!): User
         editResume(resumeId: ID!, resumeData: InputResume!): User
     }
 

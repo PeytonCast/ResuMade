@@ -11,26 +11,20 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { useQuery, useMutation, defaultDataIdFromObject } from '@apollo/client';
-import { SAVE_RESUME, EDIT_RESUME } from '../utils/mutations';
-import Auth from '../utils/auth';
-import { useSearchParams } from 'react-router-dom';
+import { useQuery, useMutation } from "@apollo/client";
+import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { useSearchParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME} from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
-import { EditFilled } from "@ant-design/icons";
-import { PreloadDB } from '../utils/preloadDB.js';
-
-
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
 
-
 // function to render the form sections
 const FormController = () => {
-
   const [form] = Form.useForm();
   // const { resumeId: resumeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,15 +32,14 @@ const FormController = () => {
 
   const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
 
-  let finalFormObject = {}
+  let finalFormObject = {};
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
 
-
   //mutations
-  const [addResumeToDB] = useMutation(SAVE_RESUME)
-  const [editResumeToDB] = useMutation(EDIT_RESUME)
+  const [editResumeToDB] = useMutation(EDIT_RESUME);
+  const [addResumeToDB] = useMutation(SAVE_RESUME);
 
   // functions to make the next and previous buttons work
   const next = () => {
@@ -117,7 +110,6 @@ const FormController = () => {
 
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
-
     // this large function does two things: returns an array of strings for the input fields that need it, and
     console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
@@ -263,7 +255,7 @@ const FormController = () => {
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
-    finalFormObject = resumeObject
+    finalFormObject = resumeObject;
   };
 
 
@@ -275,24 +267,24 @@ const FormController = () => {
     } catch (err) {
       console.log("error edit")
     }
-    
+
   }
- 
+
   //add the resume to the db
   const handleAddResume = async () => {
     // console.log("meli", userData)
       try {
-      // console.log("finalFormObject", finalFormObject)  
-       
+      // console.log("finalFormObject", finalFormObject)
+
          const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
-       
-       
-        
+
+
+
         // setUserData(setUserData);
     } catch (err) {
-      console.log("nope")
+      console.log("nope");
     }
-  }
+  };
 
   const handlePreview = () => {
     // get all field values from the form and set equal to a variable
@@ -324,8 +316,7 @@ const FormController = () => {
                 style={{
                   margin: "0 8px",
                 }}
-                onClick={() => prev()}
-              >
+                onClick={() => prev()}>
                 Previous
               </Button>
             )}

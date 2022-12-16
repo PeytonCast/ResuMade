@@ -31,9 +31,9 @@ const resolvers = {
               //   throw new Error(`No resume found with id ${resumeId}`)
               // }
               return foundResume;
-          
+
           }
-          throw new AuthenticationError('You need to be logged in!'); 
+          throw new AuthenticationError('You need to be logged in!');
       },
         checkout: async (parent, args, context) => {
           const url = new URL(context.headers.referer).origin;
@@ -98,7 +98,7 @@ const resolvers = {
           if(context.user){
               resumeData['_id'] = resumeId
               const userData = await User.findOne({ _id: context.user._id })
-              
+
               const resumeList = userData.resumes
               const resumeIndex = resumeList.findIndex(obj => {
 
@@ -106,7 +106,7 @@ const resolvers = {
               })
               resumeList[resumeIndex] = resumeData
               const updateResumeByID = await User.findOneAndUpdate(
-               
+
 
                   { _id : context.user._id},
                   {$set:{resumes: resumeList}},
@@ -134,9 +134,73 @@ const resolvers = {
             }
             // if user token is not there LOGIN
             throw new AuthenticationError('You need to be logged in!');
-          }
-        },
+          },
 
-    
-    };
+
+        setPaidTrue:  async (parent, {resumeId}, context)=> {
+          // if ther is a contex.user, continue on else throw err
+          if(context.user){
+            try{
+              // find one user by id
+              const updatedUser = await User.findOne({_id: context.user._id})
+                // resumes is = my user's array called resumes
+              const resumes = updatedUser.resumes
+              console.log("resumes", resumes.length)
+              console.log("resumes id", resumeId)
+
+              // handle the case when resume to update is undifind
+              const resumeToUpdate = resumes.findIndex((resume) => {
+                console.log('***')
+                console.log(resume._id)
+                return resume._id.toString() === resumeId //639bbd428810235054164636  639bbd428810235054164636
+              })
+              console.log("resumetoupdate",resumeToUpdate)
+
+              resumes[resumeToUpdate].isPaid = true;
+              // console.log("updatedUser",updatedUser)
+              updatedUser.resumes = resumes
+              await updatedUser.save()
+
+
+
+
+                  return updatedUser;}
+                  catch(err){
+                    console.log({err})
+                    throw err
+                  }
+          // if user token is not there LOGIN
+          }throw new AuthenticationError('You need to be logged in!');
+        }
+
+
+    }}
+    // 639bac43d820e7248c66aaa3 id 1
+    // 639bac49d820e7248c66aaa8
+
+    //  // typeDef is returning a user so i need to return a user
+    // try{
+      // const updateUser = await User.findOneAndUpdate(
+      //   // find user id
+      //    { _id: context.user._id },
+      //   //  update the resume by its id
+      //   { $set(isPaid: true) { resumes: {resumeId} } },
+      //   { new: true }
+      //   );
+
+      //   const updateUser = await User.findOneAndUpdate(
+      //     { _id: context.user._id, "resumes._id": resumeId },
+      //     {
+      //         $set: {
+      //             isPaid: true
+      //         }
+      //     },
+      //     {new:true}
+      // );
+      //   // console.log(_id)
+
+      //  {$set:{"resumes":{
+      //   isPaid: true
+
+      // }
 module.exports = resolvers;

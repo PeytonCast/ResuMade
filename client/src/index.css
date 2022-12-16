@@ -14,7 +14,7 @@ body {
     position: relative;
     height: 100vh;
     width: 100vw;
-    
+    background-color: rgb(245, 245, 245);
 }
 
 .hero::before{
@@ -29,14 +29,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     display:flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
 .hero-content {
     position: relative;
     text-align: center;
-    top: 36%;
+    top: 35%;
     color: black;
   }
 
@@ -51,9 +50,85 @@ body {
     font-size: 2rem;
 }
 
-.example-img {
-    height: 100%;
-    width: 75%;
+#learn-link {
+  text-decoration: none;
+  background-color:black;
+  border-radius: 6px;
+  color: beige;
+  padding: 6px;
+  text-align:left;
+  box-shadow: 3px 3px 3px gray;
+  font-size: 1.2rem;
+}
+
+#learn-link:hover {
+  background-color:rgb(90, 90, 90);
+}
+
+
+.motto-container {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.motto-img {
+    width: 70%;
+}
+
+#start-link {
+    text-decoration: none;
+    background-color:black;
+    border-radius: 6px;
+    color: beige;
+    padding: 6px;
+    text-align:left;
+    box-shadow: 3px 3px 3px gray;
+  }
+
+  #start-link:hover {
+    background-color:rgb(90, 90, 90);
+  }
+
+  #dash-link {
+    text-decoration: none;
+    background-color:black;
+    border-radius: 6px;
+    color: beige;
+    padding: 6px;
+    text-align:left;
+    box-shadow: 3px 3px 3px gray;
+  }
+
+  #start-link:hover {
+    background-color:rgb(90, 90, 90);
+  }
+
+.preview-section {
+    width: 100vw;
+    height: 800px;
+    background-color: white;
+}
+/* 
+.preview-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+} */
+
+.carousel-css {
+    height: 330px;
+    color: #fff;
+    line-height: 2.5;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.carousel-img {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }
 
 .link {
