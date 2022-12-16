@@ -9,7 +9,7 @@ Not sure how to write a resume or tired of creating your own? Just fill out our 
 
 - [License](#license)
 - [Description](#description)
-- [Technologies](#Technologies)
+- [Technologies](#technologies)
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Deployed Application](#deployed-application)
@@ -22,13 +22,13 @@ Not sure how to write a resume or tired of creating your own? Just fill out our 
 - [Questions](#questions)
 - [License Information](#license-information)
 
-## Description [!]
+## Description
 
 Updated with the newest industry standards, our resume template asks only the important questions to let you quickly create a beautifully formatted resume. With the touch of a button, your resume will be downloaded and ready to send to your next dream job.
 
 If the downloaded resume is misplaced, we've got that handled as well. Returning users can log in to view, edit, and download past saved resumes.
 
-We offer a payment plan... [!more about payment plan here]
+We offer a simple payment plan of $5.00 USD for each resume created. Payments are securely made through Stripe, a payment platform. After each purchase, your resume is available for unlimited downloads.
 
 >*"A resume is an important tool for your job search as it offers a page or two where you can display your relevant skills and qualities for a job. Resumes help employers make hiring decisions and help you get your first interview. That's why it matters how you structure your resume and what information you decide to include."* - Indeed.com
 
@@ -47,7 +47,9 @@ At this time, the resume template is not applicable to industries outside of web
 
 ### What did you learn?
 
-Some npm packages and versions of those packages created some tangles at times. We learned to communicate effectively as a group to complete the project in a timely manner.
+* Some npm packages and versions of those packages created some tangles at times.
+* We got more practice with debugging, especially with the Heroku deployment.
+* Each of us became more knowledgable about the tool or technology he or she was tasked.
 
 ### What makes your project stand out?
 
@@ -84,27 +86,55 @@ Our simple, clean design partners with an effective, ready-to-use resume templat
 - Github repository
 - Heroku deployment
 
+(Reference 3 package.jsons to see a full list and versions)
+
 ## User Story
 
 As a job seeker in the web development field, <br>
 I want a stress-free resume-creation experience <br>
 So that I can focus more attention on other areas of the job search
 
-## Acceptance Criteria [!]
+## Acceptance Criteria
 
 GIVEN a resume-building app <br>
 WHEN a user views the homepage, <br>
-THEN they are given the options to login or signup <br>
+THEN they are given the options to login or signup. <br>
+WHEN the user signs up,  <br>
+THEN they are led to a dashboard with the option to create a new resume. <br>
+WHEN the user logs in, <br>
+THEN they are led to a dashboard with a display of their past saved resumes along with the option to create a new resume. <br>
+WHEN the user clicks the "New Resume" button, <br>
+THEN the user is led to a 7-part form with the following sections: Personal Info, Summary, Technical Skills, Projects, Experience, Education, and Preview. <br>
+WHEN the user completes the form and clicks "Save & Preview," <br>
+THEN the Preview is dynamically rendered with all of the user's inputted information. <br>
+WHEN the user clicks "Download," <br>
+THEN the user is led to the Stripe payment platform. <br>
+WHEN the user completes the $5 payment for their resume, <br>
+THEN the download begins automatically and the user is redirected to their dashboard. <br>
+WHEN the user views their dashboard after creating a new resume, <br>
+THEN the user sees their newest resume added to the list of past saved resumes. <br>
+WHEN the user clicks "Edit" on a past saved resume, <br>
+THEN the user may access that saved resume to edit. <br>
+WHEN the user clicks "Delete" on a past saved resume, <br>
+THEN that resume is deleted. <br>
+WHEN the user clicks "Download" on a past saved resume, <br>
+THEN that resume is downloaded once again. <br>
+WHEN the user logs out, <br>
+THEN their logout is successful and they are redirected to the homepage.
 
-## Deployed Application Link [!]
+## Deployed Application
 
-This app is deployed to Heroku: []
+Heroku: [https://resumade.herokuapp.com/]
 
 Github Repository: [https://github.com/PeytonCast/ResuMade]
 
-## Future Improvements [!]
+## Future Improvements
 
 * Add the functionality for a user to create a cover letter as well
+* Increased security for form validations
+* Turn the app into a PWA
+* Refactor for neatness/readability
+* More error handling throughout
 
 ## Installation
 
@@ -117,22 +147,16 @@ Go to http://localhost:3001
 ```
 OR follow the above heroku deployed application link
 
-## Usage [!]
+## Usage
 
-How to use:
+### Screenshots
 
-1] This app is best for those looking for jobs within the coding/web development industry.
-2] 
-
-### Screenshots [!]
-
-Below are screenshots of ResuMade:
-
+Homepage
 ![ResuMade Screenshot 1](./client/src/assets/resumade_screenshot1.png)
-- User does this...
-- and this...
+User does this...
+and this...
 ![ResuMade Screenshot 2]()
-- and also this...
+and also this...
 ![ResuMade Screenshot 3]()
 
 ## Contributing
@@ -143,7 +167,7 @@ Instructions to contribute:
 
 1] Follow installation instructions above. <br>
 2] Create a branch for your feature. <br>
-3] The main branch is protected. Contact one of us to review and merge your contribution when you have completed your feature.
+3] The main branch is protected. Contact one of us to review and potentially merge your contribution when you have completed your feature.
 
 ## Tests
 
