@@ -35,6 +35,17 @@ export const REMOVE_RESUME = gql`
   
 `
 
+export const SET_PAID_TRUE = gql`mutation Mutation($id: ID!) {
+  setPaidTrue(resumeId: $id) {
+    _id
+    email
+    resumes {
+      isPaid
+      _id
+    }
+  }
+}`
+
 export const SAVE_RESUME = gql`
 mutation SaveResume($resumeData: InputResume!) {
   saveResume(resumeData: $resumeData) {
