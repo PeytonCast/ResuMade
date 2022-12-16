@@ -20,13 +20,12 @@ const Experience = ({ preload }) => {
     form.setFieldsValue({
       jobTitle: preload?.experiences[0]?.title,
       companyName: preload?.experiences[0]?.company,
-      cityExperience: preload?.experiences[0]?.lastName,
-      stateExperience: preload?.experiences[0]?.city,
+      cityExperience: preload?.experiences[0]?.city,
+      stateExperience: preload?.experiences[0]?.state,
       // startDateMonthExperience: preload?.experiences[0]?.startDate?.month,
       // startDateYearExperience: preload?.experiences[0]?.startDate?.year,
       // endDateMonthExperience: preload?.experiences[0]?.endDate?.month,
       // endDateYearExperience: preload?.experiences[0]?.endDate?.year,
-      currentJob: preload?.experiences[0]?.isCurrent,
       jobDescription: preload?.experiences[0]?.summary,
       // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
   })})

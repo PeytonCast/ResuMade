@@ -2,76 +2,69 @@ import { gql } from '@apollo/client';
 
 export const QUERY_ME = gql`
 query me {
-    me {
+  me {
+    _id
+    email
+    resumes {
       _id
-      email
-      resumes {
-        _id
-        summary
-      }
-      username
+      summary
     }
+    username
   }
+}
 `;
 
 export const QUERY_RESUME = gql`
   query Resume($resumeId: ID!) {
     resume(resumeId: $resumeId) {
       _id
-        educations {
-          degree
-          endDate {
-            month
-            year
-          }
-          fieldOfStudy
-          schoolName
-          startDate {
-            month
-            year
-          }
-        }
-        experiences {
-          city
-          company
-          title
-          summary
-          state
-          isCurrent
-          startDate {
-            month
-            year
-          }
-          endDate {
-            month
-            year
-          }
-        }
-        personalInfo {
-          city
-          email
-          firstName
-          lastName
-          linkedin
-          phoneNumber
-          state
-          userGithub
-        }
-        projects {
-          deployment
-          githubLink
-          name
-          summary
-          responsibility
-          technologies
-        }
-        skills {
-          libraries
-          languages
-          frameworks
-          concepts
-        }
+      isPaid
+      personalInfo {
+        firstName
+        lastName
+        city
+        state
+        zip
+        phoneNumber
+        email
+        userGithub
+        linkedin
+        portfolio
+      }
+      summary
+      skills {
+        languages
+        frameworks
+        libraries
+        concepts
+      }
+      projects {
+        githubLink
+        name
+        deployment
         summary
+        responsibility
+        technologies
+      }
+      experiences {
+        title
+        company
+        city
+        state
+        summary
+        startDate {
+          year
+        }
+        endDate {
+          year
+        }
+      }
+      educations {
+        degree
+        schoolName
+        city
+        state
+      }
     }
   }
 `;

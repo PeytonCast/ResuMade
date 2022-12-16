@@ -181,12 +181,12 @@ const FormController = () => {
         // address: // remove address field from Arthur's side
         city: data.cityPersonal,
         state: data.statePersonal,
-        // zip: , // add zip field on Arthur's side
-        phoneNumber: data.phone.toString(),
+        zip: data.zip, // add zip field on Arthur's side
+        phoneNumber: data.phone,
         email: data.professionalEmail,
         userGithub: data.github,
         linkedin: data.linkedin,
-        // portfolio: data.portfolio,
+        portfolio: data.portfolio,
       },
       // remove italics on summary text
       summary: data.summary,
@@ -256,6 +256,7 @@ const FormController = () => {
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject;
+    console.log("resumeData", resumeData)
   };
 
 
@@ -264,8 +265,11 @@ const FormController = () => {
       if (searchParams){
           const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
         }
+        
     } catch (err) {
-      console.log("error edit")
+      console.log(err);
+      
+      console.log("error edit");
     }
 
   }

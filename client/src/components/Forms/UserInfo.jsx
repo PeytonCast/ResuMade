@@ -10,12 +10,12 @@ const UserInfo = ({ preload }) => {
       lastName: preload?.personalInfo?.lastName,
       cityPersonal: preload?.personalInfo?.city,
       statePersonal: preload?.personalInfo?.state,
-      // zip: preload?.personalInfo?.zip,
+      zip: preload?.personalInfo?.zip,
       phone: preload?.personalInfo?.phoneNumber,
       professionalEmail: preload?.personalInfo?.email,
       github: preload?.personalInfo?.userGithub,
       linkedin: preload?.personalInfo?.linkedin,
-      // portfolio: preload?.personalInfo?.portfolio
+      portfolio: preload?.personalInfo?.portfolio
   })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));

@@ -8,7 +8,6 @@ import {  QUERY_ME, QUERY_RESUME } from '../utils/queries';
 import { SAVE_RESUME, REMOVE_RESUME } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useNavigate, Navigate } from "react-router-dom";
-import { PreloadDB } from '../utils/preloadDB.js';
 import { useSearchParams } from 'react-router-dom';
 
 // import { getResumeId, storeResumeId} from '../utils/API'
@@ -57,16 +56,6 @@ const ResumeList = () => {
   }
 
   try {
-
-    // console.log("getResume2", resumeData?.resume)
-  
-      
-  
-  // //  if edit then preload
-  // if (resumeData) {
-  //   const loadingPreload = PreloadDB.PreloadDB(resumeID)
-  // }
-  
     nav(`/form?resumeId=${resumeID}`);
   } catch (err) {
     console.error(err);
