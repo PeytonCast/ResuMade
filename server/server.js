@@ -1,13 +1,13 @@
-const express = require('express');
-const path = require('path');
-const db = require('./config/connection');
+const express = require("express");
+const path = require("path");
+const db = require("./config/connection");
 // getting apollo server
-const { ApolloServer } = require('apollo-server-express')
+const { ApolloServer } = require("apollo-server-express");
 
 // auth middleware TODO write middleware
-const { authMiddleware } = require('./utils/auth');
+const { authMiddleware } = require("./utils/auth");
 // geting typeDefs and resolvers from schemas
-const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require("./schemas");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -33,14 +33,16 @@ app.use("/",(req, res) => {
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
-  
-  db.once('open', () => {
+
+  db.once("open", () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
-  };
-  
+      console.log(
+        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
+      );
+    });
+  });
+};
+
 // Call the async function to start the server
-  startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers);
