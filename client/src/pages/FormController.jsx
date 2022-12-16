@@ -11,9 +11,8 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { useMutation } from '@apollo/client';
-import { SAVE_RESUME } from '../utils/mutations';
-
+import { useMutation } from "@apollo/client";
+import { SAVE_RESUME } from "../utils/mutations";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../utils/queries";
@@ -26,13 +25,13 @@ const stripePromise = loadStripe(
 const FormController = () => {
   const [form] = Form.useForm();
 
-  let finalFormObject = {}
+  let finalFormObject = {};
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
 
   //mutations
-  const [addResumeToDB] = useMutation(SAVE_RESUME)
+  const [addResumeToDB] = useMutation(SAVE_RESUME);
 
   // functions to make the next and previous buttons work
   const next = () => {
@@ -100,7 +99,6 @@ const FormController = () => {
 
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
-
     // this large function does two things: returns an array of strings for the input fields that need it, and
     // console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
@@ -249,8 +247,7 @@ const FormController = () => {
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
-    finalFormObject = resumeObject
-  
+    finalFormObject = resumeObject;
   };
 
   //add the resume to the db
@@ -300,8 +297,7 @@ const FormController = () => {
                 style={{
                   margin: "0 8px",
                 }}
-                onClick={() => prev()}
-              >
+                onClick={() => prev()}>
                 Previous
               </Button>
             )}
@@ -321,9 +317,8 @@ const FormController = () => {
                   next();
                   handlePreview();
                   handleAddResume();
-                }}
-              >
-                Preview
+                }}>
+                Save & Preview
               </Button>
             )}
 
