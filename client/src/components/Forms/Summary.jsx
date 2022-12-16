@@ -15,7 +15,7 @@ const Summary = ({ preload }) => {
   //   console.log(form.getFieldsValue(true));
   // });
 
-  Form.useWatch("summary", form);
+  Form.useWatch(["summary", "bug"], form);
   
   return (
     <>

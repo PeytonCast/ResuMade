@@ -11,7 +11,7 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, defaultDataIdFromObject } from '@apollo/client';
 import { SAVE_RESUME, EDIT_RESUME } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useSearchParams } from 'react-router-dom';
@@ -30,21 +30,18 @@ const stripePromise = loadStripe(
 
 // function to render the form sections
 const FormController = () => {
+
   const [form] = Form.useForm();
   // const { resumeId: resumeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  let isEdit = searchParams.get("resumeId") ? true : false
 
-  const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {variables: {resumeId: searchParams.get("resumeId")}});
-
-  console.log("getResume2", resumeData?.resume)
+  const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
 
   let finalFormObject = {}
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
-
-  //Queries
-  const {getUser, loading} = useQuery(QUERY_ME);
 
 
   //mutations
@@ -127,15 +124,14 @@ const FormController = () => {
     // do the same for all start and end months and years (8)
     // make array of strings out of text area for languages, ect...
 
-    console.log(data);
 
     const returnArrayOfStrings = (string) => {
       // if user inputted nothing, do nothing
       if (!string) {
-        return;
+        return [];
       }
       // otherwise, split the user's input (one long string) into separate words and return an array with the .split() string method
-      return string.split(", ");
+      return string.split(",").map(element => element.trim());
     };
 
     // these are the data field names that need to return an array of strings (if more, just add to this list)
@@ -148,9 +144,9 @@ const FormController = () => {
     ];
 
     // for each of the listed fields, use the .split() string method to separate the words and return an array
-    // stringListFields.forEach((prop) => {
-    //   data[prop] = returnArrayOfStrings(data[prop]);
-    // });
+    stringListFields.forEach((prop) => {
+      data[prop] = returnArrayOfStrings(data[prop]);
+    });
 
     // function to format the dates
     const getDateFormat = (dateObject, format) => {
@@ -183,7 +179,6 @@ const FormController = () => {
       }
     });
 
-    // const firstName = data.firstName
 
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
     let resumeObject = {
@@ -265,24 +260,32 @@ const FormController = () => {
       ],
     };
 
-    console.log("data", data);
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject
-  console.log("result", resumeData.resume._id)
   };
 
+
+  const handleEditResume = async () => {
+    try {
+      if (searchParams){
+          const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
+        }
+    } catch (err) {
+      console.log("error edit")
+    }
+    
+  }
+ 
   //add the resume to the db
   const handleAddResume = async () => {
     // console.log("meli", userData)
       try {
-      console.log("finalFormObject", finalFormObject)  
-       if (searchParams){
-        const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
-       } else {
+      // console.log("finalFormObject", finalFormObject)  
+       
          const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
-       }
+       
        
         
         // setUserData(setUserData);
@@ -339,9 +342,13 @@ const FormController = () => {
               <Button
                 type="primary"
                 onClick={() => {
-                  handlePreview();
                   next();
-                  handleAddResume();
+                  handlePreview();
+                  if (isEdit){
+                    handleEditResume()
+                  } else {
+                    handleAddResume();
+                  }
                 }}
               >
                 Preview

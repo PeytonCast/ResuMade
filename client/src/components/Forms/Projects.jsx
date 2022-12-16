@@ -13,7 +13,7 @@ const Projects = ({ preload }) => {
       deployedApplicationLink: preload?.projects[0]?.deployment,
       projectDescription: preload?.projects[0]?.summary,
       yourRole: preload?.projects[0]?.responsibility,
-      toolsTechnologies: preload?.projects[0]?.technologies,
+      toolsTechnologies: preload?.projects[0]?.technologies.join(","),
   })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));

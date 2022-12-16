@@ -3,7 +3,6 @@ import { Form, Input, Row, Col, Space, InputNumber } from "antd";
 
 const UserInfo = ({ preload }) => {
   const form = Form.useFormInstance();
-console.log("preload", preload)
 
   useEffect(() => {
     form.setFieldsValue({
