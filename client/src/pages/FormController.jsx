@@ -45,30 +45,30 @@ const FormController = () => {
 
   // 7 steps to the form including preview
   const steps = [
-    // {
-    //   title: "Personal Info",
-    //   content: <UserInfo />,
-    // },
-    // {
-    //   title: "Summary",
-    //   content: <Summary />,
-    // },
+    {
+      title: "Personal Info",
+      content: <UserInfo />,
+    },
+    {
+      title: "Summary",
+      content: <Summary />,
+    },
     {
       title: "Technical Skills",
       content: <TechnicalSkills />,
     },
-    // {
-    //   title: "Projects",
-    //   content: <Projects />,
-    // },
-    // {
-    //   title: "Experience",
-    //   content: <Experience />,
-    // },
-    // {
-    //   title: "Education",
-    //   content: <Education />,
-    // },
+    {
+      title: "Projects",
+      content: <Projects />,
+    },
+    {
+      title: "Experience",
+      content: <Experience />,
+    },
+    {
+      title: "Education",
+      content: <Education />,
+    },
     {
       title: "Preview",
       // comment below line in when merged with Arthur's code
@@ -299,7 +299,8 @@ const FormController = () => {
                 style={{
                   margin: "0 8px",
                 }}
-                onClick={() => prev()}>
+                onClick={() => prev()}
+              >
                 Previous
               </Button>
             )}
@@ -319,7 +320,8 @@ const FormController = () => {
                   next();
                   handlePreview();
                   handleAddResume();
-                }}>
+                }}
+              >
                 Save & Preview
               </Button>
             )}
