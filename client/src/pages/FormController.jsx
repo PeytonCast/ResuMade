@@ -45,30 +45,30 @@ const FormController = () => {
 
   // 7 steps to the form including preview
   const steps = [
-    {
-      title: "Personal Info",
-      content: <UserInfo />,
-    },
-    {
-      title: "Summary",
-      content: <Summary />,
-    },
+    // {
+    //   title: "Personal Info",
+    //   content: <UserInfo />,
+    // },
+    // {
+    //   title: "Summary",
+    //   content: <Summary />,
+    // },
     {
       title: "Technical Skills",
       content: <TechnicalSkills />,
     },
-    {
-      title: "Projects",
-      content: <Projects />,
-    },
-    {
-      title: "Experience",
-      content: <Experience />,
-    },
-    {
-      title: "Education",
-      content: <Education />,
-    },
+    // {
+    //   title: "Projects",
+    //   content: <Projects />,
+    // },
+    // {
+    //   title: "Experience",
+    //   content: <Experience />,
+    // },
+    // {
+    //   title: "Education",
+    //   content: <Education />,
+    // },
     {
       title: "Preview",
       // comment below line in when merged with Arthur's code
@@ -177,7 +177,7 @@ const FormController = () => {
         city: data.cityPersonal,
         state: data.statePersonal,
         // zip: , // add zip field on Arthur's side
-        phoneNumber: data.phone.toString(),
+        phoneNumber: data.phone,
         email: data.professionalEmail,
         userGithub: data.github,
         linkedin: data.linkedin,
@@ -185,7 +185,7 @@ const FormController = () => {
       },
       // remove italics on summary text
       summary: data.summary,
-      skills: {
+      technicalSkills: {
         languages: data.languages,
         frameworks: data.frameworks,
         libraries: data.libraries,

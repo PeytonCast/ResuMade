@@ -47,8 +47,7 @@ const Template = ({ resume }) => {
     <div id="template">
       <div className="aParagraph">
         <p className="name">
-          {resume.personalInfo.firstName}{" "}
-          {resume.personalInfo.lastName}
+          {resume.personalInfo.firstName} {resume.personalInfo.lastName}
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}
@@ -68,16 +67,16 @@ const Template = ({ resume }) => {
           <b>TECHNICAL SKILLS</b>
         </p>
         <p>
-          <b>Languages:</b> {resume.skills.languages.join(", ")}{" "}
+          <b>Languages:</b> {resume.technicalSkills.languages}
         </p>
         <p>
-          <b>Frameworks:</b> {resume.skills.frameworks.join(", ")}{" "}
+          <b>Frameworks:</b> {resume.technicalSkills.frameworks}
         </p>
         <p>
-          <b>Libaries:</b> {resume.skills.libraries.join(", ")}{" "}
+          <b>Libaries:</b> {resume.technicalSkills.libraries}
         </p>
         <p>
-          <b>Core concepts:</b> {resume.skills.concepts.join(", ")}{" "}
+          <b>Core concepts:</b> {resume.technicalSkills.concepts}
         </p>
       </div>
       <div className="aParagraph">
