@@ -177,7 +177,7 @@ const FormController = () => {
         city: data.cityPersonal,
         state: data.statePersonal,
         // zip: , // add zip field on Arthur's side
-        phoneNumber: data.phone,
+        phoneNumber: data.phone.toString(),
         email: data.professionalEmail,
         userGithub: data.github,
         linkedin: data.linkedin,
@@ -185,7 +185,7 @@ const FormController = () => {
       },
       // remove italics on summary text
       summary: data.summary,
-      technicalSkills: {
+      skills: {
         languages: data.languages,
         frameworks: data.frameworks,
         libraries: data.libraries,
