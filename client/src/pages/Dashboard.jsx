@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { Col, Row } from "antd";
 import ResumeList from "../components/ResumeList";
+import "../index.css";
 
 //user can add, delete, edit resume
 const Dashboard = () => {
@@ -15,13 +16,22 @@ const Dashboard = () => {
 
   console.log(user);
   return (
-    <div>
+    <div className="dashboard">
       {Auth.loggedIn() ? (
-        <>
-          <h2>Welcome {`${user.username} to your Profile`}!</h2>
-          <AddResumeCard />
-          <ResumeList />
-        </>
+        <div className="dash-hero">
+          <h2 style={{ textAlign: "right" }}>Welcome, {`${user.username}!`}</h2>
+          <p style={{ textAlign: "right" }}>
+            Add, edit and download your resumes here.
+          </p>
+          <div className="dash-content">
+            <Row gutter={16}>
+              <Col span={6}>
+                <AddResumeCard />
+              </Col>
+              <ResumeList />
+            </Row>
+          </div>
+        </div>
       ) : (
         <>
           <Row>

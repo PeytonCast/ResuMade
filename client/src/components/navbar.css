@@ -4,6 +4,27 @@
   font-family: Poppins, system-ui, sans-serif;
 }
 
+.menuBar {
+  display: flex;
+  padding: 0 20px;
+  border-bottom: solid 1px #e8e8e8;
+  overflow: auto;
+  box-shadow: 0 0 30px #f3f1f1;
+  background-color: white;
+}
+
+#logo {
+  color: black;
+  text-decoration: none;
+  padding-left: 1rem;
+}
+
+.menu {
+  display: flex;
+  padding-top: 16px;
+  width: 100% ;
+}
+
  #signup-link {
   background-color: black;
   border-radius: 6px;
