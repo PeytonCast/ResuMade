@@ -6,6 +6,7 @@ module.exports = {
         "address": "792 Sanctuary Ln",
         "city": "Lawrenceville",
         "state": "GA",
+        "zip": "30309",
         "phoneNumber": "714-589-7485",
         "email": "odthientho@gmail.com",
         "github": "odthientho",

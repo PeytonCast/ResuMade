@@ -2,9 +2,17 @@ import React, { useEffect } from "react";
 import { Input, Form, Row, Col } from "antd";
 const { TextArea } = Input;
 
-const TechnicalSkills = () => {
+const TechnicalSkills = ({ preload }) => {
   const form = Form.useFormInstance();
 
+  console.log("preload", preload)
+  useEffect(() => {
+    form.setFieldsValue({
+      languages: preload?.skills?.languages?.join(","),
+      frameworks: preload?.skills?.frameworks?.join(","),
+      libraries: preload?.skills?.libraries?.join(","),
+      coreConcepts: preload?.skills?.concepts?.join(",")
+  })})
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });

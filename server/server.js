@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: authMiddleware
+  // formatError: (err) => {
+  //   console.error(err);
+  //   return err;
+  // },
 });
 // middleware
 app.use(express.urlencoded({ extended: false }));
@@ -27,9 +31,14 @@ app.use(express.json());
 //   app.use(express.static(path.join(__dirname, '../client/build')));
 // }
 
-// app.use("/",(req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
+
 
 // app.use(routes);
 const startApolloServer = async (typeDefs, resolvers) => {

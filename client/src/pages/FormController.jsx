@@ -11,12 +11,15 @@ import {
   Preview,
 } from "../components/Forms";
 
-import { useMutation } from "@apollo/client";
-import { SAVE_RESUME } from "../utils/mutations";
-
+import { useQuery, useMutation } from "@apollo/client";
+import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { QUERY_CHECKOUT } from "../utils/queries";
+import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME} from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
+import "./formController.css";
+import { getMergedStatus } from "antd/es/_util/statusUtils";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
@@ -24,13 +27,25 @@ const stripePromise = loadStripe(
 // function to render the form sections
 const FormController = () => {
   const [form] = Form.useForm();
+  // const { resumeId: resumeId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  let isEdit = searchParams.get("resumeId") ? true : false
+
+  const { loading:loadingResume, error:resumeError, data:resumeData, refetch:refetch } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
+
+  if (isEdit) {
+    refetch()
+  }
 
   let finalFormObject = {};
+
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
 
   //mutations
+  const [editResumeToDB] = useMutation(EDIT_RESUME);
   const [addResumeToDB] = useMutation(SAVE_RESUME);
 
   // functions to make the next and previous buttons work
@@ -46,27 +61,27 @@ const FormController = () => {
   const steps = [
     {
       title: "Personal Info",
-      content: <UserInfo />,
+      content: <UserInfo preload={resumeData?.resume}/>,
     },
     {
       title: "Summary",
-      content: <Summary />,
+      content: <Summary preload={resumeData?.resume} />,
     },
     {
       title: "Technical Skills",
-      content: <TechnicalSkills />,
+      content: <TechnicalSkills preload={resumeData?.resume} />,
     },
     {
       title: "Projects",
-      content: <Projects />,
+      content: <Projects preload={resumeData?.resume} />,
     },
     {
       title: "Experience",
-      content: <Experience />,
+      content: <Experience preload={resumeData?.resume} />,
     },
     {
       title: "Education",
-      content: <Education />,
+      content: <Education  preload={resumeData?.resume} />,
     },
     {
       title: "Preview",
@@ -81,10 +96,6 @@ const FormController = () => {
     title: item.title,
   }));
 
-  useEffect(() => {
-    console.log(userData);
-    // setUserData(userData);
-  });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   const [resumeId, saveResumeId] = useState("639bce137e7ec65c24ec5e81");
@@ -105,15 +116,14 @@ const FormController = () => {
     // do the same for all start and end months and years (8)
     // make array of strings out of text area for languages, ect...
 
-    // console.log(data);
 
     const returnArrayOfStrings = (string) => {
       // if user inputted nothing, do nothing
       if (!string) {
-        return;
+        return [];
       }
       // otherwise, split the user's input (one long string) into separate words and return an array with the .split() string method
-      return string.split(", ");
+      return string.split(",").map(element => element.trim());
     };
 
     // these are the data field names that need to return an array of strings (if more, just add to this list)
@@ -161,7 +171,6 @@ const FormController = () => {
       }
     });
 
-    // const firstName = data.firstName
 
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
     let resumeObject = {
@@ -172,12 +181,12 @@ const FormController = () => {
         // address: // remove address field from Arthur's side
         city: data.cityPersonal,
         state: data.statePersonal,
-        // zip: , // add zip field on Arthur's side
-        phoneNumber: data.phone.toString(),
+        zip: data.zip, // add zip field on Arthur's side
+        phoneNumber: data.phone,
         email: data.professionalEmail,
         userGithub: data.github,
         linkedin: data.linkedin,
-        // portfolio: data.portfolio,
+        portfolio: data.portfolio,
       },
       // remove italics on summary text
       summary: data.summary,
@@ -225,8 +234,8 @@ const FormController = () => {
           degree: data.certificateDegreeName,
           // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
           schoolName: data.universityInstitutionName,
-          // city: data.cityEducation,
-          // state: data.stateEducation,
+          city: data.cityEducation,
+          state: data.stateEducation,
           // isCurrent: // remove isCurrent field or add in Education.jsx
           startDate: {
             // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
@@ -243,27 +252,42 @@ const FormController = () => {
       ],
     };
 
-    // console.log(data);
 
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject;
+    console.log("resumeData", resumeData) 
+     console.log("daataa", finalFormObject);
   };
 
-  //add the resume to the db
-  const handleAddResume = async () => {
-    // console.log("meli", userData)
-    //   try {
-    //   // console.log("resumeData", resumeData)  
-    // resumeId --> new just created
-    //     const updateDB = await addResumeToDB({variables: {resumeData: finalFormObject}})
-      // saveResumeId(resumeId)
-    //     // setUserData(setUserData);
-    // } catch (err) {
-    //   console.log("nope")
-    // }
+
+  const handleEditResume = async () => {
+    try {
+      if (searchParams){
+          const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
+        }
+    } catch (err) {
+      console.log(err);
+      
+      console.log("error edit");
+    }
 
   }
+
+  //add the resume to the db -Arthur
+  const handleAddResume = async () => {
+      try {
+      // console.log("finalFormObject", finalFormObject)
+
+         const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
+         
+          const newResumeId = addResume.data.saveResume.resumes[addResume.data.saveResume.resumes.length-1]._id
+
+          console.log("newResumeId", newResumeId)
+    } catch (err) {
+      console.log("nope");
+    }
+  };
 
   const handlePreview = () => {
     // get all field values from the form and set equal to a variable
@@ -317,9 +341,14 @@ const FormController = () => {
                 onClick={() => {
                   next();
                   handlePreview();
-                  handleAddResume();
-                }}>
-                Save & Preview
+                  if (isEdit){
+                    handleEditResume()
+                  } else {
+                    handleAddResume();
+                  }
+                }}
+              >
+                Preview
               </Button>
             )}
 

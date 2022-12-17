@@ -10,8 +10,22 @@ import {
   Checkbox,
 } from "antd";
 
-const Education = () => {
+const Education = ({ preload }) => {
   const form = Form.useFormInstance();
+
+  console.log("preload", preload)
+  useEffect(() => {
+    form.setFieldsValue({
+      cityEducation: preload?.educations[0]?.city,
+      stateEducation: preload?.educations[0]?.state,
+      certificateDegreeName: preload?.educations[0]?.degree,
+      universityInstitutionName: preload?.educations[0]?.schoolName,
+      // startDateMonthEducation: preload?.educations[0]?.startDate?.month,
+      // startDateYearEducation: preload?.educations[0]?.startDate?.year,
+      // endDateMonthEducation: preload?.educations[0]?.endDate?.month,
+      // endDateYearEducation: preload?.educations[0]?.endDate?.year,
+      // addAnotherEducation: preload?.educations[0]?.addAnotherEducation
+  })})
 
   useEffect(() => {
     // watching fields for user input and logging data to the console

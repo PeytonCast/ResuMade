@@ -42,7 +42,7 @@ const AddResumeCard = () => {
   // };
 
  const nav = useNavigate();
-  const handleAddResume = async (resumeID) => {
+  const fillOutResume = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
   // console.log("token", token)
     if (!token) {
@@ -51,14 +51,7 @@ const AddResumeCard = () => {
   
     try {
      
-      // console.log('edit resume id:',resumeID)
-      // const updateResume = await editResume({variables: {id: resumeID}});
-      // console.log('edit updateResume:', updateResume)
-      // if (!resumeID) {
-      //   throw new Error('there is no resume with that id');
-      // }
   
-      // setUserData(updateResume);
       nav("/form");
     } catch (err) {
       console.error(err);
@@ -73,7 +66,7 @@ const AddResumeCard = () => {
           <Card hoverable
           style={{ width: 240, paddingLeft: 38, paddingRight: 38, paddingTop: 12, paddingBottom: 6 }}
           cover={<img alt="addIcon" src={`${addIcon}`} />}>
-              <Button type="primary" onClick={() => handleAddResume()} >New Resume</Button>
+              <Button type="primary" onClick={() => fillOutResume()} >New Resume</Button>
           </Card>
         </div>
     </div>

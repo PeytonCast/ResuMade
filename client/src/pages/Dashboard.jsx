@@ -9,11 +9,26 @@ import ResumeList from "../components/ResumeList";
 
 //user can add, delete, edit resume
 const Dashboard = () => {
-  const { data, loading } = useQuery(QUERY_ME);
+  const { data: userObject, loading:loadingData } = useQuery(QUERY_ME);
+  const user = userObject?.me || userObject?.user || {};
 
-  const user = data?.me || data?.user || {};
+  //Arthur, this return the whole resume object if you give the resumeID that you are looking for
+  const resumeId = ''
+  const getResumeObject = (resumeId) => {
+    const resumeList = user?.resumes
+    if(resumeList) {
+       const resumeIndex = resumeList.findIndex(obj => {
+      return obj._id == resumeId
+    })
+      return resumeList[resumeIndex]
+    } else {
+      return 
+    }
+   
+  }
+  
+  console.log("answer",getResumeObject(resumeId))
 
-  console.log(user);
   return (
     <div>
       {Auth.loggedIn() ? (

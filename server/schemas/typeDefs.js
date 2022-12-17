@@ -21,13 +21,13 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        zip: Int!
-        phoneNumber: Int!
+        zip: String!
+        phoneNumber: String!
         email: String!
         userGithub: String!
         linkedin: String!
         portfolio: String!
-        
+
         
     }
     type SkillInfo {
@@ -63,7 +63,7 @@ const typeDefs = gql`
         endDate: Date
         city: String
         state: String
-        
+
     }
 
     type Resume {
@@ -88,7 +88,8 @@ const typeDefs = gql`
     
     type Query {
         me: User
-        checkout(resumeId: ID!): Checkout
+        resume(resumeId: ID!): Resume
+        checkout: Checkout
       }
 
     input InputPersonalInfo {
@@ -96,12 +97,12 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        phoneNumber: Int!
+        phoneNumber: String!
         email: String!
         userGithub: String!
         linkedin: String!
         portfolio: String!
-        zip: Int!
+        zip: String!
       }
 
     input InputSkillInfo {
@@ -138,7 +139,7 @@ const typeDefs = gql`
         endDate: InputDate
         city: String
         state: String
-        
+
     }
 
     input InputResume {
@@ -158,6 +159,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         removeResume(_id : ID!): User
         setPaidTrue(resumeId : ID!): User
+        editResume(resumeId: ID!, resumeData: InputResume!): User
     }
 
 `;
