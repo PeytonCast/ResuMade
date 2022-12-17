@@ -15,7 +15,7 @@ const resumeSchema = {
         state: { type: String,
             required : true},
 
-        zip: { type: Number,
+        zip: { type: String,
             required : true,
 
         },
