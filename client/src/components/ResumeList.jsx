@@ -9,15 +9,21 @@ import {
 } from "@ant-design/icons";
 import { Card, Button, Space, Col, Row, ConfigProvider } from "antd";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_ME, QUERY_RESUME } from "../utils/queries";
 import { SAVE_RESUME, REMOVE_RESUME } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+
+// import { getResumeId, storeResumeId} from '../utils/API'
 
 const ResumeList = () => {
   const [userData, setUserData] = useState({});
   const { data, loading } = useQuery(QUERY_ME);
   const [removeResume] = useMutation(REMOVE_RESUME);
-  const [editResume] = useMutation(SAVE_RESUME);
+  const nav = useNavigate();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {variables: {resumeId: searchParams.get("resumeId")}});
 
   // checks if the user is logged in and gets user's data
   useEffect(() => {
@@ -50,14 +56,7 @@ const ResumeList = () => {
     }
 
     try {
-      // console.log('edit resume id:',resumeID)
-      // const updateResume = await editResume({variables: {id: resumeID}});
-      // console.log('edit updateResume:', updateResume)
-      // if (!resumeID) {
-      //   throw new Error('there is no resume with that id');
-      // }
-      // setUserData(updateResume);
-      // window.location.reload();
+      nav(`/form?resumeId=${resumeID}`);
     } catch (err) {
       console.error(err);
     }
