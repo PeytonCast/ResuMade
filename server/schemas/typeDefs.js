@@ -21,7 +21,7 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         state: String!
-        zip: Int!
+        zip: String!
         phoneNumber: String!
         email: String!
         userGithub: String!
@@ -102,7 +102,7 @@ const typeDefs = gql`
         userGithub: String!
         linkedin: String!
         portfolio: String!
-        zip: Int!
+        zip: String!
       }
 
     input InputSkillInfo {
