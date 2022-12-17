@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Row, Col, Space, InputNumber } from "antd";
+import "./forms.css";
 
 const UserInfo = () => {
   const form = Form.useFormInstance();
@@ -35,77 +36,79 @@ const UserInfo = () => {
   // const portfolio = Form.useWatch("portfolio", form);
 
   return (
-    <>
-      <Row>
-        <Col span={24}>
+    <div className="form-container">
+      <Row gutter={16}>
+        <Col span={18}>
           <Form.Item label="First Name" name="firstName">
             <Input />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={18}>
           <Form.Item label="Last Name" name="lastName">
             <Input />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={8}>
           <Form.Item label="City" name="cityPersonal">
             <Input />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={6}>
           <Form.Item label="State" name="statePersonal">
             {/* default input to all caps */}
             <Input maxLength={2} />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={6}>
           <Form.Item label="Zip" name="zip">
             <InputNumber minLength={5} maxLength={9} />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={18}>
           <Form.Item label="Phone" name="phone">
             <InputNumber minLength={10} maxLength={10} />
           </Form.Item>
         </Col>
 
-        <Col span={24}>
+        <Col span={12}>
           <Form.Item label="Professional Email" name="professionalEmail">
             <Input type="email" />
           </Form.Item>
         </Col>
-
-        {/* <Form.Item label="Socials" name="socials"> */}
-        {/* <Input.Group> */}
-
-        {/* add note to not include https:// or www. for all 3 URLs*/}
-        <Form.Item label="Github" name="github">
-          <Input addonBefore="https://" placeholder="Github" name="github" />
-        </Form.Item>
-
-        <Form.Item label="Linkedin" name="linkedin">
-          <Input
-            addonBefore="https://"
-            placeholder="LinkedIn"
-            name="linkedin"
-          />
-        </Form.Item>
-
-        <Form.Item label="Portfolio" name="portfolio">
-          <Input
-            addonBefore="https://"
-            placeholder="Portfolio"
-            name="portfolio"
-          />
-          {/* </Input.Group> */}
-        </Form.Item>
       </Row>
-    </>
+      {/* <Form.Item label="Socials" name="socials"> */}
+      {/* <Input.Group> */}
+      <Row>
+        {/* add note to not include https:// or www. for all 3 URLs*/}
+        <Col span={12}>
+          <Form.Item label="Github" name="github">
+            <Input addonBefore="https://" placeholder="Github" name="github" />
+          </Form.Item>
+
+          <Form.Item label="Linkedin" name="linkedin">
+            <Input
+              addonBefore="https://"
+              placeholder="LinkedIn"
+              name="linkedin"
+            />
+          </Form.Item>
+
+          <Form.Item label="Portfolio" name="portfolio">
+            <Input
+              addonBefore="https://"
+              placeholder="Portfolio"
+              name="portfolio"
+            />
+            {/* </Input.Group> */}
+          </Form.Item>
+        </Col>
+      </Row>
+    </div>
   );
 };
 export default UserInfo;
