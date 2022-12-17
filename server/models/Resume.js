@@ -1,7 +1,9 @@
 const { Schema, model } = require('mongoose')
 const resumeSchema = {
     // this is an object with nested objects of the users personal information
-    isPaid: {type: Boolean},
+    isPaid: {type: Boolean,
+        default: false
+    },
     personalInfo: {
         firstName: { type: String,
             required : true},
