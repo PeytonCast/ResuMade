@@ -1,11 +1,12 @@
 import React from "react";
 import docSaver from "file-saver";
+import createDocument  from '../components/Templates/template.js';
 const { Packer } = require("docx");
-const renderResume = require('../components/Templates/template.js');
+
 const resume = require('../components/Templates/resumedata');
 
 const Payment = async () => {
-    const resumeBlob = await Packer.toBlob(renderResume(resume));
+    const resumeBlob = await Packer.toBlob(createDocument(resume));
     docSaver.saveAs(
         resumeBlob, 
         `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
