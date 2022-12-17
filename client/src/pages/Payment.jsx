@@ -12,10 +12,10 @@ const Payment = async () => {
     resumeBlob,
     `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
   );
-  message.success("Your ResuMate is ready to download!");
+  message.success("Payment succesful. Thank you!");
   setTimeout(() => {
     window.location.assign("/dashboard");
-  }, 3000);
+  }, 5000);
 
   return (
     <div>
