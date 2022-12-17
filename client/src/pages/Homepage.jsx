@@ -2,8 +2,13 @@ import React from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
-import { Layout } from "antd";
-import { Carousel, Col, Row } from "antd";
+import { Carousel, Col, Row, Layout } from "antd";
+import dashboardCap from "../assets/dashboard-cap.png";
+import formPreview1 from "../assets/form-preview-1.png";
+import formPreview2 from "../assets/form-preview-2.png";
+import resumePreview from "../assets/resume-preview-cap.png";
+import signupPreveiw from "../assets/signup-cap.png";
+
 const { Content } = Layout;
 
 const Homepage = () => {
@@ -69,8 +74,8 @@ const Homepage = () => {
                   </h2>
                   <div className="carousel-img">
                     <img
-                      src="https://uploads-ssl.webflow.com/6084b8de4ac99398870ea634/6097b9174eb64608cbcb5a08_gpfTiueUTZym2xzjJI7q.png"
-                      style={{ height: "400 px", width: "500 px" }}
+                      src={signupPreveiw}
+                      style={{ maxHeight: 600, maxWidth: 800 }}
                       alt="form"></img>
                   </div>
                 </div>
@@ -80,29 +85,31 @@ const Homepage = () => {
                   </h2>
                   <div className="carousel-img">
                     <img
-                      src="https://uploads-ssl.webflow.com/6084b8de4ac99398870ea634/6097b9174eb64608cbcb5a08_gpfTiueUTZym2xzjJI7q.png"
-                      style={{ height: "400 px", width: "500 px" }}
-                      alt="form"></img>
-                  </div>
-                </div>
-                <div>
-                  <h2 style={{ padding: "50px" }}>3. Save and quit anytime</h2>
-                  <div className="carousel-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/6084b8de4ac99398870ea634/6097b9174eb64608cbcb5a08_gpfTiueUTZym2xzjJI7q.png"
-                      style={{ height: "400 px", width: "500 px" }}
+                      src={formPreview1}
+                      style={{ maxHeight: 600, maxWidth: 800 }}
                       alt="form"></img>
                   </div>
                 </div>
                 <div>
                   <h2 style={{ padding: "50px" }}>
-                    4. Preview and download your generated resume after
-                    completing all the questions!
+                    3. Preview your resume and download
                   </h2>
                   <div className="carousel-img">
                     <img
-                      src="https://binaries.templates.cdn.office.net/support/templates/en-us/lt16402488_quantized.png"
-                      style={{ height: "400 px", width: "500 px" }}
+                      src={resumePreview}
+                      style={{ maxHeight: 600, maxWidth: 800 }}
+                      alt="form"></img>
+                  </div>
+                </div>
+                <div>
+                  <h2 style={{ padding: "50px" }}>
+                    4. Your resumes will be automatically saved to your account
+                    dashboard
+                  </h2>
+                  <div className="carousel-img">
+                    <img
+                      src={dashboardCap}
+                      style={{ maxHeight: 600, maxWidth: 800 }}
                       alt="form"></img>
                   </div>
                 </div>

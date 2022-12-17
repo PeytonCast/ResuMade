@@ -112,10 +112,21 @@ body {
 
 .preview-section {
     width: 100vw;
-    height: 800px;
+    height: 850px;
     background-color: white;
     padding-bottom: 100px;
 }
+
+.ant-carousel .slick-dots li button {
+  background: #141414;
+  opacity: 0.4;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  opacity: 1;
+  background: #141414;
+}
+
 /* 
 .preview-container {
     margin-top: 30px;
