@@ -75,7 +75,7 @@ export default function createDocument({personalInfo, summary, technicalSkills, 
                     personalInfo.lastName
                 ),
                 personalInformation (
-                    personalInfo.city + ", " + personalInfo.state, 
+                    personalInfo.city + ", " + personalInfo.state + personalInfo.zip, 
                     personalInfo.phoneNumber, 
                     personalInfo.email,
                     personalInfo.linkedin, 
