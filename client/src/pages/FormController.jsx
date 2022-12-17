@@ -14,11 +14,12 @@ import {
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME} from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
+import { getMergedStatus } from "antd/es/_util/statusUtils";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
@@ -28,11 +29,23 @@ const FormController = () => {
   const [form] = Form.useForm();
   // const { resumeId: resumeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+
   let isEdit = searchParams.get("resumeId") ? true : false
 
-  const { loading:loadingResume, error:resumeError, data:resumeData } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
+  const { loading:loadingResume, error:resumeError, data:resumeData, refetch:refetch } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
+
+  if (isEdit) {
+    refetch()
+  }
 
   let finalFormObject = {};
+
+  // const { data:getUserData, loading:loading } = useQuery(QUERY_ME);
+ 
+  // //Get resume id for new resume - Arthur
+  // const user = getUserData?.me || getUserData?.user || {};
+  // const newResumeId = user.resumes._id
+  // console.log(newResumeId);
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
@@ -89,10 +102,6 @@ const FormController = () => {
     title: item.title,
   }));
 
-  useEffect(() => {
-    console.log(userData);
-    // setUserData(userData);
-  });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -184,7 +193,7 @@ const FormController = () => {
         zip: data.zip, // add zip field on Arthur's side
         phoneNumber: data.phone,
         email: data.professionalEmail,
-        github: data.github,
+        userGithub: data.github,
         linkedin: data.linkedin,
         portfolio: data.portfolio,
       },
@@ -234,8 +243,8 @@ const FormController = () => {
           degree: data.certificateDegreeName,
           // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
           schoolName: data.universityInstitutionName,
-          // city: data.cityEducation,
-          // state: data.stateEducation,
+          city: data.cityEducation,
+          state: data.stateEducation,
           // isCurrent: // remove isCurrent field or add in Education.jsx
           startDate: {
             // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
@@ -256,7 +265,8 @@ const FormController = () => {
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject;
-    console.log("resumeData", resumeData)
+    console.log("resumeData", resumeData) 
+     console.log("daataa", finalFormObject);
   };
 
 
@@ -280,10 +290,10 @@ const FormController = () => {
       // console.log("finalFormObject", finalFormObject)
 
          const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
+         
+          const newResumeId = addResume.data.saveResume.resumes[addResume.data.saveResume.resumes.length-1]._id
 
-
-
-        // setUserData(setUserData);
+          console.log("newResumeId", newResumeId)
     } catch (err) {
       console.log("nope");
     }
