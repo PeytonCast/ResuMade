@@ -1,7 +1,6 @@
-.formContainer {
-    width: 45vw;
+
+.main-container {
+    width: 100vw;
+    padding-top: 50px;
 }
 
-.resumePreview {
-    width: 45vw;
-}

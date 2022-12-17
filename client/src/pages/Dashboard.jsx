@@ -6,37 +6,46 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { Col, Row } from "antd";
 import ResumeList from "../components/ResumeList";
+import "../index.css";
 
 //user can add, delete, edit resume
 const Dashboard = () => {
-  const { data: userObject, loading:loadingData } = useQuery(QUERY_ME);
+  const { data: userObject, loading: loadingData } = useQuery(QUERY_ME);
   const user = userObject?.me || userObject?.user || {};
 
   //Arthur, this return the whole resume object if you give the resumeID that you are looking for
-  const resumeId = ''
+  const resumeId = "";
   const getResumeObject = (resumeId) => {
-    const resumeList = user?.resumes
-    if(resumeList) {
-       const resumeIndex = resumeList.findIndex(obj => {
-      return obj._id == resumeId
-    })
-      return resumeList[resumeIndex]
+    const resumeList = user?.resumes;
+    if (resumeList) {
+      const resumeIndex = resumeList.findIndex((obj) => {
+        return obj._id == resumeId;
+      });
+      return resumeList[resumeIndex];
     } else {
-      return 
+      return;
     }
-   
-  }
-  
-  console.log("answer",getResumeObject(resumeId))
+  };
+
+  console.log("answer", getResumeObject(resumeId));
 
   return (
-    <div>
+    <div className="dashboard">
       {Auth.loggedIn() ? (
-        <>
-          <h2>Welcome {`${user.username} to your Profile`}!</h2>
-          <AddResumeCard />
-          <ResumeList />
-        </>
+        <div className="dash-hero">
+          <h2 style={{ textAlign: "right" }}>Welcome, {`${user.username}!`}</h2>
+          <p style={{ textAlign: "right" }}>
+            Add, edit and download your resumes here.
+          </p>
+          <div className="dash-content">
+            <Row gutter={[24, 24]}>
+              <Col span={6}>
+                <AddResumeCard />
+              </Col>
+              <ResumeList />
+            </Row>
+          </div>
+        </div>
       ) : (
         <>
           <Row>

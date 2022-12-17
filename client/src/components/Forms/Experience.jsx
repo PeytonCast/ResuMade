@@ -10,6 +10,7 @@ import {
   DatePicker,
   Space,
 } from "antd";
+import "./forms.css";
 const { TextArea } = Input;
 
 const Experience = ({ preload }) => {
@@ -144,7 +145,7 @@ const Experience = ({ preload }) => {
   const addAnother = Form.useWatch("addAnotherExperience", form);
 
   return (
-    <>
+    <div className="experience">
       <Form.Item label="Job Title" name="jobTitle">
         <Input />
       </Form.Item>
@@ -195,8 +196,7 @@ const Experience = ({ preload }) => {
             id="currentJob"
             name="currentJob"
             label="Current Job?"
-            valuePropName="checked"
-          >
+            valuePropName="checked">
             <Checkbox></Checkbox>
           </Form.Item>
         </Col>
@@ -209,11 +209,10 @@ const Experience = ({ preload }) => {
       <Form.Item
         label="Add Another"
         name="addAnotherExperience"
-        valuePropName="checked"
-      >
+        valuePropName="checked">
         <Checkbox></Checkbox>
       </Form.Item>
-    </>
+    </div>
   );
 };
 export default Experience;

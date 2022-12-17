@@ -47,12 +47,11 @@ const Template = ({ resume }) => {
     <div id="template">
       <div className="aParagraph">
         <p className="name">
-          {resume.personalInfo.firstName}{" "}
-          {resume.personalInfo.lastName}
+          {resume.personalInfo.firstName} {resume.personalInfo.lastName}
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}
-          {resume.personalInfo.state} | <b>Phone:</b>{" "}
+          {resume.personalInfo.state},{" "} {resume.personalInfo.zip}| <b>Phone:</b>{" "}
           {resume.personalInfo.phoneNumber} | <b>Email:</b>{" "}
           {resume.personalInfo.email}
         </p>
