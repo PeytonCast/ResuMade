@@ -20,7 +20,7 @@ const resumeSchema = {
 
         },
 
-        phoneNumber:{ type: Number,
+        phoneNumber:{ type: String,
             required: true},
 
         email:{ type: String,
