@@ -265,7 +265,6 @@ const FormController = () => {
       if (searchParams){
           const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
         }
-        
     } catch (err) {
       console.log(err);
       

@@ -61,6 +61,20 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
+            if (!username){
+              console.log("username", username)
+              throw new AuthenticationError('Need username');
+            }
+
+            if (!email){
+              console.log("email", email)
+              throw new AuthenticationError('Need email');
+            }
+
+            if (!password){
+              console.log("passwrod", password)
+              throw new AuthenticationError('Need password');
+            }
             return { token, user };
           },
         
