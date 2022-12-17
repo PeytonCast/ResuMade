@@ -38,19 +38,19 @@ const Projects = () => {
   // // checkbox
   const addAnother = Form.useWatch("addAnotherProject", form);
 
-  const rules = [
-    {
-      required: true,
-      message: "This field is required",
-    },
-  ];
+  // const rules = [
+  //   {
+  //     required: true,
+  //     message: "This field is required",
+  //   },
+  // ];
 
   return (
     <>
       <h4>A minimum of three projects is industry standard.</h4>
       <Row>
         <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameOne" rules={rules}>
+          <Form.Item label="Project Name" name="projectNameOne">
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
@@ -68,11 +68,7 @@ const Projects = () => {
 
       <Row>
         <Col span={12}>
-          <Form.Item
-            label="Github Repo Link"
-            name="githubRepoLinkOne"
-            rules={rules}
-          >
+          <Form.Item label="Github Repo Link" name="githubRepoLinkOne">
             <Input addonBefore="https://" placeholder="Github" type="text" />
           </Form.Item>
         </Col>
@@ -81,7 +77,6 @@ const Projects = () => {
           <Form.Item
             label="Deployed Application Link"
             name="deployedApplicationLinkOne"
-            rules={rules}
           >
             <Input
               addonBefore="https://"
@@ -92,15 +87,11 @@ const Projects = () => {
         </Col>
       </Row>
 
-      <Form.Item
-        label="Project Description"
-        name="projectDescriptionOne"
-        rules={rules}
-      >
+      <Form.Item label="Project Description" name="projectDescriptionOne">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRole" rules={rules}>
+      <Form.Item label="Your Role" name="yourRoleOne">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -109,7 +100,6 @@ const Projects = () => {
       <Form.Item
         label="Tools and Technologies Used"
         name="toolsTechnologiesOne"
-        rules={rules}
       >
         <TextArea rows={4} />
       </Form.Item>
@@ -127,7 +117,7 @@ const Projects = () => {
       {/* second project */}
       <Row>
         <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameTwo" rules={rules}>
+          <Form.Item label="Project Name" name="projectNameTwo">
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
@@ -145,11 +135,7 @@ const Projects = () => {
 
       <Row>
         <Col span={12}>
-          <Form.Item
-            label="Github Repo Link"
-            name="githubRepoLinkTwo"
-            rules={rules}
-          >
+          <Form.Item label="Github Repo Link" name="githubRepoLinkTwo">
             <Input addonBefore="https://" placeholder="Github" type="text" />
           </Form.Item>
         </Col>
@@ -158,7 +144,6 @@ const Projects = () => {
           <Form.Item
             label="Deployed Application Link"
             name="deployedApplicationLinkTwo"
-            rules={rules}
           >
             <Input
               addonBefore="https://"
@@ -169,15 +154,11 @@ const Projects = () => {
         </Col>
       </Row>
 
-      <Form.Item
-        label="Project Description"
-        name="projectDescriptionTwo"
-        rules={rules}
-      >
+      <Form.Item label="Project Description" name="projectDescriptionTwo">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRoleTwo" rules={rules}>
+      <Form.Item label="Your Role" name="yourRoleTwo">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -186,7 +167,6 @@ const Projects = () => {
       <Form.Item
         label="Tools and Technologies Used"
         name="toolsTechnologiesTwo"
-        rules={rules}
       >
         <TextArea rows={4} />
       </Form.Item>
@@ -204,7 +184,7 @@ const Projects = () => {
       {/* third project */}
       <Row>
         <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameThree" rules={rules}>
+          <Form.Item label="Project Name" name="projectNameThree">
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
@@ -222,11 +202,7 @@ const Projects = () => {
 
       <Row>
         <Col span={12}>
-          <Form.Item
-            label="Github Repo Link"
-            name="githubRepoLinkThree"
-            rules={rules}
-          >
+          <Form.Item label="Github Repo Link" name="githubRepoLinkThree">
             <Input addonBefore="https://" placeholder="Github" type="text" />
           </Form.Item>
         </Col>
@@ -235,7 +211,6 @@ const Projects = () => {
           <Form.Item
             label="Deployed Application Link"
             name="deployedApplicationLinkThree"
-            rules={rules}
           >
             <Input
               addonBefore="https://"
@@ -246,15 +221,11 @@ const Projects = () => {
         </Col>
       </Row>
 
-      <Form.Item
-        label="Project Description"
-        name="projectDescriptionThree"
-        rules={rules}
-      >
+      <Form.Item label="Project Description" name="projectDescriptionThree">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRoleThree" rules={rules}>
+      <Form.Item label="Your Role" name="yourRoleThree">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -263,7 +234,6 @@ const Projects = () => {
       <Form.Item
         label="Tools and Technologies Used"
         name="toolsTechnologiesThree"
-        rules={rules}
       >
         <TextArea rows={4} />
       </Form.Item>
