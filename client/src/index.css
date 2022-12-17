@@ -170,5 +170,5 @@ body {
   padding-right: 2rem;
   background-image: url('https://images.unsplash.com/photo-1517664121940-f819957bb072');
   background-position: top left;
-  text-shadow: 2px 2px 2px grey;
+  text-shadow: 2px 2px 2px rgb(255, 255, 255);
 }

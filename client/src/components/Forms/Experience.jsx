@@ -9,13 +9,14 @@ import {
   DatePicker,
   Space,
 } from "antd";
+import "./forms.css";
 const { TextArea } = Input;
 
 const Experience = ({ preload }) => {
   const form = Form.useFormInstance();
 
   const [disabled, setDisabled] = useState(false);
-  console.log("preload", preload)
+  console.log("preload", preload);
   useEffect(() => {
     form.setFieldsValue({
       jobTitle: preload?.experiences[0]?.title,
@@ -28,7 +29,8 @@ const Experience = ({ preload }) => {
       // endDateYearExperience: preload?.experiences[0]?.endDate?.year,
       jobDescription: preload?.experiences[0]?.summary,
       // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
-  })})
+    });
+  });
 
   // const toggleDisabled = ({ disabled }) => {
   //   console.log("toggleDisabled function is working");
@@ -136,7 +138,7 @@ const Experience = ({ preload }) => {
   const addAnother = Form.useWatch("addAnotherExperience", form);
 
   return (
-    <>
+    <div className="experience">
       <Form.Item label="Job Title" name="jobTitle">
         <Input />
       </Form.Item>
@@ -187,8 +189,7 @@ const Experience = ({ preload }) => {
             id="currentJob"
             name="currentJob"
             label="Current Job?"
-            valuePropName="checked"
-          >
+            valuePropName="checked">
             <Checkbox></Checkbox>
           </Form.Item>
         </Col>
@@ -201,11 +202,10 @@ const Experience = ({ preload }) => {
       <Form.Item
         label="Add Another"
         name="addAnotherExperience"
-        valuePropName="checked"
-      >
+        valuePropName="checked">
         <Checkbox></Checkbox>
       </Form.Item>
-    </>
+    </div>
   );
 };
 export default Experience;

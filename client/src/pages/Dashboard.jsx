@@ -11,7 +11,7 @@ import "../index.css";
 //user can add, delete, edit resume
 const Dashboard = () => {
   const { data, loading } = useQuery(QUERY_ME);
- 
+
   const user = data?.me || data?.user || {};
 
   console.log(user);

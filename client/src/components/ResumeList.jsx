@@ -6,8 +6,10 @@ import {
   DownloadOutlined,
   EditOutlined,
   CloseCircleOutlined,
+  SettingOutlined,
+  EllipsisOutlined,
 } from "@ant-design/icons";
-import { Card, Button, Space, Col, Row, ConfigProvider } from "antd";
+import { Card, Button, Space, Col, Row, ConfigProvider, Popover } from "antd";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME, QUERY_RESUME } from "../utils/queries";
 import { SAVE_RESUME, REMOVE_RESUME } from "../utils/mutations";
@@ -16,6 +18,8 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 // import { getResumeId, storeResumeId} from '../utils/API'
+
+const { Meta } = Card;
 
 const ResumeList = () => {
   const [userData, setUserData] = useState({});
@@ -93,7 +97,7 @@ const ResumeList = () => {
   return (
     <div>
       <div>
-        <h3>Your saved resumes:</h3>
+        <h3 style={{ marginLeft: 15 }}>Your saved resumes:</h3>
       </div>
       <div className="cards" style={{ display: "flex" }}>
         {data?.me.resumes.map((resume, index) => (
@@ -103,33 +107,61 @@ const ResumeList = () => {
                 hoverable
                 style={{
                   width: 300,
-                  height: 410,
-                  padding: 9,
+                  height: 440,
+                  padding: 1,
                   borderColor: "gray",
                   borderStyle: "solid",
                 }}
-                cover={<img alt="example" src={`${document}`} />}>
-                <ConfigProvider
+                actions={[
+                  <Popover
+                    content={"Edit this resume"}
+                    trigger="hover"
+                    placement="bottom">
+                    <EditOutlined
+                      key="edit"
+                      onClick={() => handleEditResume(resume._id)}
+                    />
+                  </Popover>,
+                  <Popover
+                    content={"DELETE this resume"}
+                    trigger="hover"
+                    placement="bottom">
+                    <CloseCircleOutlined
+                      key="delete"
+                      onClick={() => handleDeleteResume(resume._id)}
+                    />
+                  </Popover>,
+                  <Popover
+                    content={"Download this resume (paid only)"}
+                    trigger="hover"
+                    placement="bottom">
+                    <DownloadOutlined
+                      key="download"
+                      onClick={() => handleDownloadResume(resume._id)}
+                    />
+                  </Popover>,
+                ]}
+                cover={
+                  <img
+                    alt="example"
+                    src="https://images.unsplash.com/photo-1532153432275-818ef462eb1c"
+                    height="300"
+                  />
+                }>
+                <Meta title={`${resume.summary}`} style={{ marginBottom: 2 }} />
+                {/* <ConfigProvider
                   theme={{
                     token: {
                       colorPrimary: "#141414",
                     },
                   }}>
-                  <Space size={[8, 16]} wrap>
+                  <Space size={[8, 8]} wrap>
                     <Button
                       type="primary"
                       icon={<EditOutlined />}
                       onClick={() => handleEditResume(resume._id)}>
                       Edit
                     </Button>
-
-                    <Button
-                      type="primary"
-                      icon={<DownloadOutlined />}
-                      onClick={() => handleDownloadResume(resume._id)}>
-                      Download
-                    </Button>
-
                     <Button
                       type="primary"
                       danger
@@ -137,8 +169,14 @@ const ResumeList = () => {
                       onClick={() => handleDeleteResume(resume._id)}>
                       Delete
                     </Button>
+                    <Button
+                      type="primary"
+                      icon={<DownloadOutlined />}
+                      onClick={() => handleDownloadResume(resume._id)}>
+                      Download
+                    </Button>
                   </Space>
-                </ConfigProvider>
+                </ConfigProvider> */}
               </Card>
             </Col>
           </div>

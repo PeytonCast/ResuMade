@@ -49,15 +49,15 @@ const SignupForm = (props) => {
 
   // onFinish = onSubmit
   const onFinish = async (formData) => {
-    try {
-      const { data } = await signup({
-        variables: { ...formData },
-      });
-      console.log("userData", data);
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
-    }
+    // try {
+    const { data } = await signup({
+      variables: { ...formData },
+    });
+    console.log("userData", data);
+    Auth.login(data.addUser.token);
+    // } catch (e) {
+    //   // console.error(e);
+    // }
 
     // clear form values
     setSignupFormData({

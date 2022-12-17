@@ -9,6 +9,8 @@ import addFile from "../assets/new-document.png";
 import { Card, ConfigProvider, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
+const { Meta } = Card;
+
 const AddResumeCard = () => {
   // const [addThought, { error }] = useMutation(ADD_THOUGHT, {
   //   update(cache, { data: { addThought } }) {
@@ -61,7 +63,7 @@ const AddResumeCard = () => {
   return (
     <div>
       <div>
-        <h3>Add a resume:</h3>
+        <h3 style={{ marginLeft: 15 }}>Add a resume:</h3>
       </div>
       <div className="cards">
         <ConfigProvider
@@ -70,23 +72,41 @@ const AddResumeCard = () => {
               colorPrimary: "#141414",
             },
           }}>
-          <Card
+          {/* <Card
             hoverable
+            onClick={() => fillOutResume()}
             style={{
               width: 300,
               height: 410,
               borderColor: "gray",
               borderStyle: "solid",
-            }}
-            bodyStyle={{ display: "flex", justifyContent: "center" }}
-            cover={<img alt="addIcon" src={`${addFile}`} />}>
-            <Button
-              type="primary"
+            }} */}
+          {/* bodyStyle={{ display: "flex", justifyContent: "center" }}
+          cover={<img alt="addIcon" src={`${addFile}`} />} */}
+          <Button type="link" size="size" onClick={() => fillOutResume()}>
+            <Card
+              hoverable
               icon={<PlusOutlined />}
-              onClick={() => fillOutResume()}>
-              New Resume
-            </Button>
-          </Card>
+              onClick={() => fillOutResume()}
+              cover={
+                <img
+                  alt="addIcon"
+                  src={
+                    "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe"
+                  }
+                />
+              }
+              style={{
+                width: 300,
+                height: 440,
+                borderColor: "gray",
+                borderStyle: "solid",
+                padding: 1,
+              }}>
+              <Meta title=" + New Resume" />
+            </Card>
+          </Button>
+          {/* </Card> */}
         </ConfigProvider>
       </div>
     </div>
