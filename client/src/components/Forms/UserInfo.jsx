@@ -77,13 +77,13 @@ const UserInfo = ({ preload }) => {
 
         <Col span={24}>
           <Form.Item label="Zip" name="zip">
-            <InputNumber minLength={5} maxLength={9} />
+            <Input minLength={5} maxLength={9} />
           </Form.Item>
         </Col>
 
         <Col span={24}>
           <Form.Item label="Phone" name="phone">
-            <InputNumber minLength={10} maxLength={10} />
+            <Input minLength={10} maxLength={10} />
           </Form.Item>
         </Col>
 

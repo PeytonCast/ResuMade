@@ -9,11 +9,11 @@ const typeDefs = gql`
         resumes: [Resume]
     }
     type Date {
-        year: Int
+        year: String
       }
 
     input InputDate {
-        year: Int
+        year: String
       }
 
     type PersonalInfo {
