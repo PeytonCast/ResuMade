@@ -14,10 +14,10 @@ const resumeSchema = {
 
         state: { type: String,
             required : true},
-            
+
         zip: { type: Number,
             required : true,
-            
+
         },
 
         phoneNumber:{ type: Number,
@@ -92,7 +92,7 @@ const resumeSchema = {
               },
             city: {type:String},
             state: {type:String},
-            
+
         },
     ]
 

@@ -18,8 +18,24 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!'); 
         },
+        resume: async (parent, {resumeId}, context) => {
+          // user Bearer {token}
+          // select returns everything exept for the password and version
+          if (context.user){
+              const userData = await User.findOne({ _id: context.user._id })
+              const resumeList = userData.resumes
+              const foundResume = resumeList.find(obj => {
+                return obj.id === resumeId
+              })
+              // if (foundResume === undefined) {
+              //   throw new Error(`No resume found with id ${resumeId}`)
+              // }
+              return foundResume;
+
+          }
+          throw new AuthenticationError('You need to be logged in!');
+      },
         checkout: async (parent, args, context) => {
-          console.log("test from payment")
           const url = new URL(context.headers.referer).origin;
           const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -45,6 +61,20 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
+            if (!username){
+              console.log("username", username)
+              throw new AuthenticationError('Need username');
+            }
+
+            if (!email){
+              console.log("email", email)
+              throw new AuthenticationError('Need email');
+            }
+
+            if (!password){
+              console.log("passwrod", password)
+              throw new AuthenticationError('Need password');
+            }
             return { token, user };
           },
         
@@ -74,12 +104,32 @@ const resolvers = {
                     { $push: {resumes: resumeData}},
                     { new: true }
                 );
-                console.log("line 77 resumeData",resumeData)
                 return updateUser;
             }
             throw new AuthenticationError('You need to be logged in.');
          },
-        
+         editResume: async (parent, { resumeId, resumeData}, context) => {
+          if(context.user){
+              resumeData['_id'] = resumeId
+              const userData = await User.findOne({ _id: context.user._id })
+
+              const resumeList = userData.resumes
+              const resumeIndex = resumeList.findIndex(obj => {
+
+                return obj._id == resumeId
+              })
+              resumeList[resumeIndex] = resumeData
+              const updateResumeByID = await User.findOneAndUpdate(
+
+
+                  { _id : context.user._id},
+                  {$set:{resumes: resumeList}},
+              );
+              //returns the resumeID, if you want to return an oject change the return
+              return updateResumeByID;
+          }
+          throw new AuthenticationError('You need to be logged in.');
+         },
          removeResume:  async (parent, {_id}, context)=> {
             // if ther is a contex.user, continue on else throw err
             if(context.user){
@@ -91,7 +141,6 @@ const resolvers = {
                      { $pull: { resumes: {_id} } },
                      { new: true }
                     );
-                    // console.log(_id)
                     return updateUser;}
                     catch(err){
                       console.log({err})
@@ -100,13 +149,13 @@ const resolvers = {
             // if user token is not there LOGIN
             throw new AuthenticationError('You need to be logged in!');
           },
-        
+
 
         setPaidTrue:  async (parent, {resumeId}, context)=> {
           // if ther is a contex.user, continue on else throw err
           if(context.user){
             try{
-              // find one user by id 
+              // find one user by id
               const updatedUser = await User.findOne({_id: context.user._id})
                 // resumes is = my user's array called resumes
               const resumes = updatedUser.resumes
@@ -120,15 +169,15 @@ const resolvers = {
                 return resume._id.toString() === resumeId //639bbd428810235054164636  639bbd428810235054164636
               })
               console.log("resumetoupdate",resumeToUpdate)
-              
+
               resumes[resumeToUpdate].isPaid = true;
               // console.log("updatedUser",updatedUser)
               updatedUser.resumes = resumes
               await updatedUser.save()
-          
-              
-              
-              
+
+
+
+
                   return updatedUser;}
                   catch(err){
                     console.log({err})
@@ -138,7 +187,7 @@ const resolvers = {
           }throw new AuthenticationError('You need to be logged in!');
         }
 
-    
+
     }}
     // 639bac43d820e7248c66aaa3 id 1
     // 639bac49d820e7248c66aaa8
@@ -146,7 +195,7 @@ const resolvers = {
     //  // typeDef is returning a user so i need to return a user
     // try{
       // const updateUser = await User.findOneAndUpdate(
-      //   // find user id 
+      //   // find user id
       //    { _id: context.user._id },
       //   //  update the resume by its id
       //   { $set(isPaid: true) { resumes: {resumeId} } },
@@ -155,7 +204,7 @@ const resolvers = {
 
       //   const updateUser = await User.findOneAndUpdate(
       //     { _id: context.user._id, "resumes._id": resumeId },
-      //     { 
+      //     {
       //         $set: {
       //             isPaid: true
       //         }
@@ -166,6 +215,6 @@ const resolvers = {
 
       //  {$set:{"resumes":{
       //   isPaid: true
-                
+
       // }
 module.exports = resolvers;
