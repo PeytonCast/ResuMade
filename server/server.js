@@ -15,10 +15,11 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  formatError: (err) => {
-    console.error(err);
-    return err;
-  },
+  context: authMiddleware
+  // formatError: (err) => {
+  //   console.error(err);
+  //   return err;
+  // },
 });
 // middleware
 app.use(express.urlencoded({ extended: false }));
@@ -26,9 +27,9 @@ app.use(express.json());
 
 // if we're in production, serve client/build as static assets
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// }
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err) {
@@ -37,6 +38,7 @@ app.get('/*', function(req, res) {
     }
   })
 })
+
 
 // app.use(routes);
 const startApolloServer = async (typeDefs, resolvers) => {
