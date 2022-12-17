@@ -98,7 +98,7 @@ const AddResumeCard = () => {
               }
               style={{
                 width: 300,
-                height: 440,
+                height: 435,
                 borderColor: "gray",
                 borderStyle: "solid",
                 padding: 1,

@@ -171,6 +171,12 @@ body {
 }
 
 /* DASHBOARD */
+.dashboard {
+  min-height: 100vh;
+  max-width: 90vw;
+  margin-bottom: 100px;
+}
+
 .dash-content {
   padding: 20px;
   margin-top: 60px;
@@ -178,6 +184,7 @@ body {
 
 .dash-hero {
   height:120px;
+  width: 100vw;
   padding-right: 2rem;
   background-image: url('https://images.unsplash.com/photo-1517664121940-f819957bb072');
   background-position: top left;

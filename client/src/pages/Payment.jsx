@@ -1,4 +1,5 @@
 import React from "react";
+import { message } from "antd";
 import docSaver from "file-saver";
 import createDocument from "../components/Templates/template.js";
 const { Packer } = require("docx");
@@ -11,6 +12,7 @@ const Payment = async () => {
     resumeBlob,
     `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
   );
+  message.success("Your ResuMate is ready to download!");
   setTimeout(() => {
     window.location.assign("/dashboard");
   }, 3000);

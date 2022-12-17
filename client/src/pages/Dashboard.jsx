@@ -38,7 +38,7 @@ const Dashboard = () => {
             Add, edit and download your resumes here.
           </p>
           <div className="dash-content">
-            <Row gutter={16}>
+            <Row gutter={[24, 24]}>
               <Col span={6}>
                 <AddResumeCard />
               </Col>
