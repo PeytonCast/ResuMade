@@ -40,12 +40,6 @@ const FormController = () => {
 
   let finalFormObject = {};
 
-  // const { data:getUserData, loading:loading } = useQuery(QUERY_ME);
- 
-  // //Get resume id for new resume - Arthur
-  // const user = getUserData?.me || getUserData?.user || {};
-  // const newResumeId = user.resumes._id
-  // console.log(newResumeId);
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
@@ -283,9 +277,8 @@ const FormController = () => {
 
   }
 
-  //add the resume to the db
+  //add the resume to the db -Arthur
   const handleAddResume = async () => {
-    // console.log("meli", userData)
       try {
       // console.log("finalFormObject", finalFormObject)
 
