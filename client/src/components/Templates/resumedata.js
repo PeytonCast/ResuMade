@@ -10,7 +10,7 @@ module.exports = {
         "phoneNumber": "714-589-7485",
         "email": "odthientho@gmail.com",
         "github": "odthientho",
-        "linkedin": "odthientho",   zip: "30309",
+        "linkedin": "odthientho",
         "portfolio": "odthientho.github.io/arthur-portfolio"
     },
     "summary": "A software engineer with a professional education background in Theology (Master) and Computer Science (Bachelor) who has recently been trained at Georgia Tech coding boot camp in full stack web development. Logically computing thinking and problem-solver passionate about developing web-based applications for real life problems. Ability to work in a fast-paced high pressure and in a diverse team-working environment with strong communication and collaboration.",
