@@ -114,7 +114,7 @@ const FormController = () => {
     const returnArrayOfStrings = (string) => {
       // if user inputted nothing, do nothing
       if (!string) {
-        return;
+        return [];
       }
       // otherwise, split the user's input (one long string) into separate words and return an array with the .split() string method
       return string.split(", ");
@@ -165,6 +165,8 @@ const FormController = () => {
       }
     });
 
+    console.log(dateFields[7])
+
     // const firstName = data.firstName
 
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
@@ -193,13 +195,29 @@ const FormController = () => {
       },
       projects: [
         {
-          name: data.projectName,
-          githubLink: data.githubRepoLink,
-          deployment: data.deployedApplicationLink,
-          summary: data.projectDescription,
-          responsibility: data.yourRole,
-          technologies: data.toolsTechnologies,
+          name: data.projectNameOne,
+          githubLink: data.githubRepoLinkOne,
+          deployment: data.deployedApplicationLinkOne,
+          summary: data.projectDescriptionOne,
+          responsibility: data.yourRoleOne,
+          technologies: data.toolsTechnologiesOne,
           // addAnother: data.addAnotherProject // potentially addAnother button here on my side
+        },
+        {
+          name: data.projectNameTwo,
+          githubLink: data.githubRepoLinkTwo,
+          deployment: data.deployedApplicationLinkTwo,
+          summary: data.projectDescriptionTwo,
+          responsibility: data.yourRoleTwo,
+          technologies: data.toolsTechnologiesTwo,
+        },
+        {
+          name: data.projectNameThree,
+          githubLink: data.githubRepoLinkThree,
+          deployment: data.deployedApplicationLinkThree,
+          summary: data.projectDescriptionThree,
+          responsibility: data.yourRoleThree,
+          technologies: data.toolsTechnologiesThree,
         },
       ],
       experiences: [

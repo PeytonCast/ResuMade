@@ -50,7 +50,7 @@ const Projects = () => {
       <h4>A minimum of three projects is industry standard.</h4>
       <Row>
         <Col span={20}>
-          <Form.Item label="Project Name" name="projectName" rules={rules}>
+          <Form.Item label="Project Name" name="projectNameOne" rules={rules}>
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
@@ -70,7 +70,7 @@ const Projects = () => {
         <Col span={12}>
           <Form.Item
             label="Github Repo Link"
-            name="githubRepoLink"
+            name="githubRepoLinkOne"
             rules={rules}
           >
             <Input addonBefore="https://" placeholder="Github" type="text" />
@@ -80,7 +80,7 @@ const Projects = () => {
         <Col span={12}>
           <Form.Item
             label="Deployed Application Link"
-            name="deployedApplicationLink"
+            name="deployedApplicationLinkOne"
             rules={rules}
           >
             <Input
@@ -94,7 +94,7 @@ const Projects = () => {
 
       <Form.Item
         label="Project Description"
-        name="projectDescription"
+        name="projectDescriptionOne"
         rules={rules}
       >
         <TextArea rows={2} maxLength={150} showCount />
@@ -108,7 +108,7 @@ const Projects = () => {
       {/* array of strings */}
       <Form.Item
         label="Tools and Technologies Used"
-        name="toolsTechnologies"
+        name="toolsTechnologiesOne"
         rules={rules}
       >
         <TextArea rows={4} />
@@ -117,7 +117,161 @@ const Projects = () => {
       {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
       <Form.Item
         label="Add Another"
-        name="addAnotherProject"
+        name="addAnotherProjectOne"
+        valuePropName="checked"
+      >
+        {/* upon check, add a duplicate project section to add additional project */}
+        <Checkbox></Checkbox>
+      </Form.Item>
+
+      {/* second project */}
+      <Row>
+        <Col span={20}>
+          <Form.Item label="Project Name" name="projectNameTwo" rules={rules}>
+            <Input maxLength={15} type="text" />
+          </Form.Item>
+        </Col>
+
+        {/* <Col span={4}>
+          <Form.Item
+            label="Collaborative?"
+            name="collaborative"
+            valuePropName="checked"
+          >
+            <Checkbox></Checkbox>
+          </Form.Item>
+        </Col> */}
+      </Row>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="Github Repo Link"
+            name="githubRepoLinkTwo"
+            rules={rules}
+          >
+            <Input addonBefore="https://" placeholder="Github" type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            label="Deployed Application Link"
+            name="deployedApplicationLinkTwo"
+            rules={rules}
+          >
+            <Input
+              addonBefore="https://"
+              placeholder="DeployedApp"
+              type="text"
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item
+        label="Project Description"
+        name="projectDescriptionTwo"
+        rules={rules}
+      >
+        <TextArea rows={2} maxLength={150} showCount />
+      </Form.Item>
+
+      <Form.Item label="Your Role" name="yourRoleTwo" rules={rules}>
+        <TextArea rows={2} maxLength={150} showCount />
+      </Form.Item>
+
+      {/* note to ask user to separate each item with a comma and a space */}
+      {/* array of strings */}
+      <Form.Item
+        label="Tools and Technologies Used"
+        name="toolsTechnologiesTwo"
+        rules={rules}
+      >
+        <TextArea rows={4} />
+      </Form.Item>
+
+      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
+      <Form.Item
+        label="Add Another"
+        name="addAnotherProjectTwo"
+        valuePropName="checked"
+      >
+        {/* upon check, add a duplicate project section to add additional project */}
+        <Checkbox></Checkbox>
+      </Form.Item>
+
+      {/* third project */}
+      <Row>
+        <Col span={20}>
+          <Form.Item label="Project Name" name="projectNameThree" rules={rules}>
+            <Input maxLength={15} type="text" />
+          </Form.Item>
+        </Col>
+
+        {/* <Col span={4}>
+          <Form.Item
+            label="Collaborative?"
+            name="collaborative"
+            valuePropName="checked"
+          >
+            <Checkbox></Checkbox>
+          </Form.Item>
+        </Col> */}
+      </Row>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item
+            label="Github Repo Link"
+            name="githubRepoLinkThree"
+            rules={rules}
+          >
+            <Input addonBefore="https://" placeholder="Github" type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            label="Deployed Application Link"
+            name="deployedApplicationLinkThree"
+            rules={rules}
+          >
+            <Input
+              addonBefore="https://"
+              placeholder="DeployedApp"
+              type="text"
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item
+        label="Project Description"
+        name="projectDescriptionThree"
+        rules={rules}
+      >
+        <TextArea rows={2} maxLength={150} showCount />
+      </Form.Item>
+
+      <Form.Item label="Your Role" name="yourRoleThree" rules={rules}>
+        <TextArea rows={2} maxLength={150} showCount />
+      </Form.Item>
+
+      {/* note to ask user to separate each item with a comma and a space */}
+      {/* array of strings */}
+      <Form.Item
+        label="Tools and Technologies Used"
+        name="toolsTechnologiesThree"
+        rules={rules}
+      >
+        <TextArea rows={4} />
+      </Form.Item>
+
+      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
+      <Form.Item
+        label="Add Another"
+        name="addAnotherProjectThree"
         valuePropName="checked"
       >
         {/* upon check, add a duplicate project section to add additional project */}
