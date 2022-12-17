@@ -51,7 +51,7 @@ const Template = ({ resume }) => {
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}
-          {resume.personalInfo.state} | <b>Phone:</b>{" "}
+          {resume.personalInfo.state},{" "} {resume.personalInfo.zip}| <b>Phone:</b>{" "}
           {resume.personalInfo.phoneNumber} | <b>Email:</b>{" "}
           {resume.personalInfo.email}
         </p>

@@ -85,7 +85,7 @@ export default function createDocument({
         children: [
           nameHeader(personalInfo.firstName, personalInfo.lastName),
           personalInformation(
-            personalInfo.city + ", " + personalInfo.state,
+            personalInfo.city + ", " + personalInfo.state + personalInfo.zip,
             personalInfo.phoneNumber,
             personalInfo.email,
             personalInfo.linkedin,
