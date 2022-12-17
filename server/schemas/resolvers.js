@@ -59,7 +59,9 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
+          console.log("this is working for addUser")
             const user = await User.create({ username, email, password });
+            console.log("this is user", user)
             const token = signToken(user);
             if (!username){
               console.log("username", username)
@@ -75,6 +77,7 @@ const resolvers = {
               console.log("passwrod", password)
               throw new AuthenticationError('Need password');
             }
+            console.log("this is before the return")
             return { token, user };
           },
         
