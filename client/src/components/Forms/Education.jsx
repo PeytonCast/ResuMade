@@ -10,10 +10,12 @@ import {
   Checkbox,
 } from "antd";
 
+import "./forms.css";
+
 const Education = ({ preload }) => {
   const form = Form.useFormInstance();
 
-  console.log("preload", preload)
+  console.log("preload", preload);
   useEffect(() => {
     form.setFieldsValue({
       cityEducation: preload?.educations[0]?.city,
@@ -25,18 +27,17 @@ const Education = ({ preload }) => {
       // endDateMonthEducation: preload?.educations[0]?.endDate?.month,
       // endDateYearEducation: preload?.educations[0]?.endDate?.year,
       // addAnotherEducation: preload?.educations[0]?.addAnotherEducation
-  })})
+    });
+  });
 
   useEffect(() => {
     // watching fields for user input and logging data to the console
     // console.log(form.getFieldsValue(true));
-
     // retrieving start and end dates from user input
     // console.log(form.getFieldValue("startDateMonth"));
     // console.log(form.getFieldValue("startDateYear"));
     // console.log(form.getFieldValue("endDateMonth"));
     // console.log(form.getFieldValue("endDateMonth"));
-
     // not DRY whatsoever - but it works
     // if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
     //   // console logs the user input's start date month
@@ -44,7 +45,6 @@ const Education = ({ preload }) => {
     //     form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (
     //   form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
     // ) {
@@ -55,7 +55,6 @@ const Education = ({ preload }) => {
     //       ["startDateYearEducation"].format("YYYY")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
     //   // console logs the user input's end date month
     //   console.log(
@@ -64,7 +63,6 @@ const Education = ({ preload }) => {
     //       ["endDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
     //   // console logs the user input's end date year
     //   console.log(
@@ -115,7 +113,7 @@ const Education = ({ preload }) => {
   // };
 
   return (
-    <>
+    <div className="education">
       <Form.Item label="Certificate/Degree Name" name="certificateDegreeName">
         <Input />
       </Form.Item>
@@ -124,8 +122,7 @@ const Education = ({ preload }) => {
         <Col span={12}>
           <Form.Item
             label="University/Institution Name"
-            name="universityInstitutionName"
-          >
+            name="universityInstitutionName">
             <Input />
           </Form.Item>
         </Col>
@@ -176,11 +173,11 @@ const Education = ({ preload }) => {
           name="addAnotherEducation"
           valuePropName="checked"
         > */}
-          {/* upon check, add a duplicate education section to add additional degree */}
-          {/* <Checkbox></Checkbox> */}
+        {/* upon check, add a duplicate education section to add additional degree */}
+        {/* <Checkbox></Checkbox> */}
         {/* </Form.Item> */}
       </Row>
-    </>
+    </div>
   );
 };
 export default Education;
