@@ -16,6 +16,10 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  // formatError: (err) => {
+  //   console.error(err);
+  //   return err;
+  // },
 });
 // middleware
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +31,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/build")));
 // }
 
-//BACKEND route GET pages
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });

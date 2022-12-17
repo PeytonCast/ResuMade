@@ -18,7 +18,7 @@ const Education = ({ preload }) => {
   console.log("preload", preload);
   useEffect(() => {
     form.setFieldsValue({
-      cityEducation: preload?.educations?.city,
+      cityEducation: preload?.educations[0]?.city,
       stateEducation: preload?.educations[0]?.state,
       certificateDegreeName: preload?.educations[0]?.degree,
       universityInstitutionName: preload?.educations[0]?.schoolName,

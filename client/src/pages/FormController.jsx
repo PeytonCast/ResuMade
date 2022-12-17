@@ -14,11 +14,12 @@ import {
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import "./formController.css";
+import { getMergedStatus } from "antd/es/_util/statusUtils";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
@@ -41,18 +42,25 @@ const FormController = () => {
   const [form] = Form.useForm();
   // const { resumeId: resumeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+
   let isEdit = searchParams.get("resumeId") ? true : false;
 
   const {
     loading: loadingResume,
     error: resumeError,
     data: resumeData,
+    refetch: refetch,
   } = useQuery(QUERY_RESUME, {
     skip: !isEdit,
     variables: { resumeId: searchParams.get("resumeId") },
   });
 
+  if (isEdit) {
+    refetch();
+  }
+
   let finalFormObject = {};
+
   // state variables
   const [current, setCurrent] = useState(0);
   const [userData, setUserData] = useState({});
@@ -108,11 +116,6 @@ const FormController = () => {
     key: item.title,
     title: item.title,
   }));
-
-  useEffect(() => {
-    console.log(userData);
-    // setUserData(userData);
-  });
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -252,8 +255,8 @@ const FormController = () => {
           degree: data.certificateDegreeName,
           // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
           schoolName: data.universityInstitutionName,
-          // city: data.cityEducation,
-          // state: data.stateEducation,
+          city: data.cityEducation,
+          state: data.stateEducation,
           // isCurrent: // remove isCurrent field or add in Education.jsx
           startDate: {
             // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
@@ -274,6 +277,7 @@ const FormController = () => {
     setUserData(resumeObject);
     finalFormObject = resumeObject;
     console.log("resumeData", resumeData);
+    console.log("daataa", finalFormObject);
   };
 
   const handleEditResume = async () => {
@@ -293,9 +297,8 @@ const FormController = () => {
     }
   };
 
-  //add the resume to the db
+  //add the resume to the db -Arthur
   const handleAddResume = async () => {
-    // console.log("meli", userData)
     try {
       // console.log("finalFormObject", finalFormObject)
 
@@ -303,7 +306,12 @@ const FormController = () => {
         variables: { resumeData: finalFormObject },
       });
 
-      // setUserData(setUserData);
+      const newResumeId =
+        addResume.data.saveResume.resumes[
+          addResume.data.saveResume.resumes.length - 1
+        ]._id;
+
+      console.log("newResumeId", newResumeId);
     } catch (err) {
       console.log("nope");
     }
