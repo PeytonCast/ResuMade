@@ -56,6 +56,7 @@ const ResumeList = () => {
   }
 
   try {
+
     nav(`/form?resumeId=${resumeID}`);
   } catch (err) {
     console.error(err);
