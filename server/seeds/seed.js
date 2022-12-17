@@ -35,7 +35,7 @@ db.once('open', async () => {
           lastName: faker.name.lastName(),
           city: faker.address.cityName(),
           state: faker.address.state(),
-          phoneNumber: 1234567891,
+          phoneNumber: "1234567891",
           zip: 12345,
           email: email,
           userGithub: username,
