@@ -184,7 +184,7 @@ const FormController = () => {
         zip: data.zip, // add zip field on Arthur's side
         phoneNumber: data.phone,
         email: data.professionalEmail,
-        userGithub: data.github,
+        github: data.github,
         linkedin: data.linkedin,
         portfolio: data.portfolio,
       },
