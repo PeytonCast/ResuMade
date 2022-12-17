@@ -7,7 +7,53 @@ query me {
     email
     resumes {
       _id
+      isPaid
+      personalInfo {
+        firstName
+        lastName
+        city
+        state
+        zip
+        phoneNumber
+        email
+        userGithub
+        linkedin
+        portfolio
+      }
       summary
+      skills {
+        languages
+        frameworks
+        libraries
+        concepts
+      }
+      projects {
+        githubLink
+        name
+        deployment
+        summary
+        responsibility
+        technologies
+      }
+      experiences {
+        title
+        company
+        city
+        state
+        summary
+        startDate {
+          year
+        }
+        endDate {
+          year
+        }
+      }
+      educations {
+        degree
+        schoolName
+        city
+        state
+      }
     }
     username
   }
