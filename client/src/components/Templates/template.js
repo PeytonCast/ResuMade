@@ -194,6 +194,7 @@ function paragraphHeader(subject) {
   });
 }
 
+
 function skillInformation(skills) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_4,
@@ -285,6 +286,7 @@ function dateFormat(startDate, endDate, isCurrent) {
   return `${startDateText} - ${endDateText}`;
 }
 
+
 function itemHeader(itemHeader, dateText) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_3,
@@ -306,6 +308,7 @@ function itemHeader(itemHeader, dateText) {
   });
 }
 
+
 function itemInfo(itemInfo, itemRight) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_4,
@@ -325,6 +328,7 @@ function itemInfo(itemInfo, itemRight) {
     ],
   });
 }
+
 
 function itemDetail(itemDetail) {
   return new Paragraph({
