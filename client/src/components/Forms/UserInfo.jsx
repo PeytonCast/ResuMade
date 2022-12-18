@@ -79,35 +79,57 @@ const UserInfo = ({ preload }) => {
 
   return (
     <div className="personal-container">
-      <Form.Item {...formItemLayout} label="First Name" name="firstName">
-        <Input style={{ width: 400 }} type="text"/>
+      <Form.Item
+        {...formItemLayout}
+        label="First Name"
+        name="firstName"
+        rules={rules}
+      >
+        <Input style={{ width: 400 }} type="text" />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="Last Name" name="lastName">
-        <Input style={{ width: 400 }} type="text"/>
+      <Form.Item
+        {...formItemLayout}
+        label="Last Name"
+        name="lastName"
+        rules={rules}
+      >
+        <Input style={{ width: 400 }} type="text" />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="City" name="cityPersonal">
-        <Input style={{ width: 200 }} type="text"/>
+      <Form.Item
+        {...formItemLayout}
+        label="City"
+        name="cityPersonal"
+        rules={rules}
+      >
+        <Input style={{ width: 200 }} type="text" />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="State" name="statePersonal">
+      <Form.Item
+        {...formItemLayout}
+        label="State"
+        name="statePersonal"
+        rules={rules}
+      >
         {/* default input to all caps */}
-        <Input maxLength={2} style={{ width: 60 }} type="text"/>
+        <Input maxLength={2} style={{ width: 60 }} type="text" />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="Zip" name="zip">
+      <Form.Item {...formItemLayout} label="Zip" name="zip" rules={rules}>
         <Input minLength={5} maxLength={5} />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="Phone" name="phone">
+      <Form.Item {...formItemLayout} label="Phone" name="phone" rules={rules}>
         <Input minLength={10} maxLength={10} style={{ width: 200 }} />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Professional Email"
-        name="professionalEmail">
+        name="professionalEmail"
+        rules={rules}
+      >
         <Input type="email" style={{ width: 400 }} />
       </Form.Item>
 
@@ -116,7 +138,7 @@ const UserInfo = ({ preload }) => {
 
       {/* add note to not include https:// or www. for all 3 URLs*/}
 
-      <Form.Item {...formItemLayout} label="Github" name="github">
+      <Form.Item {...formItemLayout} label="Github" name="github" rules={rules}>
         <Input
           addonBefore="https://"
           placeholder="Github"
@@ -126,7 +148,12 @@ const UserInfo = ({ preload }) => {
         />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="Linkedin" name="linkedin">
+      <Form.Item
+        {...formItemLayout}
+        label="Linkedin"
+        name="linkedin"
+        rules={rules}
+      >
         <Input
           addonBefore="https://"
           placeholder="LinkedIn"
@@ -136,7 +163,12 @@ const UserInfo = ({ preload }) => {
         />
       </Form.Item>
 
-      <Form.Item {...formItemLayout} label="Portfolio" name="portfolio">
+      <Form.Item
+        {...formItemLayout}
+        label="Portfolio"
+        name="portfolio"
+        rules={rules}
+      >
         <Input
           addonBefore="https://"
           placeholder="Portfolio"

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 import {
   // Checkbox,
   Form,
@@ -18,22 +18,37 @@ const Education = ({ preload }) => {
 
   console.log("preload", preload);
   useEffect(() => {
-    const formValues = form.getFieldsValue()
+    const formValues = form.getFieldsValue();
 
-    const startDate = preload?.educations[0]?.startDate?.year ? preload?.educations[0]?.startDate?.year : (formValues.startDateYearEducation ? formValues.startDateYearEducation : null )
-    const endDate = preload?.educations[0]?.endDate?.year ? preload?.educations[0]?.endDate?.year : (formValues.endDateYearEducation ? formValues.endDateYearEducation : null)
+    const startDate = preload?.educations[0]?.startDate?.year
+      ? preload?.educations[0]?.startDate?.year
+      : formValues.startDateYearEducation
+      ? formValues.startDateYearEducation
+      : null;
+    const endDate = preload?.educations[0]?.endDate?.year
+      ? preload?.educations[0]?.endDate?.year
+      : formValues.endDateYearEducation
+      ? formValues.endDateYearEducation
+      : null;
 
-      form.setFieldsValue({
-      cityEducation: formValues.cityEducation ? formValues.cityEducation : preload?.educations[0]?.city,
-      stateEducation:formValues.stateEducation ? formValues.stateEducation : preload?.educations[0]?.state,
-      certificateDegreeName: formValues.certificateDegreeName ? formValues.certificateDegreeName : preload?.educations[0]?.degree,
-      universityInstitutionName: formValues.universityInstitutionName ? formValues.universityInstitutionName : preload?.educations[0]?.schoolName,
-      startDateYearEducation: startDate ? dayjs().set('year', startDate) : "",
-      endDateYearEducation: endDate ? dayjs().set('year', endDate) : "",
+    form.setFieldsValue({
+      cityEducation: formValues.cityEducation
+        ? formValues.cityEducation
+        : preload?.educations[0]?.city,
+      stateEducation: formValues.stateEducation
+        ? formValues.stateEducation
+        : preload?.educations[0]?.state,
+      certificateDegreeName: formValues.certificateDegreeName
+        ? formValues.certificateDegreeName
+        : preload?.educations[0]?.degree,
+      universityInstitutionName: formValues.universityInstitutionName
+        ? formValues.universityInstitutionName
+        : preload?.educations[0]?.schoolName,
+      startDateYearEducation: startDate ? dayjs().set("year", startDate) : "",
+      endDateYearEducation: endDate ? dayjs().set("year", endDate) : "",
       // addAnotherEducation: preload?.educations[0]?.addAnotherEducation
-    })
-
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
     // watching fields for user input and logging data to the console
@@ -126,22 +141,28 @@ const Education = ({ preload }) => {
 
   return (
     <div className="education">
-      <Form.Item label="Certificate/Degree Name" name="certificateDegreeName">
-        <Input type="text"/>
+      <Form.Item
+        label="Certificate/Degree Name"
+        name="certificateDegreeName"
+        rules={rules}
+      >
+        <Input type="text" />
       </Form.Item>
 
       <Row>
         <Col span={12}>
           <Form.Item
             label="University/Institution Name"
-            name="universityInstitutionName">
-            <Input type="text"/>
+            name="universityInstitutionName"
+            rules={rules}
+          >
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="cityEducation">
-            <Input type="text" rules={rules} />
+          <Form.Item label="City" name="cityEducation" rules={rules}>
+            <Input type="text" />
           </Form.Item>
         </Col>
 

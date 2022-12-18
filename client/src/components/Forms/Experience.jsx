@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 import {
   Checkbox,
   Button,
@@ -19,24 +19,42 @@ const Experience = ({ preload }) => {
   const [disabled, setDisabled] = useState(false);
   // console.log("preload", preload)
   useEffect(() => {
-
-    const formValues = form.getFieldsValue()
+    const formValues = form.getFieldsValue();
 
     // const startDate = dayjs().set('year', preload?.experiences[0]?.startDate?.year ? preload?.experiences[0]?.startDate?.year : (formValues.startDateYearExperience ? formValues.startDateYearExperience : null))
-    const startDate = preload?.experiences[0]?.startDate?.year ? preload?.experiences[0]?.startDate?.year : (formValues.startDateYearExperience ? formValues.startDateYearExperience : null)
-    const endDate = preload?.experiences[0]?.endDate?.year ? preload?.experiences[0]?.endDate?.year : (formValues.endDateYearExperience ? formValues.endDateYearExperience : null)
+    const startDate = preload?.experiences[0]?.startDate?.year
+      ? preload?.experiences[0]?.startDate?.year
+      : formValues.startDateYearExperience
+      ? formValues.startDateYearExperience
+      : null;
+    const endDate = preload?.experiences[0]?.endDate?.year
+      ? preload?.experiences[0]?.endDate?.year
+      : formValues.endDateYearExperience
+      ? formValues.endDateYearExperience
+      : null;
 
-    console.log(startDate)
+    console.log(startDate);
     form.setFieldsValue({
-      jobTitle: formValues.jobTitle ? formValues.jobTitle : preload?.experiences[0]?.title,
-      companyName: formValues.companyName ? formValues.companyName : preload?.experiences[0]?.company,
-      cityExperience: formValues.cityExperience ? formValues.cityExperience : preload?.experiences[0]?.city,
-      stateExperience: formValues.stateExperience ? formValues.stateExperience : preload?.experiences[0]?.state,
-      startDateYearExperience: startDate ? dayjs().set('year', startDate) : "",
-      endDateYearExperience: endDate ? dayjs().set('year', endDate) : "",
-      jobDescription: formValues.jobDescription ? formValues.jobDescription :  preload?.experiences[0]?.summary,
+      jobTitle: formValues.jobTitle
+        ? formValues.jobTitle
+        : preload?.experiences[0]?.title,
+      companyName: formValues.companyName
+        ? formValues.companyName
+        : preload?.experiences[0]?.company,
+      cityExperience: formValues.cityExperience
+        ? formValues.cityExperience
+        : preload?.experiences[0]?.city,
+      stateExperience: formValues.stateExperience
+        ? formValues.stateExperience
+        : preload?.experiences[0]?.state,
+      startDateYearExperience: startDate ? dayjs().set("year", startDate) : "",
+      endDateYearExperience: endDate ? dayjs().set("year", endDate) : "",
+      jobDescription: formValues.jobDescription
+        ? formValues.jobDescription
+        : preload?.experiences[0]?.summary,
       // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
-  })}, [])
+    });
+  }, []);
 
   // const toggleDisabled = ({ disabled }) => {
   //   console.log("toggleDisabled function is working");
@@ -54,9 +72,9 @@ const Experience = ({ preload }) => {
     ) {
       // console logs the user input's start date month
       console.log(
-        form
-          .getFieldsValue("startDateMonthExperience")
-          ["startDateMonthExperience"]
+        form.getFieldsValue("startDateMonthExperience")[
+          "startDateMonthExperience"
+        ]
       );
     }
 
@@ -64,11 +82,15 @@ const Experience = ({ preload }) => {
       form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]
     ) {
       // console logs the user input's start date year
-      console.log(form.getFieldsValue("startDateYearExperience")["startDateYearExperience"])
       console.log(
-        form
-          .getFieldsValue("startDateYearExperience")
-          ["startDateYearExperience"]
+        form.getFieldsValue("startDateYearExperience")[
+          "startDateYearExperience"
+        ]
+      );
+      console.log(
+        form.getFieldsValue("startDateYearExperience")[
+          "startDateYearExperience"
+        ]
       );
     }
 
@@ -77,18 +99,14 @@ const Experience = ({ preload }) => {
     ) {
       // console logs the user input's end date month
       console.log(
-        form
-          .getFieldsValue("endDateMonthExperience")
-          ["endDateMonthExperience"]
+        form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]
       );
     }
 
     if (form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]) {
       // console logs the user input's end date year
       console.log(
-        form
-          .getFieldsValue("endDateYearExperience")
-          ["endDateYearExperience"]
+        form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]
       );
     }
 
@@ -153,8 +171,8 @@ const Experience = ({ preload }) => {
 
   return (
     <div className="experience">
-      <Form.Item label="Job Title" name="jobTitle">
-        <Input type="text"/>
+      <Form.Item label="Job Title" name="jobTitle" rules={rules}>
+        <Input type="text" />
       </Form.Item>
 
       <Row>
@@ -197,8 +215,12 @@ const Experience = ({ preload }) => {
             <DatePicker picker="month" format={"MMMM"} disabled={disabled} />
           </Form.Item> */}
 
-          <Form.Item label="End Date" name="endDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} disabled={disabled}/>
+          <Form.Item
+            label="End Date"
+            name="endDateYearExperience"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
 
@@ -220,7 +242,8 @@ const Experience = ({ preload }) => {
       <Form.Item
         label="Add Another"
         name="addAnotherExperience"
-        valuePropName="checked">
+        valuePropName="checked"
+      >
         <Checkbox></Checkbox>
       </Form.Item>
     </div>
