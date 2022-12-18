@@ -93,7 +93,8 @@ const ResumeList = () => {
     const resume = getResumeObject(resumeId);
     console.log("Resume: ", resume);
     if (resume.isPaid === true) {
-      const resumeBlob = await Packer.toBlob(createDocument(resume));
+      const resumeDoc = createDocument(resume);
+      const resumeBlob = await Packer.toBlob(resumeDoc);
       docSaver.saveAs(
         resumeBlob,
         `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
