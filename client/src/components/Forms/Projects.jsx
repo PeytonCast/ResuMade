@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Checkbox, Form, Input, Row, Col } from "antd";
+import { Checkbox, Col, Input, Form, Row } from "antd";
 const { TextArea } = Input;
 
 const formItemLayout = {
@@ -25,14 +25,10 @@ const Projects = ({ preload }) => {
       toolsTechnologies: preload?.projects[0]?.technologies.join(","),
     });
   });
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
 
   Form.useWatch(
     [
       "projectName",
-      // "collaborative",
       "githubRepoLink",
       "deployedApplicationLink",
       "projectDescription",
@@ -43,44 +39,12 @@ const Projects = ({ preload }) => {
     form
   );
 
-  // // checkbox
-  // const collaborative = Form.useWatch("collaborative", form);
-
-  // const deployedApplicationLink = Form.useWatch(
-  //   "deployedApplicationLink",
-  //   form
-  // );
-  // const githubRepoLink = Form.useWatch("githubRepoLink", form);
-  // const projectDescription = Form.useWatch("projectDescription", form);
-  // const yourRole = Form.useWatch("yourRole", form);
-  // const toolsTechnologies = Form.useWatch("toolsTechnologies", form);
-
-  // // checkbox
-  const addAnother = Form.useWatch("addAnotherProject", form);
-
-  // const rules = [
-  //   {
-  //     required: true,
-  //     message: "This field is required",
-  //   },
-  // ];
-
   return (
     <div className="projects">
       <h4>A minimum of three projects is industry standard.</h4>
       <Form.Item {...formItemLayout} label="Project Name" name="projectNameOne">
         <Input maxLength={15} type="text" />
       </Form.Item>
-
-      {/* <Col span={4}>
-          <Form.Item
-            label="Collaborative?"
-            name="collaborative"
-            valuePropName="checked"
-          >
-            <Checkbox></Checkbox>
-          </Form.Item>
-        </Col> */}
 
       <Form.Item
         {...formItemLayout}
@@ -114,25 +78,12 @@ const Projects = ({ preload }) => {
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      {/* note to ask user to separate each item with a comma and a space */}
-      {/* array of strings */}
       <Form.Item
         {...formItemLayout}
         label="Tools and Technologies Used"
         name="toolsTechnologiesOne"
       >
         <TextArea rows={4} />
-      </Form.Item>
-
-      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
-      <Form.Item
-        {...formItemLayout}
-        label="Add Another"
-        name="addAnotherProjectOne"
-        valuePropName="checked"
-      >
-        {/* upon check, add a duplicate project section to add additional project */}
-        <Checkbox></Checkbox>
       </Form.Item>
 
       {/* second project */}
@@ -142,16 +93,6 @@ const Projects = ({ preload }) => {
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
-
-        {/* <Col span={4}>
-          <Form.Item
-            label="Collaborative?"
-            name="collaborative"
-            valuePropName="checked"
-          >
-            <Checkbox></Checkbox>
-          </Form.Item>
-        </Col> */}
       </Row>
 
       <Row>
@@ -183,23 +124,11 @@ const Projects = ({ preload }) => {
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      {/* note to ask user to separate each item with a comma and a space */}
-      {/* array of strings */}
       <Form.Item
         label="Tools and Technologies Used"
         name="toolsTechnologiesTwo"
       >
         <TextArea rows={4} />
-      </Form.Item>
-
-      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
-      <Form.Item
-        label="Add Another"
-        name="addAnotherProjectTwo"
-        valuePropName="checked"
-      >
-        {/* upon check, add a duplicate project section to add additional project */}
-        <Checkbox></Checkbox>
       </Form.Item>
 
       {/* third project */}
@@ -209,16 +138,6 @@ const Projects = ({ preload }) => {
             <Input maxLength={15} type="text" />
           </Form.Item>
         </Col>
-
-        {/* <Col span={4}>
-          <Form.Item
-            label="Collaborative?"
-            name="collaborative"
-            valuePropName="checked"
-          >
-            <Checkbox></Checkbox>
-          </Form.Item>
-        </Col> */}
       </Row>
 
       <Row>
@@ -250,23 +169,11 @@ const Projects = ({ preload }) => {
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      {/* note to ask user to separate each item with a comma and a space */}
-      {/* array of strings */}
       <Form.Item
         label="Tools and Technologies Used"
         name="toolsTechnologiesThree"
       >
         <TextArea rows={4} />
-      </Form.Item>
-
-      {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
-      <Form.Item
-        label="Add Another"
-        name="addAnotherProjectThree"
-        valuePropName="checked"
-      >
-        {/* upon check, add a duplicate project section to add additional project */}
-        <Checkbox></Checkbox>
       </Form.Item>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, Input, Col, Row } from "antd";
+import { Col, Form, Input, Row } from "antd";
 import "./forms.css";
 const { TextArea } = Input;
 
@@ -12,9 +12,6 @@ const Summary = ({ preload }) => {
       summary: preload?.summary,
     });
   });
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
 
   Form.useWatch(["summary", "bug"], form);
 

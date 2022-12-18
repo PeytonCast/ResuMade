@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Row, Col, Space, InputNumber } from "antd";
+import React, { useEffect } from "react";
+import { Form, Input } from "antd";
 import "./forms.css";
 
 const formItemLayout = {
@@ -28,9 +28,6 @@ const UserInfo = ({ preload }) => {
       portfolio: preload?.personalInfo?.portfolio,
     });
   });
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
 
   Form.useWatch(
     [
@@ -47,28 +44,6 @@ const UserInfo = ({ preload }) => {
     ],
     form
   );
-  // const lastName = Form.useWatch("lastName", form);
-  // const city = Form.useWatch("city", form);
-  // const state = Form.useWatch("state", form);
-  // const zip = Form.useWatch("zip", form);
-  // const phone = Form.useWatch("phone", form);
-  // const professionalEmail = Form.useWatch("professionalEmail", form);
-  // const socials = Form.useWatch("socials", form);
-  // const github = Form.useWatch("github", form);
-  // const linkedin = Form.useWatch("linkedin", form);
-  // const portfolio = Form.useWatch("portfolio", form);
-
-  // not valid on form.items
-  // const validateMessages = {
-  //   required: '${label} is required',
-  //   types: {
-  //     email: '${label} is not a valid email!',
-  //     number: '${label} is not a valid number!',
-  //   },
-  //   number: {
-  //     range: '${label} must be between ${min} and ${max}',
-  //   },
-  // };
 
   const rules = [
     {
@@ -133,11 +108,6 @@ const UserInfo = ({ preload }) => {
         <Input type="email" style={{ width: 400 }} />
       </Form.Item>
 
-      {/* <Form.Item label="Socials" name="socials"> */}
-      {/* <Input.Group> */}
-
-      {/* add note to not include https:// or www. for all 3 URLs*/}
-
       <Form.Item {...formItemLayout} label="Github" name="github" rules={rules}>
         <Input
           addonBefore="https://"
@@ -176,7 +146,6 @@ const UserInfo = ({ preload }) => {
           type="text"
           style={{ width: 400 }}
         />
-        {/* </Input.Group> */}
       </Form.Item>
     </div>
   );

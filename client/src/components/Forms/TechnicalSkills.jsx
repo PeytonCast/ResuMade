@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Input, Form, Row, Col } from "antd";
+import { Col, Form, Input, Row } from "antd";
 import "./forms.css";
 const { TextArea } = Input;
 
@@ -24,14 +24,8 @@ const TechnicalSkills = ({ preload }) => {
       coreConcepts: preload?.skills?.concepts?.join(","),
     });
   });
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
 
   Form.useWatch(["languages", "frameworks", "libraries", "coreConcepts"], form);
-  // const frameworks = Form.useWatch("frameworks", form);
-  // const libraries = Form.useWatch("libraries", form);
-  // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
     <>
