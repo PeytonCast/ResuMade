@@ -1,0 +1,28 @@
+/* UserInfo.jsx */
+.personal-container {
+    padding: 50px;
+}
+
+.summary {
+    padding: 50px;
+}
+
+.technical {
+    padding: 50px;
+}
+
+.projects {
+    padding: 50px;
+}
+
+.experience {
+    padding: 50px;
+}
+
+.education {
+    padding: 50px;
+}
+
+#resumePreview {
+    padding: 50px;
+}

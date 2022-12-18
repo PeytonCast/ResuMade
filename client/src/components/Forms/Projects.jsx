@@ -2,9 +2,29 @@ import React, { useEffect } from "react";
 import { Checkbox, Form, Input, Row, Col } from "antd";
 const { TextArea } = Input;
 
-const Projects = () => {
+const formItemLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 24,
+  },
+};
+
+const Projects = ({ preload }) => {
   const form = Form.useFormInstance();
 
+  console.log("preload", preload);
+  useEffect(() => {
+    form.setFieldsValue({
+      projectName: preload?.projects[0]?.name,
+      githubRepoLink: preload?.projects[0]?.githubLink,
+      deployedApplicationLink: preload?.projects[0]?.deployment,
+      projectDescription: preload?.projects[0]?.summary,
+      yourRole: preload?.projects[0]?.responsibility,
+      toolsTechnologies: preload?.projects[0]?.technologies.join(","),
+    });
+  });
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });
@@ -39,15 +59,12 @@ const Projects = () => {
   const addAnother = Form.useWatch("addAnotherProject", form);
 
   return (
-    <>
-      <Row>
-        <Col span={20}>
-          <Form.Item label="Project Name" name="projectName">
-            <Input maxLength={15} />
-          </Form.Item>
-        </Col>
+    <div className="projects">
+      <Form.Item {...formItemLayout} label="Project Name" name="projectName">
+        <Input maxLength={15} />
+      </Form.Item>
 
-        {/* <Col span={4}>
+      {/* <Col span={4}>
           <Form.Item
             label="Collaborative?"
             name="collaborative"
@@ -56,49 +73,48 @@ const Projects = () => {
             <Checkbox></Checkbox>
           </Form.Item>
         </Col> */}
-      </Row>
 
-      <Row>
-        <Col span={12}>
-          <Form.Item label="Github Repo Link" name="githubRepoLink">
-            <Input addonBefore="https://" placeholder="Github" />
-          </Form.Item>
-        </Col>
+      <Form.Item {...formItemLayout} label="Github Repo" name="githubRepoLink">
+        <Input addonBefore="https://" placeholder="github.com/user/repo-name" />
+      </Form.Item>
 
-        <Col span={12}>
-          <Form.Item
-            label="Deployed Application Link"
-            name="deployedApplicationLink"
-          >
-            <Input addonBefore="https://" />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Form.Item
+        {...formItemLayout}
+        label="Deployed Application"
+        name="deployedApplicationLink">
+        <Input addonBefore="https://" />
+      </Form.Item>
 
-      <Form.Item label="Project Description" name="projectDescription">
+      <Form.Item
+        {...formItemLayout}
+        label="Project Description"
+        name="projectDescription">
         <TextArea rows={2} />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRole">
+      <Form.Item {...formItemLayout} label="Your Role" name="yourRole">
         <TextArea rows={2} />
       </Form.Item>
 
       {/* note to ask user to separate each item with a comma and a space */}
       {/* array of strings */}
-      <Form.Item label="Tools and Technologies Used" name="toolsTechnologies">
+      <Form.Item
+        {...formItemLayout}
+        label="Tools and Technologies Used"
+        name="toolsTechnologies">
         <TextArea rows={4} />
       </Form.Item>
 
       {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
       <Form.Item
+        {...formItemLayout}
         label="Add Another"
         name="addAnotherProject"
-        valuePropName="checked"
-      >
+        valuePropName="checked">
         {/* upon check, add a duplicate project section to add additional project */}
         <Checkbox></Checkbox>
       </Form.Item>
-    </>
+    </div>
   );
 };
 export default Projects;

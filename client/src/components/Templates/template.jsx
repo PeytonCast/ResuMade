@@ -1,44 +1,11 @@
 import React from "react";
 import "./template.css";
 
-function getMonthFromInt(value) {
-  switch (value) {
-    case 1:
-      return "Jan";
-    case 2:
-      return "Feb";
-    case 3:
-      return "Mar";
-    case 4:
-      return "Apr";
-    case 5:
-      return "May";
-    case 6:
-      return "Jun";
-    case 7:
-      return "Jul";
-    case 8:
-      return "Aug";
-    case 9:
-      return "Sept";
-    case 10:
-      return "Oct";
-    case 11:
-      return "Nov";
-    case 12:
-      return "Dec";
-    default:
-      return "N/A";
-  }
-}
-
 function dateFormat(startDate, endDate, isCurrent) {
-  const startDateText =
-    getMonthFromInt(startDate.month) + ". " + startDate.year;
+  const startDateText = startDate.year;
   const endDateText = isCurrent
     ? "Present"
-    : `${getMonthFromInt(endDate.month)}. ${endDate.year}`;
-
+    : `${endDate.year}`;
   return `${startDateText} - ${endDateText}`;
 }
 
@@ -47,12 +14,11 @@ const Template = ({ resume }) => {
     <div id="template">
       <div className="aParagraph">
         <p className="name">
-          {resume.personalInfo.firstName}{" "}
-          {resume.personalInfo.lastName}
+          {resume.personalInfo.firstName} {resume.personalInfo.lastName}
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}
-          {resume.personalInfo.state} | <b>Phone:</b>{" "}
+          {resume.personalInfo.state},{" "} {resume.personalInfo.zip}| <b>Phone:</b>{" "}
           {resume.personalInfo.phoneNumber} | <b>Email:</b>{" "}
           {resume.personalInfo.email}
         </p>
@@ -62,7 +28,7 @@ const Template = ({ resume }) => {
           {resume.personalInfo.portfolio}
         </p>
       </div>
-      <div className="aParagraph summary">{resume.summary}</div>
+      <div className="aParagraph">{resume.summary}</div>
       <div className="aParagraph">
         <p>
           <b>TECHNICAL SKILLS</b>
@@ -129,7 +95,7 @@ const Template = ({ resume }) => {
           <>
             <p>
               <b>
-                {school.degree} in {school.fieldOfStudy}
+                {school.degree}
               </b>
               <span className="rightAllign">
                 {dateFormat(school.startDate, school.endDate, school.isCurrent)}
