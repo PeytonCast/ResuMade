@@ -13,12 +13,10 @@ import {
 
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
-import Auth from "../utils/auth";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
-import "./formController.css";
 import { getMergedStatus } from "antd/es/_util/statusUtils";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
@@ -118,6 +116,7 @@ const FormController = () => {
   }));
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [resumeId, saveResumeId] = useState("");
 
   useEffect(() => {
     if (data) {
@@ -126,10 +125,6 @@ const FormController = () => {
       });
     }
   }, [data]);
-
-  const doneBtnHandler = async () => {
-    getCheckout();
-  };
 
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
@@ -311,7 +306,7 @@ const FormController = () => {
           addResume.data.saveResume.resumes.length - 1
         ]._id;
 
-      console.log("newResumeId", newResumeId);
+          console.log("newResumeId", newResumeId)
     } catch (err) {
       console.log("nope");
     }
@@ -326,7 +321,10 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
-    doneBtnHandler();
+    console.log("newResumeId", resumeId);
+    getCheckout({
+      variables: { resumeId: resumeId },
+    });
     message.success("Your ResuMate is ready to download!");
   };
 

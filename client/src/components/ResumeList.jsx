@@ -16,6 +16,10 @@ import { SAVE_RESUME, REMOVE_RESUME } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import docSaver from "file-saver";
+import createDocument from "../components/Templates/template.js";
+import { message } from "antd";
+const { Packer } = require("docx");
 
 // import { getResumeId, storeResumeId} from '../utils/API'
 
@@ -68,8 +72,36 @@ const ResumeList = () => {
     console.log("editing resume");
   };
 
-  const handleDownloadResume = async (resumeID) => {
-    console.log("downloading resume");
+  const user = data?.me || data?.user || {};
+
+  //Arthur, this return the whole resume object if you give the resumeID that you are looking for
+  const getResumeObject = (resumeId) => {
+    const resumeList = user?.resumes;
+    if (resumeList) {
+      const resumeIndex = resumeList.findIndex((obj) => {
+        return obj._id == resumeId;
+      });
+      return resumeList[resumeIndex];
+    } else {
+      return;
+    }
+  };
+
+  const handleDownloadResume = async (resumeId) => {
+    // get the resumeobject from here
+    console.log(resumeId);
+    const resume = getResumeObject(resumeId);
+    console.log("Resume: ", resume);
+    if (resume.isPaid === true) {
+      const resumeBlob = await Packer.toBlob(createDocument(resume));
+      docSaver.saveAs(
+        resumeBlob,
+        `${resume.personalInfo.firstName} ${resume.personalInfo.lastName}.docx`
+      );
+      message.success("Succesfully downloading!");
+    } else {
+      message.warning("Please make a payment before downloading");
+    }
   };
 
   const handleDeleteResume = async (resumeID) => {

@@ -35,7 +35,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in!');
       },
-        checkout: async (parent, args, context) => {
+        checkout: async (parent, {resumeId}, context) => {
           const url = new URL(context.headers.referer).origin;
           const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -50,10 +50,9 @@ const resolvers = {
               quantity: 1,
             }],
             mode: 'payment',
-            success_url: `${url}/success`,
+            success_url: `${url}/success/${resumeId}`,
             cancel_url: `${url}/`
           });
-          console.log("sessionid", session.id);
           return { session: session.id };
         }
     },

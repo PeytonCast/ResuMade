@@ -122,8 +122,8 @@ export const QUERY_RESUME = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout {
-    checkout {
+  query getCheckout($resumeId: ID!) {
+    checkout(resumeId: $resumeId) {
       session
     }
   }

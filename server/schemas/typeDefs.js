@@ -89,7 +89,7 @@ const typeDefs = gql`
     type Query {
         me: User
         resume(resumeId: ID!): Resume
-        checkout: Checkout
+        checkout(resumeId: ID!): Checkout
       }
 
     input InputPersonalInfo {

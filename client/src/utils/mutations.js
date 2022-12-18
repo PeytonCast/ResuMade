@@ -1,5 +1,13 @@
 import { gql } from "@apollo/client";
 
+export const SET_PAID_TRUE = gql`
+  mutation setPaidTrue($resumeId: ID!) {
+    setPaidTrue(resumeId: $resumeId) {
+      _id
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
