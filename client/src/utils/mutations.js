@@ -74,6 +74,12 @@ mutation Mutation($resumeId: ID!, $resumeData: InputResume!) {
           schoolName
           city
           state
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
         }
       }
     }
@@ -143,6 +149,12 @@ export const SAVE_RESUME = gql`
           schoolName
           city
           state
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
         }
       }
     }

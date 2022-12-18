@@ -72,10 +72,10 @@ const resumeSchema = {
             state: {type:String},
             summary: {type:String},
             startDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
         }
     ],
@@ -87,10 +87,10 @@ const resumeSchema = {
             schoolName: {type:String,
             required: true},
             startDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             city: {type:String},
             state: {type:String},

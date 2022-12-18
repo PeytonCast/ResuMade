@@ -78,11 +78,11 @@ const UserInfo = ({ preload }) => {
       </Form.Item>
 
       <Form.Item {...formItemLayout} label="Zip" name="zip">
-        <InputNumber minLength={5} maxLength={9} />
+        <Input minLength={5} maxLength={9} />
       </Form.Item>
 
       <Form.Item {...formItemLayout} label="Phone" name="phone">
-        <InputNumber minLength={10} maxLength={10} style={{ width: 200 }} />
+        <Input minLength={10} maxLength={10} style={{ width: 200 }} />
       </Form.Item>
 
       <Form.Item
