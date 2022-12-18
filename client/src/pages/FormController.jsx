@@ -306,7 +306,7 @@ const FormController = () => {
           addResume.data.saveResume.resumes.length - 1
         ]._id;
 
-          console.log("newResumeId", newResumeId)
+      saveResumeId(newResumeId);
     } catch (err) {
       console.log("nope");
     }
