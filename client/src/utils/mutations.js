@@ -1,5 +1,13 @@
 import { gql } from "@apollo/client";
 
+export const SET_PAID_TRUE = gql`
+  mutation setPaidTrue($resumeId: ID!) {
+    setPaidTrue(resumeId: $resumeId) {
+      _id
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -24,6 +32,68 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const EDIT_RESUME = gql `
+mutation Mutation($resumeId: ID!, $resumeData: InputResume!) {
+  editResume(resumeId: $resumeId, resumeData: $resumeData) {
+      resumes {
+        _id
+        personalInfo {
+          firstName
+          lastName
+          city
+          state
+          zip
+          phoneNumber
+          email
+          userGithub
+          linkedin
+          portfolio
+        }
+        summary
+        skills {
+          languages
+          frameworks
+          libraries
+          concepts
+        }
+        projects {
+          githubLink
+          name
+          deployment
+          summary
+          responsibility
+          technologies
+        }
+        experiences {
+          title
+          company
+          city
+          state
+          summary
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
+        }
+        educations {
+          degree
+          schoolName
+          city
+          state
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
+        }
+      }
+    }
+  }
+`
+
 export const REMOVE_RESUME = gql`
     mutation Mutation($id: ID!) {
         removeResume(_id: $id) {
@@ -35,81 +105,66 @@ export const REMOVE_RESUME = gql`
   
 `
 
-export const SET_PAID_TRUE = gql`mutation Mutation($id: ID!) {
-  setPaidTrue(resumeId: $id) {
-    _id
-    email
-    resumes {
-      isPaid
-      _id
-    }
-  }
-}`
-
 export const SAVE_RESUME = gql`
-mutation SaveResume($resumeData: InputResume!) {
-  saveResume(resumeData: $resumeData) {
-    _id
-    username
-    email
-    resumes {
+  mutation SaveResume($resumeData: InputResume!) {
+    saveResume(resumeData: $resumeData) {
       _id
-      isPaid
-      summary
-      skills {
-        concepts
-        frameworks
-        languages
-        libraries
-      }
-      projects {
-        deployment
-        githubLink
-        name
-        responsibility
+      resumes {
+        _id
+        isPaid
+        personalInfo {
+          firstName
+          lastName
+          city
+          state
+          zip
+          phoneNumber
+          email
+          userGithub
+          linkedin
+          portfolio
+        }
         summary
-        technologies
-      }
-      personalInfo {
-        city
-        email
-        firstName
-        lastName
-        linkedin
-        phoneNumber
-        portfolio
-        state
-        userGithub
-        zip
-      }
-      experiences {
-        title
-        summary
-        state
-        startDate {
-          year
+        skills {
+          languages
+          frameworks
+          libraries
+          concepts
         }
-        
-        endDate {
-          year
+        projects {
+          githubLink
+          name
+          deployment
+          summary
+          responsibility
+          technologies
         }
-        company
-        city
-      }
-      educations {
-        startDate {
-          year
+        experiences {
+          title
+          company
+          city
+          state
+          summary
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
         }
-        schoolName
-        endDate {
-          year
+        educations {
+          degree
+          schoolName
+          city
+          state
+          startDate {
+            year
+          }
+          endDate {
+            year
+          }
         }
-        degree
-        city
-        state
-        
       }
     }
   }
-}
 `;

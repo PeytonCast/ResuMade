@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
 import { Form, Input, Col, Row } from "antd";
+import "./forms.css";
 const { TextArea } = Input;
 
-const Summary = () => {
+const Summary = ({ preload }) => {
   const form = Form.useFormInstance();
+  console.log("preload", preload);
 
+  useEffect(() => {
+    form.setFieldsValue({
+      summary: preload?.summary,
+    });
+  });
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });
 
-  Form.useWatch("summary", form);
+  Form.useWatch(["summary", "bug"], form);
 
   return (
     <>
@@ -18,13 +25,15 @@ const Summary = () => {
         title, accomplishments, relevant past experience, tranferrable skills
         and what makes you passionate about this position or industry.
       </h4>
-      <Row>
-        <Col span={24}>
-          <Form.Item label="Summary" name="summary">
-            <TextArea rows={5} maxLength={500} showCount />
-          </Form.Item>
-        </Col>
-      </Row>
+      <div className="summary">
+        <Row>
+          <Col span={24}>
+            <Form.Item label="Summary" name="summary">
+              <TextArea rows={5} maxLength={500} showCount />
+            </Form.Item>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };

@@ -9,13 +9,14 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Navbar from "./components/Navbar";
+import FooterBar from "./components/Footer";
 import Homepage from "../src/pages/Homepage";
 import Dashboard from "../src/pages/Dashboard";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import "./index.css";
 
-import { FormController, Payment } from "./pages";
+import { FormController, Success } from "./pages";
 
 //import Footer from "./components/Footer";
 // Construct our main GraphQL API endpoint
@@ -45,18 +46,21 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
-          <Route path="/form" element={<FormController/>} />
-          <Route path="/success" element={<Payment />} />
-        </Routes>
-      </div>
+        <div className="page-container">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+            <Route path="/form" element={<FormController />} />
+            <Route path="/success/:resumeId" element={<Success />} />
+          </Routes>
+        </div>
       </Router>
+      <div>
+        <FooterBar />
+      </div>
     </ApolloProvider>
   );
 }

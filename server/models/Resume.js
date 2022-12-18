@@ -1,7 +1,9 @@
 const { Schema, model } = require('mongoose')
 const resumeSchema = {
     // this is an object with nested objects of the users personal information
-    isPaid: {type: Boolean},
+    isPaid: {type: Boolean,
+        default: false
+    },
     personalInfo: {
         firstName: { type: String,
             required : true},
@@ -14,13 +16,13 @@ const resumeSchema = {
 
         state: { type: String,
             required : true},
-            
-        zip: { type: Number,
+
+        zip: { type: String,
             required : true,
-            
+
         },
 
-        phoneNumber:{ type: Number,
+        phoneNumber:{ type: String,
             required: true},
 
         email:{ type: String,
@@ -70,10 +72,10 @@ const resumeSchema = {
             state: {type:String},
             summary: {type:String},
             startDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
         }
     ],
@@ -85,14 +87,14 @@ const resumeSchema = {
             schoolName: {type:String,
             required: true},
             startDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             endDate:{
-                year:{type: Number,}
+                year:{type: String,}
               },
             city: {type:String},
             state: {type:String},
-            
+
         },
     ]
 

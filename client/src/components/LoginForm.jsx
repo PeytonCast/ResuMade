@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  DatabaseOutlined,
-  LockOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
   Form,
@@ -16,6 +12,8 @@ import {
   Divider,
   Alert,
 } from "antd";
+
+import "../index.css";
 
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -71,85 +69,85 @@ const LoginForm = (props) => {
   };
 
   return (
-    <Row align="middle" justify="center">
-      <Col span={12}>
-        <Card style={{ height: 352 }}>
-          <Divider>Login to your account</Divider>
-          {showAlert && (
-            <Alert
-              type="error"
-              message="Login Error"
-              description="Something went wrong with your login credentials!"
-              closable
-            />
-          )}
-          {data ? (
-            <p>Success!</p>
-          ) : (
-            <Form
-              name="normal_login"
-              className="login-form"
-              onFinish={onFinish}>
-              <Form.Item
-                name="email"
-                onChange={handleInputChange}
-                value={loginFormData.email}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Email!",
-                  },
-                ]}>
-                <Input
-                  prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Email"
-                />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                onChange={handleInputChange}
-                value={loginFormData.password}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Password!",
-                  },
-                ]}>
-                <Input
-                  prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <ConfigProvider
-                  theme={{
-                    token: {
-                      colorPrimary: "#141414",
+    <div className="login-form">
+      <Row align="top" justify="center">
+        <Col span={12}>
+          <Card style={{ height: 352 }}>
+            <Divider>Login to your account</Divider>
+            {showAlert && (
+              <Alert
+                type="error"
+                message="Login Error"
+                description="Something went wrong with your login credentials!"
+                closable
+              />
+            )}
+            {data ? (
+              <p>Success!</p>
+            ) : (
+              <Form
+                name="normal_login"
+                className="login-form"
+                onFinish={onFinish}>
+                <Form.Item
+                  name="email"
+                  onChange={handleInputChange}
+                  value={loginFormData.email}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Email!",
                     },
-                  }}>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login-form-button">
-                    Log in
-                  </Button>
-                </ConfigProvider>
-              </Form.Item>
-              <Form.Item>
-                <p>
-                  No account yet?{" "}
-                  <Link to="/signup" className="link">
-                    Create one here!
-                  </Link>
-                </p>
-              </Form.Item>
-            </Form>
-          )}
-        </Card>
-      </Col>
-    </Row>
+                  ]}>
+                  <Input
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Email"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  onChange={handleInputChange}
+                  value={loginFormData.password}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Password!",
+                    },
+                  ]}>
+                  <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    type="password"
+                    placeholder="Password"
+                  />
+                </Form.Item>
+
+                <Form.Item>
+                  <ConfigProvider
+                    theme={{
+                      token: {
+                        colorPrimary: "#141414",
+                      },
+                    }}>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className="login-form-button">
+                      Log in
+                    </Button>
+                  </ConfigProvider>
+                </Form.Item>
+                <Form.Item>
+                  <p>
+                    No account yet? Click <Link to="/signup">here</Link> to
+                    signup.
+                  </p>
+                </Form.Item>
+              </Form>
+            )}
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 };
 export default LoginForm;

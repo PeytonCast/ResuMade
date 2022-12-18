@@ -2,9 +2,29 @@ import React, { useEffect } from "react";
 import { Checkbox, Form, Input, Row, Col } from "antd";
 const { TextArea } = Input;
 
-const Projects = () => {
+const formItemLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 24,
+  },
+};
+
+const Projects = ({ preload }) => {
   const form = Form.useFormInstance();
 
+  console.log("preload", preload);
+  useEffect(() => {
+    form.setFieldsValue({
+      projectName: preload?.projects[0]?.name,
+      githubRepoLink: preload?.projects[0]?.githubLink,
+      deployedApplicationLink: preload?.projects[0]?.deployment,
+      projectDescription: preload?.projects[0]?.summary,
+      yourRole: preload?.projects[0]?.responsibility,
+      toolsTechnologies: preload?.projects[0]?.technologies.join(","),
+    });
+  });
   // useEffect(() => {
   //   console.log(form.getFieldsValue(true));
   // });
@@ -46,16 +66,13 @@ const Projects = () => {
   // ];
 
   return (
-    <>
-      <h4>A minimum of three projects is industry standard.</h4>
-      <Row>
-        <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameOne">
-            <Input maxLength={15} type="text" />
-          </Form.Item>
-        </Col>
+    <div className="projects">
+    <h4>A minimum of three projects is industry standard.</h4>
+      <Form.Item {...formItemLayout} label="Project Name" name="projectName">
+        <Input maxLength={15} />
+      </Form.Item>
 
-        {/* <Col span={4}>
+      {/* <Col span={4}>
           <Form.Item
             label="Collaborative?"
             name="collaborative"
@@ -64,48 +81,41 @@ const Projects = () => {
             <Checkbox></Checkbox>
           </Form.Item>
         </Col> */}
-      </Row>
 
-      <Row>
-        <Col span={12}>
-          <Form.Item label="Github Repo Link" name="githubRepoLinkOne">
-            <Input addonBefore="https://" placeholder="Github" type="text" />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item
-            label="Deployed Application Link"
-            name="deployedApplicationLinkOne"
-          >
-            <Input
-              addonBefore="https://"
-              placeholder="DeployedApp"
-              type="text"
-            />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Form.Item label="Project Description" name="projectDescriptionOne">
-        <TextArea rows={2} maxLength={150} showCount />
+      <Form.Item {...formItemLayout} label="Github Repo" name="githubRepoLinkOne">
+        <Input addonBefore="https://" placeholder="github.com/user/repo-name" type="text"/>
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRoleOne">
-        <TextArea rows={2} maxLength={150} showCount />
+      <Form.Item
+        {...formItemLayout}
+        label="Deployed Application"
+        name="deployedApplicationLinkOne">
+        <Input addonBefore="https://" type="text"/>
+      </Form.Item>
+
+      <Form.Item
+        {...formItemLayout}
+        label="Project Description"
+        name="projectDescriptionOne">
+        <TextArea rows={2} maxLength={150} showCount/>
+      </Form.Item>
+
+      <Form.Item {...formItemLayout} label="Your Role" name="yourRoleOne">
+        <TextArea rows={2} maxLength={150} showCount/>
       </Form.Item>
 
       {/* note to ask user to separate each item with a comma and a space */}
       {/* array of strings */}
       <Form.Item
+        {...formItemLayout}
         label="Tools and Technologies Used"
-        name="toolsTechnologiesOne"
-      >
+        name="toolsTechnologiesOne">
         <TextArea rows={4} />
       </Form.Item>
 
       {/* need a spot to emphasize that resumes should have 3-5 projects, spotlighting collaborative projects first (not MVP) */}
       <Form.Item
+        {...formItemLayout}
         label="Add Another"
         name="addAnotherProjectOne"
         valuePropName="checked"
@@ -247,7 +257,7 @@ const Projects = () => {
         {/* upon check, add a duplicate project section to add additional project */}
         <Checkbox></Checkbox>
       </Form.Item>
-    </>
+    </div>
   );
 };
 export default Projects;
