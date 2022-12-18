@@ -52,6 +52,7 @@ const FormController = () => {
     skip: !isEdit,
     variables: { resumeId: searchParams.get("resumeId") },
   });
+  let isPaidResume = resumeData?.resume.isPaid;
 
   if (isEdit) {
     refetch();
@@ -165,14 +166,14 @@ const FormController = () => {
 
     // these are the data field names that need to have dates formatted (if more, just add to this list)
     const dateFields = [
-      "endDateMonthEducation",
-      "endDateMonthExperience",
-      "startDateMonthEducation",
-      "startDateMonthExperience",
       "endDateYearEducation",
-      "endDateYearExperience",
+      "endDateYearExperienceOne",
+      "endDateYearExperienceTwo",
+      "endDateYearExperienceThree",
       "startDateYearEducation",
-      "startDateYearExperience",
+      "startDateYearExperienceOne",
+      "startDateYearExperienceTwo",
+      "startDateYearExperienceThree",
     ];
 
     // for each of the date fields, format according to if the field name includes "month" or "year"
@@ -186,69 +187,107 @@ const FormController = () => {
       }
     });
 
+    let projectsData = [];
+    // assume if user fill project Name they are gonna fill the rest !
+    let project1 = typeof data.projectNameOne === "undefined"?null:{
+      name: data.projectNameOne,
+      githubLink: data.githubRepoLinkOne,
+      deployment: data.deployedApplicationLinkOne,
+      summary: data.projectDescriptionOne,
+      responsibility: data.yourRoleOne,
+      technologies: data.toolsTechnologiesOne,
+    };
+    let project2= typeof data.projectNameTwo === "undefined"?null:{
+      name: data.projectNameTwo,
+      githubLink: data.githubRepoLinkTwo,
+      deployment: data.deployedApplicationLinkTwo,
+      summary: data.projectDescriptionTwo,
+      responsibility: data.yourRoleTwo,
+      technologies: data.toolsTechnologiesTwo,
+    };
+    let project3= typeof data.projectNameThree === 'undefined'?null:{
+      name: data.projectNameThree,
+      githubLink: data.githubRepoLinkThree,
+      deployment: data.deployedApplicationLinkThree,
+      summary: data.projectDescriptionThree,
+      responsibility: data.yourRoleThree,
+      technologies: data.toolsTechnologiesThree,
+    };
+    if (project1 !== null) projectsData.push(project1);
+    if (project2 !== null) projectsData.push(project2);
+    if (project3 !== null) projectsData.push(project3);
+
+    let experiencesData = [];
+    let exp1 =typeof data.jobTitleOne === "undefined"?null:{
+        isCurrent: data.currentJobOne,
+        title: data.jobTitleOne,
+        company: data.companyNameOne,
+        city: data.cityExperienceOne,
+        state: data.stateExperienceOne,
+        summary: data.jobDescriptionOne,
+        startDate: {
+          year: data.startDateYearExperienceOne,
+        },
+        endDate: {
+          year: data.endDateYearExperienceOne,
+        },
+      };
+    let exp2 =typeof data.jobTitleTwo === "undefined"?null:{
+        isCurrent: data.currentJobTwo,
+        title: data.jobTitleTwo,
+        company: data.companyNameTwo,
+        city: data.cityExperienceTwo,
+        state: data.stateExperienceTwo,
+        summary: data.jobDescriptionTwo,
+        startDate: {
+          year: data.startDateYearExperienceTwo,
+        },
+        endDate: {
+          year: data.endDateYearExperienceTwo,
+        },
+      };
+    let exp3 =typeof data.jobTitleThree === "undefined"?null:{
+        isCurrent: data.currentJobThree,
+        title: data.jobTitleThree,
+        company: data.companyNameThree,
+        city: data.cityExperienceThree,
+        state: data.stateExperienceThree,
+        summary: data.jobDescriptionThree,
+        startDate: {
+          year: data.startDateYearExperienceThree,
+        },
+        endDate: {
+          year: data.endDateYearExperienceThree,
+        },
+      };
+      if (exp1 !== null) experiencesData.push(exp1);
+      if (exp2 !== null) experiencesData.push(exp2);
+      if (exp3 !== null) experiencesData.push(exp3);
+      console.log("experience DataL :", experiencesData);
+
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
     let resumeObject = {
       personalInfo: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        city: data.cityPersonal,
-        state: data.statePersonal,
-        zip: data.zip,
-        phoneNumber: data.phone,
-        email: data.professionalEmail,
-        userGithub: data.github,
-        linkedin: data.linkedin,
-        portfolio: data.portfolio,
+        firstName: typeof data.firstName === 'undefined'?"":data.firstName,
+        lastName: typeof data.lastName === 'undefined'?"":data.lastName,
+        city: typeof data.cityPersonal === 'undefined'?"":data.cityPersonal,
+        state: typeof data.statePersonal === 'undefined'?"":data.statePersonal,
+        zip: typeof data.zip === 'undefined'?"":data.zip,
+        phoneNumber: typeof data.phone === 'undefined'?"":data.phone,
+        email: typeof data.professionalEmail === 'undefined'?"":data.professionalEmail,
+        userGithub: typeof data.github === 'undefined'?"":data.github,
+        linkedin: typeof data.linkedin === 'undefined'?"":data.linkedin,
+        portfolio: typeof data.portfolio === 'undefined'?"":data.portfolio,
       },
-      summary: data.summary,
+      summary: typeof data.summary === 'undefined'?"":data.summary,
       skills: {
-        languages: data.languages,
-        frameworks: data.frameworks,
-        libraries: data.libraries,
-        concepts: data.coreConcepts,
+        languages:  typeof data.languages === 'undefined'?"":data.languages,
+        frameworks:  typeof data.frameworks === 'undefined'?"":data.frameworks,
+        libraries:  typeof data.libraries === 'undefined'?"":data.libraries,
+        concepts:  typeof data.coreConcepts === 'undefined'?"":data.coreConcepts,
       },
-      projects: [
-        {
-          name: data.projectNameOne,
-          githubLink: data.githubRepoLinkOne,
-          deployment: data.deployedApplicationLinkOne,
-          summary: data.projectDescriptionOne,
-          responsibility: data.yourRoleOne,
-          technologies: data.toolsTechnologiesOne,
-        },
-        {
-          name: data.projectNameTwo,
-          githubLink: data.githubRepoLinkTwo,
-          deployment: data.deployedApplicationLinkTwo,
-          summary: data.projectDescriptionTwo,
-          responsibility: data.yourRoleTwo,
-          technologies: data.toolsTechnologiesTwo,
-        },
-        {
-          name: data.projectNameThree,
-          githubLink: data.githubRepoLinkThree,
-          deployment: data.deployedApplicationLinkThree,
-          summary: data.projectDescriptionThree,
-          responsibility: data.yourRoleThree,
-          technologies: data.toolsTechnologiesThree,
-        },
-      ],
-      experiences: [
-        {
-          isCurrent: data.currentJob,
-          title: data.jobTitle,
-          company: data.companyName,
-          city: data.cityExperience,
-          state: data.stateExperience,
-          summary: data.jobDescription,
-          startDate: {
-            year: data.startDateYearExperience,
-          },
-          endDate: {
-            year: data.endDateYearExperience,
-          },
-        },
-      ],
+      projects: projectsData,
+      experiences: experiencesData,
       educations: [
         {
           degree: data.certificateDegreeName,
@@ -275,12 +314,14 @@ const FormController = () => {
   const handleEditResume = async () => {
     try {
       if (searchParams) {
+        finalFormObject.isPaid = resumeData.resume.isPaid;
         const updateResumeLS = await editResumeToDB({
           variables: {
             resumeId: resumeData.resume._id,
             resumeData: finalFormObject,
           },
         });
+        saveResumeId(resumeData.resume._id);
       }
     } catch (err) {
       console.log(err);
@@ -324,6 +365,10 @@ const FormController = () => {
     });
     message.success("Your ResuMate is ready to download!");
   };
+
+  const handleRedirectDashboard = () => {
+    window.location.assign('/dashboard');
+  }
 
   return (
     <div className="main-container flex-container flex-row">
@@ -377,14 +422,20 @@ const FormController = () => {
                   }
                 }}
               >
-                Preview
+                Save & Preview
               </Button>
             )}
 
             {/* done button */}
-            {current === steps.length - 1 && (
+            {current === steps.length - 1 && !isPaidResume && (
               <Button type="primary" onClick={handleDownload}>
-                Download
+                Make A Payment
+              </Button>
+            )}
+
+            {current === steps.length - 1 && isPaidResume && (
+              <Button type="primary" onClick={handleRedirectDashboard}>
+                Dashboard
               </Button>
             )}
           </Col>
