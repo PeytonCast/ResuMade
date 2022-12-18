@@ -1,6 +1,6 @@
 // import necessary components from React and Ant Design
 import React, { useState, useEffect } from "react";
-import { Row, Col, Steps, Button, message, Form, ConfigProvider } from "antd";
+import { Button, Col, ConfigProvider, Form, message, Row, Steps } from "antd";
 import {
   UserInfo,
   Summary,
@@ -104,8 +104,6 @@ const FormController = () => {
     },
     {
       title: "Preview",
-      // comment below line in when merged with Arthur's code
-      // resume = Arthur's variable; userData = my state variable that has now changed with the prepped data
       content: <Preview resume={userData} />,
     },
   ];
@@ -128,7 +126,7 @@ const FormController = () => {
 
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
-    // this large function does two things: returns an array of strings for the input fields that need it, and
+    // this large function does two things: returns an array of strings for the input fields that need it, and formats the date when user inputs a year
     console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
     // do the same for all start and end months and years (8)
@@ -191,20 +189,17 @@ const FormController = () => {
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
     let resumeObject = {
       personalInfo: {
-        // firstName NOT BEING RENDERED IN PREVIEW
         firstName: data.firstName,
         lastName: data.lastName,
-        // address: // remove address field from Arthur's side
         city: data.cityPersonal,
         state: data.statePersonal,
-        zip: data.zip, // add zip field on Arthur's side
+        zip: data.zip,
         phoneNumber: data.phone,
         email: data.professionalEmail,
         userGithub: data.github,
         linkedin: data.linkedin,
         portfolio: data.portfolio,
       },
-      // remove italics on summary text
       summary: data.summary,
       skills: {
         languages: data.languages,
@@ -214,18 +209,32 @@ const FormController = () => {
       },
       projects: [
         {
-          name: data.projectName,
-          githubLink: data.githubRepoLink,
-          deployment: data.deployedApplicationLink,
-          summary: data.projectDescription,
-          responsibility: data.yourRole,
-          technologies: data.toolsTechnologies,
-          // addAnother: data.addAnotherProject // potentially addAnother button here on my side
+          name: data.projectNameOne,
+          githubLink: data.githubRepoLinkOne,
+          deployment: data.deployedApplicationLinkOne,
+          summary: data.projectDescriptionOne,
+          responsibility: data.yourRoleOne,
+          technologies: data.toolsTechnologiesOne,
+        },
+        {
+          name: data.projectNameTwo,
+          githubLink: data.githubRepoLinkTwo,
+          deployment: data.deployedApplicationLinkTwo,
+          summary: data.projectDescriptionTwo,
+          responsibility: data.yourRoleTwo,
+          technologies: data.toolsTechnologiesTwo,
+        },
+        {
+          name: data.projectNameThree,
+          githubLink: data.githubRepoLinkThree,
+          deployment: data.deployedApplicationLinkThree,
+          summary: data.projectDescriptionThree,
+          responsibility: data.yourRoleThree,
+          technologies: data.toolsTechnologiesThree,
         },
       ],
       experiences: [
         {
-          // change order? from Experience section to resumedata.js
           isCurrent: data.currentJob,
           title: data.jobTitle,
           company: data.companyName,
@@ -233,37 +242,25 @@ const FormController = () => {
           state: data.stateExperience,
           summary: data.jobDescription,
           startDate: {
-            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
-            month: data.startDateMonthExperience,
             year: data.startDateYearExperience,
           },
           endDate: {
-            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
-            month: data.endDateMonthExperience,
             year: data.endDateYearExperience,
           },
         },
-        // addAnother: data.addAnotherExperience // potentially addAnother button here on my side
       ],
       educations: [
         {
           degree: data.certificateDegreeName,
-          // fieldOfStudy: // remove fieldOfStudy field on Arthur's side
           schoolName: data.universityInstitutionName,
           city: data.cityEducation,
           state: data.stateEducation,
-          // isCurrent: // remove isCurrent field or add in Education.jsx
           startDate: {
-            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
-            month: data.startDateMonthEducation,
             year: data.startDateYearEducation,
           },
           endDate: {
-            // month NOT BEING RENDERED IN PREVIEW (but it's ok bc we're removing month)
-            month: data.endDateMonthEducation,
             year: data.endDateYearEducation,
           },
-          // addAnother: data.addAnotherEducation // potentially addAnother button here on my side
         },
       ],
     };
@@ -335,7 +332,8 @@ const FormController = () => {
           token: {
             colorPrimary: "#141414",
           },
-        }}>
+        }}
+      >
         <Row type="flex" justify="center" align="top">
           <Col className="FormContainer">
             <Steps current={current} items={items} />
@@ -359,7 +357,8 @@ const FormController = () => {
               <Button
                 type="primary"
                 style={{ margin: "0 8px" }}
-                onClick={() => next()}>
+                onClick={() => next()}
+              >
                 Next
               </Button>
             )}
@@ -376,7 +375,8 @@ const FormController = () => {
                   } else {
                     handleAddResume();
                   }
-                }}>
+                }}
+              >
                 Preview
               </Button>
             )}

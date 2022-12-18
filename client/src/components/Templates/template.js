@@ -87,7 +87,7 @@ export default function createDocument({
             personalInfo.phoneNumber,
             personalInfo.email,
             personalInfo.linkedin,
-            personalInfo.github,
+            personalInfo.userGithub,
             personalInfo.portfolio
           ),
           summaryStatement(summary),
