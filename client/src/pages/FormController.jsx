@@ -196,7 +196,7 @@ const FormController = () => {
         zip: data.zip,
         phoneNumber: data.phone,
         email: data.professionalEmail,
-        github: data.github,
+        userGithub: data.github,
         linkedin: data.linkedin,
         portfolio: data.portfolio,
       },

@@ -9,7 +9,7 @@ module.exports = {
         "zip": "30309",
         "phoneNumber": "714-589-7485",
         "email": "odthientho@gmail.com",
-        "github": "odthientho",
+        "userGithub": "odthientho",
         "linkedin": "odthientho",
         "portfolio": "odthientho.github.io/arthur-portfolio"
     },

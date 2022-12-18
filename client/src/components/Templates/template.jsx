@@ -24,7 +24,7 @@ const Template = ({ resume }) => {
         </p>
         <p>
           <b>LinkedIn:</b> {resume.personalInfo.linkedin} | <b>GitHub:</b>{" "}
-          {resume.personalInfo.github} | <b>Portfolio:</b>{" "}
+          {resume.personalInfo.userGithub} | <b>Portfolio:</b>{" "}
           {resume.personalInfo.portfolio}
         </p>
       </div>
