@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import dayjs from 'dayjs'
 import {
   // Checkbox,
   Form,
@@ -10,33 +11,38 @@ import {
   Checkbox,
 } from "antd";
 
+import "./forms.css";
+
 const Education = ({ preload }) => {
   const form = Form.useFormInstance();
 
-  console.log("preload", preload)
+  console.log("preload", preload);
   useEffect(() => {
-    form.setFieldsValue({
-      cityEducation: preload?.educations[0]?.city,
-      stateEducation: preload?.educations[0]?.state,
-      certificateDegreeName: preload?.educations[0]?.degree,
-      universityInstitutionName: preload?.educations[0]?.schoolName,
-      // startDateMonthEducation: preload?.educations[0]?.startDate?.month,
-      // startDateYearEducation: preload?.educations[0]?.startDate?.year,
-      // endDateMonthEducation: preload?.educations[0]?.endDate?.month,
-      // endDateYearEducation: preload?.educations[0]?.endDate?.year,
+    const formValues = form.getFieldsValue()
+
+    const startDate = preload?.educations[0]?.startDate?.year ? preload?.educations[0]?.startDate?.year : (formValues.startDateYearEducation ? formValues.startDateYearEducation : null )
+    const endDate = preload?.educations[0]?.endDate?.year ? preload?.educations[0]?.endDate?.year : (formValues.endDateYearEducation ? formValues.endDateYearEducation : null)
+
+      form.setFieldsValue({
+      cityEducation: formValues.cityEducation ? formValues.cityEducation : preload?.educations[0]?.city,
+      stateEducation:formValues.stateEducation ? formValues.stateEducation : preload?.educations[0]?.state,
+      certificateDegreeName: formValues.certificateDegreeName ? formValues.certificateDegreeName : preload?.educations[0]?.degree,
+      universityInstitutionName: formValues.universityInstitutionName ? formValues.universityInstitutionName : preload?.educations[0]?.schoolName,
+      startDateYearEducation: startDate ? dayjs().set('year', startDate) : "",
+      endDateYearEducation: endDate ? dayjs().set('year', endDate) : "",
       // addAnotherEducation: preload?.educations[0]?.addAnotherEducation
-  })})
+    })
+
+  }, [])
 
   useEffect(() => {
     // watching fields for user input and logging data to the console
     // console.log(form.getFieldsValue(true));
-
     // retrieving start and end dates from user input
     // console.log(form.getFieldValue("startDateMonth"));
     // console.log(form.getFieldValue("startDateYear"));
     // console.log(form.getFieldValue("endDateMonth"));
     // console.log(form.getFieldValue("endDateMonth"));
-
     // not DRY whatsoever - but it works
     // if (form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"]) {
     //   // console logs the user input's start date month
@@ -44,7 +50,6 @@ const Education = ({ preload }) => {
     //     form.getFieldsValue("startDateMonthEducation")["startDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (
     //   form.getFieldsValue("startDateYearEducation")["startDateYearEducation"]
     // ) {
@@ -55,7 +60,6 @@ const Education = ({ preload }) => {
     //       ["startDateYearEducation"].format("YYYY")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateMonth")["endDateMonthEducation"]) {
     //   // console logs the user input's end date month
     //   console.log(
@@ -64,7 +68,6 @@ const Education = ({ preload }) => {
     //       ["endDateMonthEducation"].format("MMMM")
     //   );
     // }
-
     // if (form.getFieldsValue("endDateYearEducation")["endDateYearEducation"]) {
     //   // console logs the user input's end date year
     //   console.log(
@@ -115,7 +118,7 @@ const Education = ({ preload }) => {
   // };
 
   return (
-    <>
+    <div className="education">
       <Form.Item label="Certificate/Degree Name" name="certificateDegreeName">
         <Input />
       </Form.Item>
@@ -124,8 +127,7 @@ const Education = ({ preload }) => {
         <Col span={12}>
           <Form.Item
             label="University/Institution Name"
-            name="universityInstitutionName"
-          >
+            name="universityInstitutionName">
             <Input />
           </Form.Item>
         </Col>
@@ -146,9 +148,9 @@ const Education = ({ preload }) => {
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonthEducation">
+          {/* <Form.Item label="Start Date: Month" name="startDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item label="Start Date: Year" name="startDateYearEducation">
             <DatePicker picker="year" format={"YYYY"} />
@@ -156,9 +158,9 @@ const Education = ({ preload }) => {
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonthEducation">
+          {/* <Form.Item label="End Date: Month" name="endDateMonthEducation">
             <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item label="End Date: Year" name="endDateYearEducation">
             <DatePicker picker="year" format={"YYYY"} />
@@ -176,11 +178,11 @@ const Education = ({ preload }) => {
           name="addAnotherEducation"
           valuePropName="checked"
         > */}
-          {/* upon check, add a duplicate education section to add additional degree */}
-          {/* <Checkbox></Checkbox> */}
+        {/* upon check, add a duplicate education section to add additional degree */}
+        {/* <Checkbox></Checkbox> */}
         {/* </Form.Item> */}
       </Row>
-    </>
+    </div>
   );
 };
 export default Education;

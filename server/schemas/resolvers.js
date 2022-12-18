@@ -35,8 +35,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in!');
       },
-        checkout: async (parent, args, context) => {
-          console.log(args);
+        checkout: async (parent, {resumeId}, context) => {
           const url = new URL(context.headers.referer).origin;
           const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -51,7 +50,7 @@ const resolvers = {
               quantity: 1,
             }],
             mode: 'payment',
-            success_url: `${url}/success/${args.resumeId}`,
+            success_url: `${url}/success/${resumeId}`,
             cancel_url: `${url}/`
           });
           return { session: session.id };
@@ -187,7 +186,7 @@ const resolvers = {
                     throw err
                   }
           // if user token is not there LOGIN
-          } throw new AuthenticationError('You need to be logged in!');
+          }throw new AuthenticationError('You need to be logged in!');
         }
 
 

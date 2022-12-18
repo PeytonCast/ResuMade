@@ -110,6 +110,12 @@ export const QUERY_RESUME = gql`
         schoolName
         city
         state
+        startDate {
+          year
+        }
+        endDate {
+          year
+        }
       }
     }
   }

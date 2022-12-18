@@ -1,6 +1,6 @@
 // import necessary components from React and Ant Design
 import React, { useState, useEffect } from "react";
-import { Row, Col, Steps, Button, message, Form } from "antd";
+import { Row, Col, Steps, Button, message, Form, ConfigProvider } from "antd";
 import {
   UserInfo,
   Summary,
@@ -13,16 +13,27 @@ import {
 
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_RESUME, EDIT_RESUME } from "../utils/mutations";
-import Auth from "../utils/auth";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME} from "../utils/queries";
+import { QUERY_CHECKOUT, QUERY_ME, QUERY_RESUME } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
-import "./formController.css";
 import { getMergedStatus } from "antd/es/_util/statusUtils";
 const stripePromise = loadStripe(
   "pk_test_51MEcXfKCu6tOY76M3glH98vnG12XLfoyY7tA9sT5APZOwtj6LnhXMPiatC5I8BealmLrL3ejoUoLVU2Se51Caoty00ul1ZAgr5"
 );
+
+const buttomItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 14,
+      offset: 12,
+    },
+  },
+};
 
 // function to render the form sections
 const FormController = () => {
@@ -30,12 +41,20 @@ const FormController = () => {
   // const { resumeId: resumeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  let isEdit = searchParams.get("resumeId") ? true : false
+  let isEdit = searchParams.get("resumeId") ? true : false;
 
-  const { loading:loadingResume, error:resumeError, data:resumeData, refetch:refetch } = useQuery(QUERY_RESUME, {skip:!isEdit, variables: {resumeId: searchParams.get("resumeId")}});
+  const {
+    loading: loadingResume,
+    error: resumeError,
+    data: resumeData,
+    refetch: refetch,
+  } = useQuery(QUERY_RESUME, {
+    skip: !isEdit,
+    variables: { resumeId: searchParams.get("resumeId") },
+  });
 
   if (isEdit) {
-    refetch()
+    refetch();
   }
 
   let finalFormObject = {};
@@ -61,7 +80,7 @@ const FormController = () => {
   const steps = [
     {
       title: "Personal Info",
-      content: <UserInfo preload={resumeData?.resume}/>,
+      content: <UserInfo preload={resumeData?.resume} />,
     },
     {
       title: "Summary",
@@ -81,7 +100,7 @@ const FormController = () => {
     },
     {
       title: "Education",
-      content: <Education  preload={resumeData?.resume} />,
+      content: <Education preload={resumeData?.resume} />,
     },
     {
       title: "Preview",
@@ -96,9 +115,8 @@ const FormController = () => {
     title: item.title,
   }));
 
-
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  const [resumeId, saveResumeId] = useState("639bce137e7ec65c24ec5e81");
+  const [resumeId, saveResumeId] = useState("");
 
   useEffect(() => {
     if (data) {
@@ -111,11 +129,10 @@ const FormController = () => {
   // helper function to clean and prepare the data for the API call once the Download button is clicked
   const prepDataForApiCall = (data) => {
     // this large function does two things: returns an array of strings for the input fields that need it, and
-    // console.log(`RUNNING ${data.firstName}`);
+    console.log(`RUNNING ${data.firstName}`);
     // run form.getFieldValue("startDateMonthExperience").format("MMMM") to get the month value from the form instance
     // do the same for all start and end months and years (8)
     // make array of strings out of text area for languages, ect...
-
 
     const returnArrayOfStrings = (string) => {
       // if user inputted nothing, do nothing
@@ -123,7 +140,7 @@ const FormController = () => {
         return [];
       }
       // otherwise, split the user's input (one long string) into separate words and return an array with the .split() string method
-      return string.split(",").map(element => element.trim());
+      return string.split(",").map((element) => element.trim());
     };
 
     // these are the data field names that need to return an array of strings (if more, just add to this list)
@@ -170,7 +187,6 @@ const FormController = () => {
         return;
       }
     });
-
 
     // resumeObject variable to converge the frontend data object with the backend models by mimicking the format of resumedata.js
     let resumeObject = {
@@ -252,38 +268,45 @@ const FormController = () => {
       ],
     };
 
-
     // now that data is cleaned, give to state variable to change the state
     setUserData(resumeObject);
     finalFormObject = resumeObject;
-    console.log("resumeData", resumeData) 
-     console.log("daataa", finalFormObject);
+    console.log("resumeData", resumeData);
+    console.log("daataa", finalFormObject);
   };
-
 
   const handleEditResume = async () => {
     try {
-      if (searchParams){
-          const updateResumeLS = await editResumeToDB({variables: {resumeId: resumeData.resume._id, resumeData: finalFormObject}})
-        }
+      if (searchParams) {
+        const updateResumeLS = await editResumeToDB({
+          variables: {
+            resumeId: resumeData.resume._id,
+            resumeData: finalFormObject,
+          },
+        });
+      }
     } catch (err) {
       console.log(err);
-      
+
       console.log("error edit");
     }
-
-  }
+  };
 
   //add the resume to the db -Arthur
   const handleAddResume = async () => {
-      try {
+    try {
       // console.log("finalFormObject", finalFormObject)
 
-         const addResume = await addResumeToDB({variables: {resumeData: finalFormObject}})
-         
-          const newResumeId = addResume.data.saveResume.resumes[addResume.data.saveResume.resumes.length-1]._id
+      const addResume = await addResumeToDB({
+        variables: { resumeData: finalFormObject },
+      });
 
-          console.log("newResumeId", newResumeId)
+      const newResumeId =
+        addResume.data.saveResume.resumes[
+          addResume.data.saveResume.resumes.length - 1
+        ]._id;
+
+      saveResumeId(newResumeId);
     } catch (err) {
       console.log("nope");
     }
@@ -298,7 +321,7 @@ const FormController = () => {
   };
 
   const handleDownload = () => {
-    console.log(resumeId);
+    console.log("newResumeId", resumeId);
     getCheckout({
       variables: { resumeId: resumeId },
     });
@@ -306,30 +329,37 @@ const FormController = () => {
   };
 
   return (
-    <div className="flex-container flex-row">
-      <Row justify="center" align="middle">
-        <Col className="FormContainer">
-          <Steps current={current} items={items} />
+    <div className="main-container flex-container flex-row">
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#141414",
+          },
+        }}>
+        <Row type="flex" justify="center" align="top">
+          <Col className="FormContainer">
+            <Steps current={current} items={items} />
 
-          <div className="steps-content">
-            <Form form={form}>{steps[current].content}</Form>
-          </div>
-
-          <div className="steps-action">
+            <div className="steps-content">
+              <Form form={form}>{steps[current].content}</Form>
+            </div>
+          </Col>
+        </Row>
+        <Row type="flex" justify="center" gutter={[16, 16]}>
+          <Col>
             {/* previous button */}
             {current > 0 && (
-              <Button
-                style={{
-                  margin: "0 8px",
-                }}
-                onClick={() => prev()}>
+              <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
                 Previous
               </Button>
             )}
 
             {/* next button */}
             {current < steps.length - 2 && (
-              <Button type="primary" onClick={() => next()}>
+              <Button
+                type="primary"
+                style={{ margin: "0 8px" }}
+                onClick={() => next()}>
                 Next
               </Button>
             )}
@@ -341,13 +371,12 @@ const FormController = () => {
                 onClick={() => {
                   next();
                   handlePreview();
-                  if (isEdit){
-                    handleEditResume()
+                  if (isEdit) {
+                    handleEditResume();
                   } else {
                     handleAddResume();
                   }
-                }}
-              >
+                }}>
                 Preview
               </Button>
             )}
@@ -358,9 +387,9 @@ const FormController = () => {
                 Download
               </Button>
             )}
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </ConfigProvider>
     </div>
   );
 };
