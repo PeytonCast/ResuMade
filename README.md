@@ -32,7 +32,7 @@ We offer a simple payment plan of $5.00 USD for each resume created. Payments ar
 
 >*"A resume is an important tool for your job search as it offers a page or two where you can display your relevant skills and qualities for a job. Resumes help employers make hiring decisions and help you get your first interview. That's why it matters how you structure your resume and what information you decide to include."* - Indeed.com
 
-__Disclaimer:__ Our template is specifically made for those seeking employment or advancement in the coding/web development industry. Certain questions within this form would not be applicable to other industries. This website focuses on the resume formatting and content only, and does not guarantee job placement or interview scheduling with any company. We hope this helps you!
+__Disclaimer:__ Our template is specifically made for those seeking employment or advancement in the coding/web development industry. Certain questions within this form would not be applicable to other industries. This website focuses on the resume formatting and content only and does not guarantee job placement or interview scheduling with any company. We hope this helps you!
 
 
 ### Motivation
@@ -49,7 +49,7 @@ At this time, the resume template is not applicable to industries outside of web
 
 * Some npm packages and versions of those packages created some tangles at times.
 * We got more practice with debugging, especially with the Heroku deployment.
-* Each of us became more knowledgable about the tool or technology he or she was tasked.
+* Each of us became more knowledgeable about the tool or technology he or she was tasked.
 
 ### What makes your project stand out?
 
@@ -131,6 +131,7 @@ Github Repository: [https://github.com/PeytonCast/ResuMade]
 ## Future Improvements
 
 * Add the functionality for a user to create a cover letter as well
+* Additional form features such as "Add Another" button
 * Increased security for form validations
 * Turn the app into a PWA
 * Refactor for neatness/readability
@@ -145,19 +146,25 @@ npm run build
 npm run develop
 Go to http://localhost:3001
 ```
-OR follow the above heroku deployed application link
+OR follow the above Heroku deployed application link
 
 ## Usage
 
 ### Screenshots
 
 Homepage
-![ResuMade Screenshot 1](./client/src/assets/resumade_screenshot1.png)
-User does this...
-and this...
-![ResuMade Screenshot 2]()
-and also this...
-![ResuMade Screenshot 3]()
+![ResuMade Homepage](./client/src/assets/resumade_screenshot1.png)
+User can login or signup
+![ResuMade Login](./client/src/assets/resumade_login.png)![ResuMade Signup](./client/src/assets/signup-cap.png)
+Dashboard
+![ResuMade Dashboard](./client/src/assets/resumade_dashboard.png)
+Resume Form
+![ResuMade Blank Form 1](./client/src/assets/form-preview-1.png)
+![ResuMade Blank Form 2](./client/src/assets/form-preview-2.png)
+Preview
+![ResuMade Preview](./client/src/assets/resumade_preview.png)
+Stripe Payment and Download
+![ResuMade Stripe Payment Platform](./client/src/assets/resumade_stripe_payment.png)
 
 ## Contributing
 
