@@ -64,7 +64,8 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Github Repo"
-        name="githubRepoLinkOne">
+        name="githubRepoLinkOne"
+      >
         <Input
           addonBefore="https://"
           placeholder="github.com/user/repo-name"
@@ -75,14 +76,16 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Deployed Application"
-        name="deployedApplicationLinkOne">
-        <Input addonBefore="https://" type="text" />
+        name="deployedApplicationLinkOne"
+      >
+        <Input addonBefore="https://" placeholder="Deployed App" type="text" />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Project Description"
-        name="projectDescriptionOne">
+        name="projectDescriptionOne"
+      >
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -94,7 +97,8 @@ const Projects = ({ preload }) => {
         {...formItemLayout}
         labelWrap
         label="Tools and Technologies Used"
-        name="toolsTechnologiesOne">
+        name="toolsTechnologiesOne"
+      >
         <TextArea rows={4} />
       </Form.Item>
 
@@ -107,21 +111,28 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Github Repo"
-        name="githubRepoLinkTwo">
-        <Input addonBefore="https://" placeholder="Github" type="text" />
+        name="githubRepoLinkTwo"
+      >
+        <Input
+          addonBefore="https://"
+          placeholder="github.com/user/repo-name"
+          type="text"
+        />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Deployed Application"
-        name="deployedApplicationLinkTwo">
-        <Input addonBefore="https://" placeholder="DeployedApp" type="text" />
+        name="deployedApplicationLinkTwo"
+      >
+        <Input addonBefore="https://" placeholder="Deployed App" type="text" />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Project Description"
-        name="projectDescriptionTwo">
+        name="projectDescriptionTwo"
+      >
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -132,7 +143,8 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Tools and Technologies Used"
-        name="toolsTechnologiesTwo">
+        name="toolsTechnologiesTwo"
+      >
         <TextArea rows={4} />
       </Form.Item>
 
@@ -141,28 +153,36 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Project Name"
-        name="projectNameThree">
+        name="projectNameThree"
+      >
         <Input maxLength={15} type="text" />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Github Repo"
-        name="githubRepoLinkThree">
-        <Input addonBefore="https://" placeholder="Github" type="text" />
+        name="githubRepoLinkThree"
+      >
+        <Input
+          addonBefore="https://"
+          placeholder="github.com/user/repo-name"
+          type="text"
+        />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Deployed Application"
-        name="deployedApplicationLinkThree">
-        <Input addonBefore="https://" placeholder="DeployedApp" type="text" />
+        name="deployedApplicationLinkThree"
+      >
+        <Input addonBefore="https://" placeholder="Deployed App" type="text" />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Project Description"
-        name="projectDescriptionThree">
+        name="projectDescriptionThree"
+      >
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -173,7 +193,8 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Tools and Technologies Used"
-        name="toolsTechnologiesThree">
+        name="toolsTechnologiesThree"
+      >
         <TextArea rows={4} />
       </Form.Item>
     </div>

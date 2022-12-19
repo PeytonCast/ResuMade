@@ -235,10 +235,11 @@ function skillInformation(skills) {
 }
 
 function educationInformation(education) {
+  console.log(education);
   return [
     itemHeader(
       `${education.degree}`,
-      ""
+      dateFormat(education.startDate, education.endDate, education.isCurrent)
     ),
     itemInfo(education.schoolName, `${education.city}, ${education.state}`),
   ];

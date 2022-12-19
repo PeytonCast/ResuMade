@@ -53,6 +53,12 @@ query me {
         schoolName
         city
         state
+        startDate {
+          year
+        }
+        endDate {
+          year
+        }
       }
     }
     username
