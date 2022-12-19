@@ -32,18 +32,22 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       {Auth.loggedIn() ? (
-        <div className="dash-hero">
-          <h2 style={{ textAlign: "right" }}>Welcome, {`${user.username}!`}</h2>
-          <p style={{ textAlign: "right" }}>
-            Add, edit and download your resumes here.
-          </p>
+        <div>
+          <div className="dash-hero">
+            <h2 style={{ textAlign: "right", paddingRight: 20 }}>
+              Welcome, {`${user.username}!`}
+            </h2>
+            <p style={{ textAlign: "right", paddingRight: 20 }}>
+              Add, edit and download your resumes here.
+            </p>
+          </div>
           <div className="dash-content">
-            <Row gutter={[24, 24]}>
-              <Col span={6}>
-                <AddResumeCard />
-              </Col>
+            <div className="column-1">
+              <AddResumeCard />
+            </div>
+            <div className="column-2">
               <ResumeList />
-            </Row>
+            </div>
           </div>
         </div>
       ) : (

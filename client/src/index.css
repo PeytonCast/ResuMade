@@ -173,20 +173,65 @@ body {
 /* DASHBOARD */
 .dashboard {
   min-height: 100vh;
-  max-width: 90vw;
+  width: 100vw;
   margin-bottom: 100px;
 }
 
 .dash-content {
   padding: 20px;
   margin-top: 60px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.column-1 {
+  margin-right: 30px;
+}
+
+.column-2 {
+  align-self: flex-start;
 }
 
 .dash-hero {
   height:120px;
   width: 100vw;
-  padding-right: 2rem;
   background-image: url('https://images.unsplash.com/photo-1517664121940-f819957bb072');
   background-position: top left;
   text-shadow: 2px 2px 2px rgb(255, 255, 255);
+}
+
+.resume-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* .card {
+  width: 300px;
+  height:400px;
+  border-color: gray;
+  border-style: solid;
+  padding: 1px;
+} */
+
+.ant-btn .ant-btn-link {
+  padding: 0;
+  height: 0;
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 760px) {
+  .dash-content {
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    align-items: flex-start;
+   flex-wrap: wrap;
+  }
+
+  .dash-hero {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+
 }

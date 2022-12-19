@@ -4,11 +4,8 @@
 }
 
 .summary {
-    padding: 50px;
-}
-
-.technical {
-    padding: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .projects {
@@ -25,4 +22,9 @@
 
 #resumePreview {
     padding: 50px;
+}
+
+
+.main-container {
+    margin-bottom: 50px;
 }

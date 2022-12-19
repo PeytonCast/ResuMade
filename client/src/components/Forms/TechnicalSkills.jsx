@@ -29,7 +29,9 @@ const TechnicalSkills = ({ preload }) => {
 
   return (
     <>
-      <h4>Separate each list item with a comma.</h4>
+      <h4 style={{ paddingLeft: 50, paddingTop: 50, paddingBottom: 10 }}>
+        Separate each list item with a comma.
+      </h4>
       <div className="technical">
         <Row>
           <Col span={20}>
@@ -53,8 +55,7 @@ const TechnicalSkills = ({ preload }) => {
             <Form.Item
               {...formItemLayout}
               label="Core Concepts"
-              name="coreConcepts"
-            >
+              name="coreConcepts">
               <TextArea rows={3} />
             </Form.Item>
           </Col>

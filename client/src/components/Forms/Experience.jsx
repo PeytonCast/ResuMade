@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import { Col, DatePicker, Form, Input, Row } from "antd";
+import { Col, DatePicker, Form, Input, Row, Divider } from "antd";
 import "./forms.css";
 const { TextArea } = Input;
 
@@ -29,23 +29,26 @@ const Experience = ({ preload }) => {
       jobTitleOne: formValues.jobTitleOne
         ? formValues.jobTitleOne
         : preload?.experiences[0]?.title,
-        companyNameOne: formValues.companyNameOne
+      companyNameOne: formValues.companyNameOne
         ? formValues.companyNameOne
         : preload?.experiences[0]?.company,
-        cityExperienceOne: formValues.cityExperienceOne
+      cityExperienceOne: formValues.cityExperienceOne
         ? formValues.cityExperienceOne
         : preload?.experiences[0]?.city,
-        stateExperienceOne: formValues.stateExperienceOne
+      stateExperienceOne: formValues.stateExperienceOne
         ? formValues.stateExperienceOne
         : preload?.experiences[0]?.state,
-      startDateYearExperienceOne: startDateOne ? dayjs().set("year", startDateOne) : "",
-      endDateYearExperienceOne: endDateOne ? dayjs().set("year", endDateOne) : "",
+      startDateYearExperienceOne: startDateOne
+        ? dayjs().set("year", startDateOne)
+        : "",
+      endDateYearExperienceOne: endDateOne
+        ? dayjs().set("year", endDateOne)
+        : "",
       jobDescriptionOne: formValues.jobDescriptionOne
         ? formValues.jobDescriptionOne
         : preload?.experiences[0]?.summary,
       // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
     });
-
 
     const startDateTwo = preload?.experiences[1]?.startDate?.year
       ? preload?.experiences[1]?.startDate?.year
@@ -62,23 +65,26 @@ const Experience = ({ preload }) => {
       jobTitleTwo: formValues.jobTitleTwo
         ? formValues.jobTitleTwo
         : preload?.experiences[1]?.title,
-        companyNameTwo: formValues.companyNameTwo
+      companyNameTwo: formValues.companyNameTwo
         ? formValues.companyNameTwo
         : preload?.experiences[1]?.company,
-        cityExperienceTwo: formValues.cityExperienceTwo
+      cityExperienceTwo: formValues.cityExperienceTwo
         ? formValues.cityExperienceTwo
         : preload?.experiences[1]?.city,
-        stateExperienceTwo: formValues.stateExperienceTwo
+      stateExperienceTwo: formValues.stateExperienceTwo
         ? formValues.stateExperienceTwo
         : preload?.experiences[1]?.state,
-      startDateYearExperienceTwo: startDateTwo ? dayjs().set("year", startDateTwo) : "",
-      endDateYearExperienceTwo: endDateTwo ? dayjs().set("year", endDateTwo) : "",
+      startDateYearExperienceTwo: startDateTwo
+        ? dayjs().set("year", startDateTwo)
+        : "",
+      endDateYearExperienceTwo: endDateTwo
+        ? dayjs().set("year", endDateTwo)
+        : "",
       jobDescriptionTwo: formValues.jobDescriptionTwo
         ? formValues.jobDescriptionTwo
         : preload?.experiences[1]?.summary,
       // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
     });
-
 
     const startDateThree = preload?.experiences[2]?.startDate?.year
       ? preload?.experiences[2]?.startDate?.year
@@ -95,17 +101,21 @@ const Experience = ({ preload }) => {
       jobTitleThree: formValues.jobTitleThree
         ? formValues.jobTitleThree
         : preload?.experiences[2]?.title,
-        companyNameThree: formValues.companyNameThree
+      companyNameThree: formValues.companyNameThree
         ? formValues.companyNameThree
         : preload?.experiences[2]?.company,
-        cityExperienceThree: formValues.cityExperienceThree
+      cityExperienceThree: formValues.cityExperienceThree
         ? formValues.cityExperienceThree
         : preload?.experiences[2]?.city,
-        stateExperienceThree: formValues.stateExperienceThree
+      stateExperienceThree: formValues.stateExperienceThree
         ? formValues.stateExperienceThree
         : preload?.experiences[2]?.state,
-      startDateYearExperienceThree: startDateThree ? dayjs().set("year", startDateThree) : "",
-      endDateYearExperienceTree: endDateThree ? dayjs().set("year", endDateThree) : "",
+      startDateYearExperienceThree: startDateThree
+        ? dayjs().set("year", startDateThree)
+        : "",
+      endDateYearExperienceTree: endDateThree
+        ? dayjs().set("year", endDateThree)
+        : "",
       jobDescriptionThree: formValues.jobDescriptionThree
         ? formValues.jobDescriptionThree
         : preload?.experiences[2]?.summary,
@@ -137,8 +147,18 @@ const Experience = ({ preload }) => {
     },
   ];
 
+  const formItemLayout = {
+    labelCol: {
+      span: 4,
+    },
+    wrapperCol: {
+      span: 24,
+    },
+  };
+
   return (
     <div className="experience">
+      <Divider>Job 1</Divider>
       <Form.Item label="Job Title" name="jobTitleOne" rules={rules}>
         <Input type="text" />
       </Form.Item>
@@ -168,8 +188,7 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="Start Date"
             name="startDateYearExperienceOne"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
           </Form.Item>
         </Col>
@@ -178,8 +197,7 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="End Date"
             name="endDateYearExperienceOne"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
@@ -189,6 +207,7 @@ const Experience = ({ preload }) => {
         <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
 
+      <Divider>Job 2</Divider>
       <Form.Item label="Job Title" name="jobTitleTwo" rules={rules}>
         <Input type="text" />
       </Form.Item>
@@ -218,8 +237,7 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="Start Date"
             name="startDateYearExperienceTwo"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
           </Form.Item>
         </Col>
@@ -228,8 +246,7 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="End Date"
             name="endDateYearExperienceTwo"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
@@ -239,12 +256,11 @@ const Experience = ({ preload }) => {
         <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
 
-
-      
       <Form.Item label="Job Title" name="jobTitleThree" rules={rules}>
         <Input type="text" />
       </Form.Item>
 
+      <Divider>Job 3</Divider>
       <Row>
         <Col span={12}>
           <Form.Item label="Company Name" name="companyNameThree" rules={rules}>
@@ -270,8 +286,7 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="Start Date"
             name="startDateYearExperienceThree"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
           </Form.Item>
         </Col>
@@ -280,14 +295,16 @@ const Experience = ({ preload }) => {
           <Form.Item
             label="End Date"
             name="endDateYearExperienceThree"
-            rules={rules}
-          >
+            rules={rules}>
             <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
       </Row>
 
-      <Form.Item label="Job Description" name="jobDescriptionThree" rules={rules}>
+      <Form.Item
+        label="Job Description"
+        name="jobDescriptionThree"
+        rules={rules}>
         <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
     </div>
