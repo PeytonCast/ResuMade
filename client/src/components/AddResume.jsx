@@ -4,16 +4,14 @@ import { REMOVE_RESUME } from "../utils/mutations";
 import Auth from "../utils/auth";
 // import { addResumeId } from "../utils/API";
 import { useNavigate, Navigate } from "react-router-dom";
-import addIcon from "../assets/img_487543.png";
-import addFile from "../assets/new-document.png";
 import { Card, ConfigProvider, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import "../index.css";
 
 const { Meta } = Card;
 
 const AddResumeCard = () => {
-
- const nav = useNavigate();
+  const nav = useNavigate();
   const fillOutResume = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     // console.log("token", token)
@@ -34,49 +32,29 @@ const AddResumeCard = () => {
       <div>
         <h3 style={{ marginLeft: 15 }}>Add a resume:</h3>
       </div>
-      <div className="cards">
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary: "#141414",
-            },
-          }}>
-          {/* <Card
+      <div>
+        <Button type="link" size="size" onClick={() => fillOutResume()}>
+          <Card
             hoverable
+            icon={<PlusOutlined />}
             onClick={() => fillOutResume()}
+            cover={
+              <img
+                alt="addIcon"
+                src={
+                  "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe"
+                }
+              />
+            }
             style={{
               width: 300,
-              height: 410,
               borderColor: "gray",
               borderStyle: "solid",
-            }} */}
-          {/* bodyStyle={{ display: "flex", justifyContent: "center" }}
-          cover={<img alt="addIcon" src={`${addFile}`} />} */}
-          <Button type="link" size="size" onClick={() => fillOutResume()}>
-            <Card
-              hoverable
-              icon={<PlusOutlined />}
-              onClick={() => fillOutResume()}
-              cover={
-                <img
-                  alt="addIcon"
-                  src={
-                    "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe"
-                  }
-                />
-              }
-              style={{
-                width: 300,
-                height: 435,
-                borderColor: "gray",
-                borderStyle: "solid",
-                padding: 1,
-              }}>
-              <Meta title=" + New Resume" />
-            </Card>
-          </Button>
-          {/* </Card> */}
-        </ConfigProvider>
+              padding: 1,
+            }}>
+            <Meta title=" + New Resume" />
+          </Card>
+        </Button>
       </div>
     </div>
   );
