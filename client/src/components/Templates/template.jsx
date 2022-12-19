@@ -53,7 +53,7 @@ const Template = ({ resume }) => {
         {resume.projects.map((project) => (
           <>
             <p>
-              <b>{project.name}</b> | {project.github} | {project.deployment}
+              <b>{project.name}</b> | {project.githubLink} | {project.deployment}
             </p>
             <ul>
               <li>{project.summary}</li>

@@ -17,12 +17,26 @@ const Projects = ({ preload }) => {
   console.log("preload", preload);
   useEffect(() => {
     form.setFieldsValue({
-      projectName: preload?.projects[0]?.name,
-      githubRepoLink: preload?.projects[0]?.githubLink,
-      deployedApplicationLink: preload?.projects[0]?.deployment,
-      projectDescription: preload?.projects[0]?.summary,
-      yourRole: preload?.projects[0]?.responsibility,
-      toolsTechnologies: preload?.projects[0]?.technologies.join(","),
+      projectNameOne: preload?.projects[0]?.name,
+      githubRepoLinkOne: preload?.projects[0]?.githubLink,
+      deployedApplicationLinkOne: preload?.projects[0]?.deployment,
+      projectDescriptionOne: preload?.projects[0]?.summary,
+      yourRoleOne: preload?.projects[0]?.responsibility,
+      toolsTechnologiesOne: preload?.projects[0]?.technologies.join(","),
+
+      projectNameTwo: preload?.projects[1]?.name,
+      githubRepoLinkTwo: preload?.projects[1]?.githubLink,
+      deployedApplicationLinkTwo: preload?.projects[1]?.deployment,
+      projectDescriptionTwo: preload?.projects[1]?.summary,
+      yourRoleTwo: preload?.projects[1]?.responsibility,
+      toolsTechnologiesTwo: preload?.projects[1]?.technologies.join(","),
+
+      projectNameThree: preload?.projects[2]?.name,
+      githubRepoLinkThree: preload?.projects[2]?.githubLink,
+      deployedApplicationLinkThree: preload?.projects[2]?.deployment,
+      projectDescriptionThree: preload?.projects[2]?.summary,
+      yourRoleThree: preload?.projects[2]?.responsibility,
+      toolsTechnologiesThree: preload?.projects[2]?.technologies.join(","),
     });
   });
 
