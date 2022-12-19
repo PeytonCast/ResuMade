@@ -181,14 +181,14 @@ body {
   padding: 20px;
   margin-top: 60px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .column-1 {
-  align-self: stretch;
+  margin-right: 30px;
 }
 
-.column-1 {
+.column-2 {
   align-self: flex-start;
 }
 
@@ -216,4 +216,22 @@ body {
 .ant-btn .ant-btn-link {
   padding: 0;
   height: 0;
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 760px) {
+  .dash-content {
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    align-items: flex-start;
+   flex-wrap: wrap;
+  }
+
+  .dash-hero {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+
 }

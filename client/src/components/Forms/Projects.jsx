@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Checkbox, Col, Input, Form, Row } from "antd";
+import { Checkbox, Col, Input, Form, Row, Divider } from "antd";
 const { TextArea } = Input;
 
 const formItemLayout = {
   labelCol: {
-    span: 4,
+    span: 6,
   },
   wrapperCol: {
     span: 24,
@@ -56,6 +56,7 @@ const Projects = ({ preload }) => {
   return (
     <div className="projects">
       <h4>A minimum of three projects is industry standard.</h4>
+      <Divider>Project 1</Divider>
       <Form.Item {...formItemLayout} label="Project Name" name="projectNameOne">
         <Input maxLength={15} type="text" />
       </Form.Item>
@@ -63,8 +64,7 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Github Repo"
-        name="githubRepoLinkOne"
-      >
+        name="githubRepoLinkOne">
         <Input
           addonBefore="https://"
           placeholder="github.com/user/repo-name"
@@ -75,16 +75,14 @@ const Projects = ({ preload }) => {
       <Form.Item
         {...formItemLayout}
         label="Deployed Application"
-        name="deployedApplicationLinkOne"
-      >
+        name="deployedApplicationLinkOne">
         <Input addonBefore="https://" type="text" />
       </Form.Item>
 
       <Form.Item
         {...formItemLayout}
         label="Project Description"
-        name="projectDescriptionOne"
-      >
+        name="projectDescriptionOne">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
@@ -94,99 +92,88 @@ const Projects = ({ preload }) => {
 
       <Form.Item
         {...formItemLayout}
+        labelWrap
         label="Tools and Technologies Used"
-        name="toolsTechnologiesOne"
-      >
+        name="toolsTechnologiesOne">
         <TextArea rows={4} />
       </Form.Item>
 
       {/* second project */}
-      <Row>
-        <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameTwo">
-            <Input maxLength={15} type="text" />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Divider>Project 2</Divider>
+      <Form.Item {...formItemLayout} label="Project Name" name="projectNameTwo">
+        <Input maxLength={15} type="text" />
+      </Form.Item>
 
-      <Row>
-        <Col span={12}>
-          <Form.Item label="Github Repo" name="githubRepoLinkTwo">
-            <Input addonBefore="https://" placeholder="Github" type="text" />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="Github Repo"
+        name="githubRepoLinkTwo">
+        <Input addonBefore="https://" placeholder="Github" type="text" />
+      </Form.Item>
 
-        <Col span={12}>
-          <Form.Item
-            label="Deployed Application"
-            name="deployedApplicationLinkTwo"
-          >
-            <Input
-              addonBefore="https://"
-              placeholder="DeployedApp"
-              type="text"
-            />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Form.Item
+        {...formItemLayout}
+        label="Deployed Application"
+        name="deployedApplicationLinkTwo">
+        <Input addonBefore="https://" placeholder="DeployedApp" type="text" />
+      </Form.Item>
 
-      <Form.Item label="Project Description" name="projectDescriptionTwo">
+      <Form.Item
+        {...formItemLayout}
+        label="Project Description"
+        name="projectDescriptionTwo">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRoleTwo">
+      <Form.Item {...formItemLayout} label="Your Role" name="yourRoleTwo">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
       <Form.Item
+        {...formItemLayout}
         label="Tools and Technologies Used"
-        name="toolsTechnologiesTwo"
-      >
+        name="toolsTechnologiesTwo">
         <TextArea rows={4} />
       </Form.Item>
 
       {/* third project */}
-      <Row>
-        <Col span={20}>
-          <Form.Item label="Project Name" name="projectNameThree">
-            <Input maxLength={15} type="text" />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Divider>Project 3</Divider>
+      <Form.Item
+        {...formItemLayout}
+        label="Project Name"
+        name="projectNameThree">
+        <Input maxLength={15} type="text" />
+      </Form.Item>
 
-      <Row>
-        <Col span={12}>
-          <Form.Item label="Github Repo" name="githubRepoLinkThree">
-            <Input addonBefore="https://" placeholder="Github" type="text" />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="Github Repo"
+        name="githubRepoLinkThree">
+        <Input addonBefore="https://" placeholder="Github" type="text" />
+      </Form.Item>
 
-        <Col span={12}>
-          <Form.Item
-            label="Deployed Application"
-            name="deployedApplicationLinkThree"
-          >
-            <Input
-              addonBefore="https://"
-              placeholder="DeployedApp"
-              type="text"
-            />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Form.Item
+        {...formItemLayout}
+        label="Deployed Application"
+        name="deployedApplicationLinkThree">
+        <Input addonBefore="https://" placeholder="DeployedApp" type="text" />
+      </Form.Item>
 
-      <Form.Item label="Project Description" name="projectDescriptionThree">
+      <Form.Item
+        {...formItemLayout}
+        label="Project Description"
+        name="projectDescriptionThree">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item label="Your Role" name="yourRoleThree">
+      <Form.Item {...formItemLayout} label="Your Role" name="yourRoleThree">
         <TextArea rows={2} maxLength={150} showCount />
       </Form.Item>
 
       <Form.Item
+        {...formItemLayout}
         label="Tools and Technologies Used"
-        name="toolsTechnologiesThree"
-      >
+        name="toolsTechnologiesThree">
         <TextArea rows={4} />
       </Form.Item>
     </div>

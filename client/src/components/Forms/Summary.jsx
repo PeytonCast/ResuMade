@@ -17,7 +17,7 @@ const Summary = ({ preload }) => {
 
   return (
     <>
-      <h4>
+      <h4 style={{ paddingRight: 50, paddingLeft: 50, paddingTop: 50 }}>
         In no more than five lines (420-500 characters), summarize: current
         title, accomplishments, relevant past experience, tranferrable skills
         and what makes you passionate about this position or industry.
