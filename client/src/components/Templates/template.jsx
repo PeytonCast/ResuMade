@@ -1,44 +1,11 @@
 import React from "react";
 import "./template.css";
 
-function getMonthFromInt(value) {
-  switch (value) {
-    case 1:
-      return "Jan";
-    case 2:
-      return "Feb";
-    case 3:
-      return "Mar";
-    case 4:
-      return "Apr";
-    case 5:
-      return "May";
-    case 6:
-      return "Jun";
-    case 7:
-      return "Jul";
-    case 8:
-      return "Aug";
-    case 9:
-      return "Sept";
-    case 10:
-      return "Oct";
-    case 11:
-      return "Nov";
-    case 12:
-      return "Dec";
-    default:
-      return "N/A";
-  }
-}
-
 function dateFormat(startDate, endDate, isCurrent) {
-  const startDateText =
-    getMonthFromInt(startDate.month) + ". " + startDate.year;
+  const startDateText = startDate.year;
   const endDateText = isCurrent
     ? "Present"
-    : `${getMonthFromInt(endDate.month)}. ${endDate.year}`;
-
+    : `${endDate.year}`;
   return `${startDateText} - ${endDateText}`;
 }
 
@@ -47,28 +14,27 @@ const Template = ({ resume }) => {
     <div id="template">
       <div className="aParagraph">
         <p className="name">
-          {resume.personalInfo.firstName}{" "}
-          {resume.personalInfo.lastName}
+          {resume.personalInfo.firstName} {resume.personalInfo.lastName}
         </p>
         <p>
           <b>Location:</b> {resume.personalInfo.city},{" "}
-          {resume.personalInfo.state} | <b>Phone:</b>{" "}
+          {resume.personalInfo.state},{" "} {resume.personalInfo.zip}| <b>Phone:</b>{" "}
           {resume.personalInfo.phoneNumber} | <b>Email:</b>{" "}
           {resume.personalInfo.email}
         </p>
         <p>
           <b>LinkedIn:</b> {resume.personalInfo.linkedin} | <b>GitHub:</b>{" "}
-          {resume.personalInfo.github} | <b>Portfolio:</b>{" "}
+          {resume.personalInfo.userGithub} | <b>Portfolio:</b>{" "}
           {resume.personalInfo.portfolio}
         </p>
       </div>
-      <div className="aParagraph summary">{resume.summary}</div>
+      <div className="aParagraph">{resume.summary}</div>
       <div className="aParagraph">
         <p>
           <b>TECHNICAL SKILLS</b>
         </p>
         <p>
-          <b>Languages:</b> {resume.skills.languages.join(", ")}{" "}
+        <b>Languages:</b> {resume.skills.languages.join(", ")}{" "}
         </p>
         <p>
           <b>Frameworks:</b> {resume.skills.frameworks.join(", ")}{" "}
@@ -87,7 +53,7 @@ const Template = ({ resume }) => {
         {resume.projects.map((project) => (
           <>
             <p>
-              <b>{project.name}</b> | {project.github} | {project.deployment}
+              <b>{project.name}</b> | {project.githubLink} | {project.deployment}
             </p>
             <ul>
               <li>{project.summary}</li>
@@ -129,7 +95,7 @@ const Template = ({ resume }) => {
           <>
             <p>
               <b>
-                {school.degree} in {school.fieldOfStudy}
+                {school.degree}
               </b>
               <span className="rightAllign">
                 {dateFormat(school.startDate, school.endDate, school.isCurrent)}

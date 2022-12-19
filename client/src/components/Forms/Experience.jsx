@@ -1,87 +1,117 @@
 import React, { useState, useEffect } from "react";
-import {
-  Checkbox,
-  Button,
-  Form,
-  Input,
-  Row,
-  Col,
-  DatePicker,
-  Space,
-} from "antd";
+import dayjs from "dayjs";
+import { Col, DatePicker, Form, Input, Row } from "antd";
+import "./forms.css";
 const { TextArea } = Input;
 
-const Experience = () => {
+const Experience = ({ preload }) => {
   const form = Form.useFormInstance();
 
   const [disabled, setDisabled] = useState(false);
-
-  // const toggleDisabled = ({ disabled }) => {
-  //   console.log("toggleDisabled function is working");
-  //   setDisabled(disabled);
-  // };
-
+  // console.log("preload", preload)
   useEffect(() => {
-    // console.log(form.getFieldsValue(true));
+    const formValues = form.getFieldsValue();
 
-    // this is not DRY I know
-    if (
-      form.getFieldsValue("startDateMonthExperience")[
-        "startDateMonthExperience"
-      ]
-    ) {
-      // console logs the user input's start date month
-      console.log(
-        form
-          .getFieldsValue("startDateMonthExperience")
-          ["startDateMonthExperience"].format("MMMM")
-      );
-    }
+    // const startDate = dayjs().set('year', preload?.experiences[0]?.startDate?.year ? preload?.experiences[0]?.startDate?.year : (formValues.startDateYearExperience ? formValues.startDateYearExperience : null))
+    const startDateOne = preload?.experiences[0]?.startDate?.year
+      ? preload?.experiences[0]?.startDate?.year
+      : formValues.startDateYearExperienceOne
+      ? formValues.startDateYearExperienceOne
+      : null;
+    const endDateOne = preload?.experiences[0]?.endDate?.year
+      ? preload?.experiences[0]?.endDate?.year
+      : formValues.endDateYearExperienceOne
+      ? formValues.endDateYearExperienceOne
+      : null;
 
-    if (
-      form.getFieldsValue("startDateYearExperience")["startDateYearExperience"]
-    ) {
-      // console logs the user input's start date year
-      console.log(
-        form
-          .getFieldsValue("startDateYearExperience")
-          ["startDateYearExperience"].format("YYYY")
-      );
-    }
+    console.log(startDateOne);
+    form.setFieldsValue({
+      jobTitleOne: formValues.jobTitleOne
+        ? formValues.jobTitleOne
+        : preload?.experiences[0]?.title,
+        companyNameOne: formValues.companyNameOne
+        ? formValues.companyNameOne
+        : preload?.experiences[0]?.company,
+        cityExperienceOne: formValues.cityExperienceOne
+        ? formValues.cityExperienceOne
+        : preload?.experiences[0]?.city,
+        stateExperienceOne: formValues.stateExperienceOne
+        ? formValues.stateExperienceOne
+        : preload?.experiences[0]?.state,
+      startDateYearExperienceOne: startDateOne ? dayjs().set("year", startDateOne) : "",
+      endDateYearExperienceOne: endDateOne ? dayjs().set("year", endDateOne) : "",
+      jobDescriptionOne: formValues.jobDescriptionOne
+        ? formValues.jobDescriptionOne
+        : preload?.experiences[0]?.summary,
+      // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
+    });
 
-    if (
-      form.getFieldsValue("endDateMonthExperience")["endDateMonthExperience"]
-    ) {
-      // console logs the user input's end date month
-      console.log(
-        form
-          .getFieldsValue("endDateMonthExperience")
-          ["endDateMonthExperience"].format("MMMM")
-      );
-    }
 
-    if (form.getFieldsValue("endDateYearExperience")["endDateYearExperience"]) {
-      // console logs the user input's end date year
-      console.log(
-        form
-          .getFieldsValue("endDateYearExperience")
-          ["endDateYearExperience"].format("YYYY")
-      );
-    }
+    const startDateTwo = preload?.experiences[1]?.startDate?.year
+      ? preload?.experiences[1]?.startDate?.year
+      : formValues.startDateYearExperienceTwo
+      ? formValues.startDateYearExperienceTwo
+      : null;
+    const endDateTwo = preload?.experiences[1]?.endDate?.year
+      ? preload?.experiences[1]?.endDate?.year
+      : formValues.endDateYearExperienceTwo
+      ? formValues.endDateYearExperienceTwo
+      : null;
 
-    // console.log(typeof(form.getFieldValue("currentJob")));
-    if (form.getFieldValue("currentJob")) {
-      // console.log("currentJob");
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-    }
+    form.setFieldsValue({
+      jobTitleTwo: formValues.jobTitleTwo
+        ? formValues.jobTitleTwo
+        : preload?.experiences[1]?.title,
+        companyNameTwo: formValues.companyNameTwo
+        ? formValues.companyNameTwo
+        : preload?.experiences[1]?.company,
+        cityExperienceTwo: formValues.cityExperienceTwo
+        ? formValues.cityExperienceTwo
+        : preload?.experiences[1]?.city,
+        stateExperienceTwo: formValues.stateExperienceTwo
+        ? formValues.stateExperienceTwo
+        : preload?.experiences[1]?.state,
+      startDateYearExperienceTwo: startDateTwo ? dayjs().set("year", startDateTwo) : "",
+      endDateYearExperienceTwo: endDateTwo ? dayjs().set("year", endDateTwo) : "",
+      jobDescriptionTwo: formValues.jobDescriptionTwo
+        ? formValues.jobDescriptionTwo
+        : preload?.experiences[1]?.summary,
+      // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
+    });
 
-    if (form.getFieldValue("addAnotherExperience")) {
-      // if addAnother checkbox is checked, duplicate experience form below the first one to add another experience
-      // Experience()
-    }
-  });
+
+    const startDateThree = preload?.experiences[2]?.startDate?.year
+      ? preload?.experiences[2]?.startDate?.year
+      : formValues.startDateYearExperienceThree
+      ? formValues.startDateYearExperienceThree
+      : null;
+    const endDateThree = preload?.experiences[2]?.endDate?.year
+      ? preload?.experiences[2]?.endDate?.year
+      : formValues.endDateYearExperienceThree
+      ? formValues.endDateYearExperienceThree
+      : null;
+
+    form.setFieldsValue({
+      jobTitleThree: formValues.jobTitleThree
+        ? formValues.jobTitleThree
+        : preload?.experiences[2]?.title,
+        companyNameThree: formValues.companyNameThree
+        ? formValues.companyNameThree
+        : preload?.experiences[2]?.company,
+        cityExperienceThree: formValues.cityExperienceThree
+        ? formValues.cityExperienceThree
+        : preload?.experiences[2]?.city,
+        stateExperienceThree: formValues.stateExperienceThree
+        ? formValues.stateExperienceThree
+        : preload?.experiences[2]?.state,
+      startDateYearExperienceThree: startDateThree ? dayjs().set("year", startDateThree) : "",
+      endDateYearExperienceTree: endDateThree ? dayjs().set("year", endDateThree) : "",
+      jobDescriptionThree: formValues.jobDescriptionThree
+        ? formValues.jobDescriptionThree
+        : preload?.experiences[2]?.summary,
+      // addAnotherExperience: preload?.experiences[0]?.addAnotherExperience
+    });
+  }, []);
 
   Form.useWatch(
     [
@@ -100,98 +130,167 @@ const Experience = () => {
     form
   );
 
-  // const companyName = Form.useWatch("companyName", form);
-  // const city = Form.useWatch("city", form);
-  // const state = Form.useWatch("state", form);
-
-  // // const startDate = Form.useWatch("startDate", form);
-  const startDateMonth = Form.useWatch("startDateMonthExperience", form);
-  const startDateYear = Form.useWatch("startDateYearExperience", form);
-
-  // // const endDate = Form.useWatch("endDate", form);
-  const endDateMonth = Form.useWatch("endDateMonthExperience", form);
-  const endDateYear = Form.useWatch("endDateYearExperience", form);
-
-  // // checkbox
-  const currentJob = Form.useWatch("currentJob", form);
-  // Form.useWatch = (namePath: "currentJob", formInstance: form): Value
-
-  // const jobDescription = Form.useWatch("jobDescription", form);
-
-  // // checkbox
-  const addAnother = Form.useWatch("addAnotherExperience", form);
+  const rules = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
 
   return (
-    <>
-      <Form.Item label="Job Title" name="jobTitle">
-        <Input />
+    <div className="experience">
+      <Form.Item label="Job Title" name="jobTitleOne" rules={rules}>
+        <Input type="text" />
       </Form.Item>
 
       <Row>
         <Col span={12}>
-          <Form.Item label="Company Name" name="companyName">
-            <Input />
+          <Form.Item label="Company Name" name="companyNameOne" rules={rules}>
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={9}>
-          <Form.Item label="City" name="cityExperience">
-            <Input />
+          <Form.Item label="City" name="cityExperienceOne" rules={rules}>
+            <Input type="text" />
           </Form.Item>
         </Col>
 
         <Col span={3}>
-          <Form.Item label="State" name="stateExperience">
-            <Input maxLength={2} />
+          <Form.Item label="State" name="stateExperienceOne" rules={rules}>
+            <Input maxLength={2} type="text" />
           </Form.Item>
         </Col>
       </Row>
 
       <Row>
         <Col span={10}>
-          <Form.Item label="Start Date: Month" name="startDateMonthExperience">
-            <DatePicker picker="month" format={"MMMM"} />
-          </Form.Item>
-
-          <Form.Item label="Start Date: Year" name="startDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} />
+          <Form.Item
+            label="Start Date"
+            name="startDateYearExperienceOne"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
           </Form.Item>
         </Col>
 
         <Col span={10}>
-          <Form.Item label="End Date: Month" name="endDateMonthExperience">
-            <DatePicker picker="month" format={"MMMM"} disabled={disabled} />
-          </Form.Item>
-
-          <Form.Item label="End Date: Year" name="endDateYearExperience">
-            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
-          </Form.Item>
-        </Col>
-
-        <Col span={4}>
           <Form.Item
-            id="currentJob"
-            name="currentJob"
-            label="Current Job?"
-            valuePropName="checked"
+            label="End Date"
+            name="endDateYearExperienceOne"
+            rules={rules}
           >
-            <Checkbox></Checkbox>
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
           </Form.Item>
         </Col>
       </Row>
 
-      <Form.Item label="Job Description" name="jobDescription">
-        <TextArea rows={3} />
+      <Form.Item label="Job Description" name="jobDescriptionOne" rules={rules}>
+        <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
 
-      <Form.Item
-        label="Add Another"
-        name="addAnotherExperience"
-        valuePropName="checked"
-      >
-        <Checkbox></Checkbox>
+      <Form.Item label="Job Title" name="jobTitleTwo" rules={rules}>
+        <Input type="text" />
       </Form.Item>
-    </>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item label="Company Name" name="companyNameTwo" rules={rules}>
+            <Input type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={9}>
+          <Form.Item label="City" name="cityExperienceTwo" rules={rules}>
+            <Input type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={3}>
+          <Form.Item label="State" name="stateExperienceTwo" rules={rules}>
+            <Input maxLength={2} type="text" />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={10}>
+          <Form.Item
+            label="Start Date"
+            name="startDateYearExperienceTwo"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
+          </Form.Item>
+        </Col>
+
+        <Col span={10}>
+          <Form.Item
+            label="End Date"
+            name="endDateYearExperienceTwo"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item label="Job Description" name="jobDescriptionTwo" rules={rules}>
+        <TextArea rows={3} maxLength={150} showCount />
+      </Form.Item>
+
+
+      
+      <Form.Item label="Job Title" name="jobTitleThree" rules={rules}>
+        <Input type="text" />
+      </Form.Item>
+
+      <Row>
+        <Col span={12}>
+          <Form.Item label="Company Name" name="companyNameThree" rules={rules}>
+            <Input type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={9}>
+          <Form.Item label="City" name="cityExperienceThree" rules={rules}>
+            <Input type="text" />
+          </Form.Item>
+        </Col>
+
+        <Col span={3}>
+          <Form.Item label="State" name="stateExperienceThree" rules={rules}>
+            <Input maxLength={2} type="text" />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={10}>
+          <Form.Item
+            label="Start Date"
+            name="startDateYearExperienceThree"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} placeholder="YYYY" />
+          </Form.Item>
+        </Col>
+
+        <Col span={10}>
+          <Form.Item
+            label="End Date"
+            name="endDateYearExperienceThree"
+            rules={rules}
+          >
+            <DatePicker picker="year" format={"YYYY"} disabled={disabled} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item label="Job Description" name="jobDescriptionThree" rules={rules}>
+        <TextArea rows={3} maxLength={150} showCount />
+      </Form.Item>
+    </div>
   );
 };
 export default Experience;

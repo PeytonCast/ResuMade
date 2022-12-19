@@ -1,12 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Row, Col, Space, InputNumber } from "antd";
+import React, { useEffect } from "react";
+import { Form, Input } from "antd";
+import "./forms.css";
 
-const UserInfo = () => {
+const formItemLayout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 14,
+  },
+};
+
+const UserInfo = ({ preload }) => {
   const form = Form.useFormInstance();
 
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
+  useEffect(() => {
+    form.setFieldsValue({
+      firstName: preload?.personalInfo?.firstName,
+      lastName: preload?.personalInfo?.lastName,
+      cityPersonal: preload?.personalInfo?.city,
+      statePersonal: preload?.personalInfo?.state,
+      zip: preload?.personalInfo?.zip,
+      phone: preload?.personalInfo?.phoneNumber,
+      professionalEmail: preload?.personalInfo?.email,
+      github: preload?.personalInfo?.userGithub,
+      linkedin: preload?.personalInfo?.linkedin,
+      portfolio: preload?.personalInfo?.portfolio,
+    });
+  });
 
   Form.useWatch(
     [
@@ -23,89 +44,110 @@ const UserInfo = () => {
     ],
     form
   );
-  // const lastName = Form.useWatch("lastName", form);
-  // const city = Form.useWatch("city", form);
-  // const state = Form.useWatch("state", form);
-  // const zip = Form.useWatch("zip", form);
-  // const phone = Form.useWatch("phone", form);
-  // const professionalEmail = Form.useWatch("professionalEmail", form);
-  // const socials = Form.useWatch("socials", form);
-  // const github = Form.useWatch("github", form);
-  // const linkedin = Form.useWatch("linkedin", form);
-  // const portfolio = Form.useWatch("portfolio", form);
+
+  const rules = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
 
   return (
-    <>
-      <Row>
-        <Col span={24}>
-          <Form.Item label="First Name" name="firstName">
-            <Input />
-          </Form.Item>
-        </Col>
+    <div className="personal-container">
+      <Form.Item
+        {...formItemLayout}
+        label="First Name"
+        name="firstName"
+        rules={rules}
+      >
+        <Input style={{ width: 400 }} type="text" />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="Last Name" name="lastName">
-            <Input />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="Last Name"
+        name="lastName"
+        rules={rules}
+      >
+        <Input style={{ width: 400 }} type="text" />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="City" name="cityPersonal">
-            <Input />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="City"
+        name="cityPersonal"
+        rules={rules}
+      >
+        <Input style={{ width: 200 }} type="text" />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="State" name="statePersonal">
-            {/* default input to all caps */}
-            <Input maxLength={2} />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="State"
+        name="statePersonal"
+        rules={rules}
+      >
+        {/* default input to all caps */}
+        <Input maxLength={2} style={{ width: 60 }} type="text" />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="Zip" name="zip">
-            <InputNumber minLength={5} maxLength={9} />
-          </Form.Item>
-        </Col>
+      <Form.Item {...formItemLayout} label="Zip" name="zip" rules={rules}>
+        <Input minLength={5} maxLength={5} />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="Phone" name="phone">
-            <InputNumber minLength={10} maxLength={10} />
-          </Form.Item>
-        </Col>
+      <Form.Item {...formItemLayout} label="Phone" name="phone" rules={rules}>
+        <Input minLength={10} maxLength={10} style={{ width: 200 }} />
+      </Form.Item>
 
-        <Col span={24}>
-          <Form.Item label="Professional Email" name="professionalEmail">
-            <Input type="email" />
-          </Form.Item>
-        </Col>
+      <Form.Item
+        {...formItemLayout}
+        label="Professional Email"
+        name="professionalEmail"
+        rules={rules}
+      >
+        <Input type="email" style={{ width: 400 }} />
+      </Form.Item>
 
-        {/* <Form.Item label="Socials" name="socials"> */}
-        {/* <Input.Group> */}
+      <Form.Item {...formItemLayout} label="Github" name="github" rules={rules}>
+        <Input
+          addonBefore="https://"
+          placeholder="Github"
+          name="github"
+          type="text"
+          style={{ width: 400 }}
+        />
+      </Form.Item>
 
-        {/* add note to not include https:// or www. for all 3 URLs*/}
-        <Form.Item label="Github" name="github">
-          <Input addonBefore="https://" placeholder="Github" name="github" />
-        </Form.Item>
+      <Form.Item
+        {...formItemLayout}
+        label="Linkedin"
+        name="linkedin"
+        rules={rules}
+      >
+        <Input
+          addonBefore="https://"
+          placeholder="LinkedIn"
+          name="linkedin"
+          type="text"
+          style={{ width: 400 }}
+        />
+      </Form.Item>
 
-        <Form.Item label="Linkedin" name="linkedin">
-          <Input
-            addonBefore="https://"
-            placeholder="LinkedIn"
-            name="linkedin"
-          />
-        </Form.Item>
-
-        <Form.Item label="Portfolio" name="portfolio">
-          <Input
-            addonBefore="https://"
-            placeholder="Portfolio"
-            name="portfolio"
-          />
-          {/* </Input.Group> */}
-        </Form.Item>
-      </Row>
-    </>
+      <Form.Item
+        {...formItemLayout}
+        label="Portfolio"
+        name="portfolio"
+        rules={rules}
+      >
+        <Input
+          addonBefore="https://"
+          placeholder="Portfolio"
+          name="portfolio"
+          type="text"
+          style={{ width: 400 }}
+        />
+      </Form.Item>
+    </div>
   );
 };
 export default UserInfo;

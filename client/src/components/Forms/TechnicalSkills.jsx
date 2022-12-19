@@ -1,46 +1,65 @@
 import React, { useEffect } from "react";
-import { Input, Form, Row, Col } from "antd";
+import { Col, Form, Input, Row } from "antd";
+import "./forms.css";
 const { TextArea } = Input;
 
-const TechnicalSkills = () => {
+const formItemLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 24,
+  },
+};
+
+const TechnicalSkills = ({ preload }) => {
   const form = Form.useFormInstance();
 
-  // useEffect(() => {
-  //   console.log(form.getFieldsValue(true));
-  // });
+  console.log("preload", preload);
+  useEffect(() => {
+    form.setFieldsValue({
+      languages: preload?.skills?.languages?.join(","),
+      frameworks: preload?.skills?.frameworks?.join(","),
+      libraries: preload?.skills?.libraries?.join(","),
+      coreConcepts: preload?.skills?.concepts?.join(","),
+    });
+  });
 
   Form.useWatch(["languages", "frameworks", "libraries", "coreConcepts"], form);
-  // const frameworks = Form.useWatch("frameworks", form);
-  // const libraries = Form.useWatch("libraries", form);
-  // const coreConcepts = Form.useWatch("coreConcepts", form);
 
   return (
-    // note to ask user to separate each item with a comma and a space
     <>
-      <Row>
-        <Col span={24}>
-          <Form.Item label="Languages" name="languages">
-            <TextArea rows={3} />
-          </Form.Item>
-        </Col>
+      <h4>Separate each list item with a comma.</h4>
+      <div className="technical">
+        <Row>
+          <Col span={20}>
+            <Form.Item {...formItemLayout} label="Languages" name="languages">
+              <TextArea rows={3} />
+            </Form.Item>
+          </Col>
 
-        <Col span={24}>
-          <Form.Item label="Frameworks" name="frameworks">
-            <TextArea rows={3} />
-          </Form.Item>
-          <Col span={24}></Col>
+          <Col span={20}>
+            <Form.Item {...formItemLayout} label="Frameworks" name="frameworks">
+              <TextArea rows={3} />
+            </Form.Item>
+          </Col>
+          <Col span={20}>
+            <Form.Item {...formItemLayout} label="Libraries" name="libraries">
+              <TextArea rows={3} />
+            </Form.Item>
+          </Col>
 
-          <Form.Item label="Libraries" name="libraries">
-            <TextArea rows={3} />
-          </Form.Item>
-        </Col>
-
-        <Col span={24}>
-          <Form.Item label="Core Concepts" name="coreConcepts">
-            <TextArea rows={3} />
-          </Form.Item>
-        </Col>
-      </Row>
+          <Col span={20}>
+            <Form.Item
+              {...formItemLayout}
+              label="Core Concepts"
+              name="coreConcepts"
+            >
+              <TextArea rows={3} />
+            </Form.Item>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };
