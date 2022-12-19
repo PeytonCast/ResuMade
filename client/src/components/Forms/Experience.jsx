@@ -256,11 +256,11 @@ const Experience = ({ preload }) => {
         <TextArea rows={3} maxLength={150} showCount />
       </Form.Item>
 
+      <Divider>Job 3</Divider>
       <Form.Item label="Job Title" name="jobTitleThree" rules={rules}>
         <Input type="text" />
       </Form.Item>
 
-      <Divider>Job 3</Divider>
       <Row>
         <Col span={12}>
           <Form.Item label="Company Name" name="companyNameThree" rules={rules}>
