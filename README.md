@@ -1,4 +1,4 @@
-## ResuMade
+# ResuMade
 Not sure how to write a resume or tired of creating your own? Just fill out our questionnaire and we'll do the work for you.
 
 ## License
